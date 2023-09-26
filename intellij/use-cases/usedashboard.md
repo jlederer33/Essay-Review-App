@@ -13,7 +13,9 @@ while(Searches colleges to add to dashboard) is (Adding more colleges)
 :Adds colleges to dashboard;
 :Updates dashboard based on colleges added;
 endwhile (No colleges to add)
-
+|System|
+:returns to dashboard;
+stop
 
 
 
