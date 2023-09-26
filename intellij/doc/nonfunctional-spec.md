@@ -10,7 +10,14 @@
 1. Only issue is internet connection 
 
 **Supportability:**
+1. It will be easy to support this app in the future because of the flexibility the infrastructure of the code will have.
 
 **Implementation**
 1. Software must run on Android devices
 2. Software must be written using Java
+
+**Interface**
+1. Will have to work with database of colleges and universities.
+
+**Legal**
+1. None applied.
