@@ -7,8 +7,14 @@ title Upload Essay
 |Applicant|
 start
 if (Essay completed?) then (Yes)
+:Review and submit;
+switch (Type of essay?)
+case (Personal essay)
+:Add personal tags;
+case (Supplement)
 :Add college tags;
-:Upload essay to forum;
+endswitch
+:Uploads essay to forum;
 |System|
 :Adds essay to college forum;
 stop
