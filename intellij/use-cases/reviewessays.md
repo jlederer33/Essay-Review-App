@@ -3,7 +3,6 @@ title Review and Edit
 
 |#palegreen|Reviewer|
 |#pink|System|
-|#lightblue|Applicant|
 
 |Reviewer|
 start
@@ -15,7 +14,5 @@ start
 |System|
 :Adds feedback;
 :Notifies applicant about receiving feedback;
-|Applicant|
-:Applies feedback to essay;
 stop
 ```
