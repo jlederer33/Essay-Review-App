@@ -1,3 +1,4 @@
+# Use Dashboard
 **Primary Actor**
 1. **Applicant:** Wants to view all colleges they are interested in. Wants easy to read UI. Does not want to be overwhelmed by dashboard 
 

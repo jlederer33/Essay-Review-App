@@ -1,5 +1,5 @@
 ```plantuml
-title Reviewer Navigate (Casual)
+title Reviewer Navigate Screen (Casual)
 
 |#palegreen|Reviewer|
 |#pink|System|
