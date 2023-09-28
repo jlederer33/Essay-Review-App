@@ -1,6 +1,19 @@
+**Primary Actor**
+1. **Applicant:** wants to upload essay to app. Wants option to save as draft in case of incompletion
+
+**Other Stakeholders:**
+1. **Reviewer:** Want system to display essay after its uploaded
+
+**Preconditions:**
+* Applicant has not completed essays in checklist, or wants to submit more
+
+**Postconditions**
+* Essay is saved in app
+* Essay is uploaded to respective forum
+
 ````plantuml
 
-title Upload Essay
+title Upload Essay (Fully Dressed)
 |#lightblue|Applicant| 
 |#pink|System|
 

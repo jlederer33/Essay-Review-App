@@ -1,5 +1,6 @@
+
 ```plantuml
-title Navigate Screen (Casual)
+title Navigate Screen (Fully Dressed)
 |#lightblue|Applicant| 
 |#pink|System|
 

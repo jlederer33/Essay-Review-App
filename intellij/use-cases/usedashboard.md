@@ -1,5 +1,18 @@
+**Primary Actor**
+1. **Applicant:** Wants to view all colleges they are interested in. Wants easy to read UI. Does not want to be overwhelmed by dashboard 
+
+**Other Stakeholders:**
+1. **None:** 
+
+**Preconditions:**
+* Applicant is logged into app 
+
+**Postconditions**
+* System updates dasboard with colleges 
+
+
 ```plantuml
-title Use Dashboard
+title Use Dashboard (Casual)
 
 
 |#lightblue|Applicant|
