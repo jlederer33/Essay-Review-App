@@ -7,12 +7,7 @@ title Applicant Navigate Screen (Fully Dressed)
 |Applicant|
 start
 :opens dashboard;
-while(Searches colleges to add to dashboard) is (Adding more colleges)
-:Add colleges to dashboard;
-|System|
-:Adds colleges to dashboard;
-:Updates dashboard based on colleges added;
-endwhile (No colleges to add)
+:executes useDashboard;
 |Applicant|
 :checks checklist;
 while (Tasks remaining?) is (Yes)

@@ -31,12 +31,23 @@ endswitch
 :Uploads essay to forum;
 |System|
 :Adds essay to college forum;
+|Applicant|
+while (More edits to add?) is (Yes)
+:Adds feedback/personal edits;
+|System|
+:Essay is updated with edits;
+endwhile (No)
+:Essay is saved;
 stop
 else (No)
+|Applicant|
 if (Save as draft?) then (Yes)
-:Saves the draft;
+|System|
+:Draft is saved;
+stop
 else (No) 
-:Deletes the draft;
-endif
+|System|
+:Draft is deleted;
+|System|
 stop
 ````
