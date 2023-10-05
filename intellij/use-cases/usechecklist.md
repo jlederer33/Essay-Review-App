@@ -1,5 +1,5 @@
 ```plantuml
-title Use Checklist
+title Prepare application
 start
 :check College requirements;
 :check if requires personal and/or supplement essays;
