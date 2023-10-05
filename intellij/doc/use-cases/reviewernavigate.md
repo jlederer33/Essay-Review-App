@@ -4,10 +4,9 @@ title Reviewer Navigate Screen (Casual)
 |#palegreen|Reviewer|
 |#pink|System|
 
-
-|Reviewer|
+|System|
 Start
-:Opens dashboard;
+|Reviewer|
 :Searches colleges/keywords for essays;
 |System|
 :Match keywords to relevant essays;

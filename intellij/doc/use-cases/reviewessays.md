@@ -13,20 +13,42 @@
 * System updates essay with edits 
 
 ```plantuml
-title Review and Edit (Brief)
+title Review and Edit (Fully Dressed)
 
 |#palegreen|Reviewer|
 |#pink|System|
 
-|Reviewer|
-start
-:Search for essays on college forum;
 |System|
-:Displays essays based on search criteria
-(college,keyword,etc);
+start
+:Displays previously edited essays;
 |Reviewer|
-:Edit essay and give feedback;
+while (Apply more feedback?) is (Yes)
+:Give feedback and edit;
+|System|
+:Apply edits to essay;
+endwhile (No)
+|Reviewer|
+:Searches colleges/keywords for essays;
+|System|
+:Match keywords to relevant essays;
+:Display relevant essays;
+|Reviewer|
+:Apply edits and feedback;
+if (Done with feedback?) then (Yes)
 |System|
 :Adds feedback;
+|Reviewer|
+:Upload edited essay;
+|System|
+:Feedback is added to essay;
 stop
+else(No)
+Switch (Save edits as draft?)
+Case(Don't Save)
+|System|
+:Edits are Deleted;
+stop
+Case(Save)
+:Edits are saved for later;
+Stop
 ```
