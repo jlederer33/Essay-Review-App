@@ -22,6 +22,13 @@ title Use Dashboard (Casual)
 |System|
 start
 :Displays colleges already added to dashboard;
+:Displays preparechecklist;
+|Applicant|
+while (tasks completed?) is (Yes)
+:Checks off completed task;
+|System|
+:Update checklist;
+endwhile (No)
 |Applicant|
 while(Searches colleges to add to dashboard) is (Adding more colleges)
 :Add colleges to dashboard;

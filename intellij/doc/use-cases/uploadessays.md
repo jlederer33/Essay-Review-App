@@ -18,8 +18,16 @@ title Upload Essay (Fully Dressed)
 |#lightblue|Applicant| 
 |#pink|System|
 
-|Applicant|
+|System|
 start
+:Displays previous essays;
+|Applicant|
+while (Edit previous essays?) is (Yes)
+:Edits and updates previous essays;
+|System|
+:Updates essay;
+endwhile (No)
+|Applicant|
 if (Essay completed?) then (Yes)
 :Review and submit;
 switch (Type of essay?)
@@ -42,12 +50,9 @@ stop
 else (No)
 |Applicant|
 if (Save as draft?) then (Yes)
-|System|
 :Draft is saved;
 stop
 else (No) 
-|System|
 :Draft is deleted;
-|System|
 stop
 ````
