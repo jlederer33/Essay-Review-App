@@ -12,6 +12,40 @@
 * System updates checklist with completed tasks
 
 ```plantuml
+|#lightblue|Applicant|
+|#pink|System|
+
+|System|
+start
+:Display checklist;
+|Applicant|
+:Your list of college;
+|System|
+while (Personal essay) is (Yes)
+|Applicant|
+:draft;
+|System|
+endwhile(no)
+while (supplement essay) is (Yes)
+|Applicant|
+:draft;
+|System|
+endwhile(no)
+while (other materials like SAT score, letter of rec.) is (Yes)
+|Applicant|
+:make another list of college from your first list that requires these;
+|System|
+endwhile(no)
+:more tasks;
+:stop;
+
+
+
+
+
+```
+
+```plantuml
 title Use Checklist (Brief)
 start
 :check College requirements;
