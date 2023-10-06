@@ -19,7 +19,7 @@
 start
 :Display checklist;
 |Applicant|
-:Your list of college;
+:Chooses tasks to work on;
 |System|
 while (Personal essay) is (Yes)
 |Applicant|
@@ -37,7 +37,7 @@ while (other materials like SAT score, letter of rec.) is (Yes)
 |System|
 endwhile(no)
 :more tasks;
-:stop;
+stop
 
 
 

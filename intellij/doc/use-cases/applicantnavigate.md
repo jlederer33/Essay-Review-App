@@ -7,15 +7,14 @@ title Applicant Navigate Screen (Fully Dressed)
 |Applicant|
 start
 :opens dashboard;
-:executes useDashboard;
+:executes applicantDashboard;
 |Applicant|
 :checks checklist;
 while (Tasks remaining?) is (Yes)
-:complete tasks;
-|System|
-:System updates checklist;
+:execute prepareApplication;
 endwhile(no)
 |Applicant|
+
 :upload essay to college dashboard;
 switch (Type of essay?)
 case (Personal essay)
