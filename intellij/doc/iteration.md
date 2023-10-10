@@ -3,7 +3,7 @@
 Criticality: Helps the applicant to be  organised and prepare everything they need for college application.
 Risk: Too much information at once.
 Coverage: Will be heavily used for dashboard.
-Rank: Medium
+Rank: Low
 
 **reviewessays**
 
