@@ -44,3 +44,33 @@ appDashboard-> Essay : upload
 
 
 ```
+
+```plantuml
+class applicant{
+...
+--
++username()
+}
+
+class appDashboard{
+...
+--
++takeInEssay()
++uploadEssay()
++editEssay()
+}
+
+class Essay{
+...
+--
++personalTags()
++text()
+}
+
+class supEssay{
+...
+--
++collegeName()
++text()
+}
+```
