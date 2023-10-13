@@ -38,6 +38,7 @@ hide empty methods
 actor Applicant as applicant
 participant " : appDashboard " as appDashboard
 applicant-> appDashboard : view
+appDashboard-> applicant : Display Colleges
 appDashboard-> Essay : view
 appDashboard-> Essay : edit
 appDashboard-> Essay : upload
@@ -55,7 +56,7 @@ class applicant{
 class appDashboard{
 ...
 --
-+takeInEssay()
++takeInEssay() : String
 +uploadEssay()
 +editEssay()
 }
@@ -73,4 +74,6 @@ class supEssay{
 +collegeName()
 +text()
 }
+
+Essay <|--  supEssay
 ```
