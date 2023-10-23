@@ -79,7 +79,7 @@ public class DashController
             PersonalEssay essay = new PersonalEssay(title, text);
             essays.put(title, essay);
         } else if (essayType.equalsIgnoreCase("Supplement")) {
-            SupEssay essay = new SupEssay(title, text);
+            SupplementEssay essay = new SupplementEssay(title, text);
         }
         else {
             System.out.println("Invalid Essay type. Please use 'Personal' or 'Supplement'.");
@@ -93,23 +93,23 @@ public class DashController
             System.out.println("Add college, Remove college, View dashboard");
 
 
-            String choice = scanner.next();
+            String choice = scanner.next().toLowerCase();
             scanner.nextLine();
 
             switch (choice) {
-                case "Add college":
+                case "add college":
                     System.out.print("Enter the name of the college: ");
                     String collegeToAdd = scanner.nextLine();
                     addCollege(collegeToAdd);
                     break;
 
-                case "Remove college":
+                case "remove college":
                     System.out.print("Enter the name of the college: ");
                     String collegeToRemove = scanner.nextLine();
                     removeCollege(collegeToRemove);
                     break;
 
-                case "View dashboard":
+                case "view dashboard":
                     viewDashboard();
                     break;
 

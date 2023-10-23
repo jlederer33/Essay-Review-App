@@ -41,18 +41,6 @@ public class Dashboard {
             }
         }
     }
-    public void uploadEssay(String title, String text, String essayType){
-        if (essayType.equalsIgnoreCase("Personal")){
-            PersonalEssay essay = new PersonalEssay(title, text);
-            essays.put(title, essay);
-        } else if (essayType.equalsIgnoreCase("Supplement")) {
-            SupEssay essay = new SupEssay(title, text);
-        }
-        else {
-            System.out.println("Invalid Essay type. Please use 'Personal' or 'Supplement'.");
-        }
-        System.out.println("Essay uploaded successfully");
-    }
 
 
 

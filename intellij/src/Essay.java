@@ -14,5 +14,4 @@ public abstract class Essay {
         return text;
     }
 
-    public abstract String getType();
 }

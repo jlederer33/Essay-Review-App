@@ -27,7 +27,7 @@ public class College {
     }
 
     public void setSupplementEssay(Essay essay){
-        if(essay instanceof SupEssay){
+        if(essay instanceof SupplementEssay){
             supEssay = essay;
         }
     }
