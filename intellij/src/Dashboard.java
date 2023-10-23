@@ -60,36 +60,33 @@ public class Dashboard {
         Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println("OPTIONS: ");
-            System.out.println("1. Add college" + "\n" + "2. Remove college" + "\n" + "3. View dashboard");
+            System.out.println("Add college, Remove college, View dashboard");
 
 
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+            String choice = scanner.nextLine();
 
             switch (choice) {
-                case 1:
-                        System.out.print("Enter the name of the college: ");
-                        String collegeToAdd = scanner.nextLine();
-                        addCollege(collegeToAdd);
-                        System.out.println("Add more colleges?");
+                case "Add college":
+                    System.out.print("Enter the name of the college: ");
+                    String collegeToAdd = scanner.nextLine();
+                    addCollege(collegeToAdd);
+                    break;
 
-                case 2:
+                case "Remove college":
                     System.out.print("Enter the name of the college: ");
                     String collegeToRemove = scanner.nextLine();
                     removeCollege(collegeToRemove);
+                    break;
 
-
-                case 3:
+                case "View dashboard":
                     viewDashboard();
                     break;
 
                 default:
                     System.out.println("Invalid choice, please try again");
             }
-
         }
     }
-
 
 
     public static void main(String[] args) {
