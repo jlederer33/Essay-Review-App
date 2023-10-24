@@ -73,7 +73,29 @@ DashLogic-> DashController : view
 
 
 ```
+```plantuml
+actor Applicant as applicant
+participant " : DashUI " as DashUI
+DashController -> College : edit
+applicant-> DashUI : input
+DashUI ->  applicant : display
+DashUI-> DashController : informs
+DashController-> DashUI : add college
+DashController-> DashUI : remove college
 
+
+```
+```plantuml
+actor Applicant as applicant
+participant " : DashUI " as DashUI
+applicant-> DashUI : view
+DashController -> Essay : updates
+DashController -> Essay : edits
+Essay -> DashController : returns
+DashController-> DashUI : return
+DashUI-> DashController : update
+
+```
 ```plantuml
 
 class Essay{
@@ -122,13 +144,24 @@ class DashLogic{
 +submitEssay()
 +deleteEssay()
 }
-
+class College{
+...
+--
++collegeName
+}
 class DashUI{
 ...
 --
 +start()
 +startUI()
 }
+DashUI <|--  DashController
+DashUI <|-- DashLogic
+College .> Essay
+Essay .> College
+DashUI .> Essay
 
 
 ```
+
+
