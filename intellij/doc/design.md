@@ -4,8 +4,15 @@
 hide circle
 hide empty methods
  
- class Applicant{
+ class DashUI{
  username
+ }
+ 
+ 
+ class DashLogic{
+ }
+ 
+ class DashController{
  }
  
  class Essay{
@@ -13,7 +20,7 @@ hide empty methods
  text
  }
  
- class supEssay{
+ class supplementEssay{
  text
  }
  
@@ -21,14 +28,18 @@ hide empty methods
  collegeName
  }
  
- class appDashboard{
+ class personalEssay{
+ text
  }
- Applicant "1" - "1" appDashboard : \tViews\t
- appDashboard "1" -- "*" Essay : Contains\t\t
- supEssay "*" - "1" College : \tContains\t\t
- Essay "1" -- "*" supEssay : Inherits
- Applicant "1" -- "1" Essay : Edits
  
+ DashUI "1" - "1" DashLogic : Contains\t\t
+ DashUI "1" - "1" DashController : Contains\t\t
+ DashController "1" - "1" DashLogic : Contains\t\t
+  DashUI "1" -- "*" College : Contains
+  College "1" -- "*" Essay : Contains
+ Essay "1" -- "*" supplementEssay : Inherits
+  Essay "1" -- "*" personalEssay : Inherits
+
 
  
 
