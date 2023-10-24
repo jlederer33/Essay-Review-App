@@ -4,26 +4,69 @@
 import java.util.*;
 
 public class DashUI extends DashLogic {
+
+    public void viewDashboard(){//The toString() of these methods, in order to reflect the central function the dashboard will have in the app
+        System.out.println("DASHBOARD: ");
+        List<String> collegeNames = new ArrayList<>(colleges.keySet());
+        if (collegeNames.size() == 0){
+            System.out.println("No colleges in dashboard");
+        }else{
+            for (int i = 0; i < collegeNames.size(); i++){
+                String collegeName = collegeNames.get(i);
+                College college = colleges.get(collegeName);
+                System.out.println(i+1 +". " + college.getName());
+                Essay perEssay = college.getEssay("Personal");
+                Essay supEssay = college.getEssay("Supplement");
+                if(perEssay != null){
+                    System.out.println("Personal Essay: " + perEssay.getTitle());
+                }
+                else{System.out.println("Personal Essay: No essay assigned");}
+
+                if(supEssay != null){
+                    System.out.println("Supplement Essay: " + supEssay.getTitle());
+                }else{System.out.println("Supplement Essay: no essay assigned");}
+                System.out.println("________________");
+            }
+        }
+    }
     public void start() { //this method carries out the operations. It uses a switch case to carry out the logic. The int scanner should be replaced with a string scanner
         Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println("OPTIONS: ");
-            System.out.println("1.Add college, 2.Remove college, 3.Upload essay, 4.Delete essay, 5.View dashboard, 6.Exit app");
+            System.out.println("1.Add college, 2.Remove college, 3.Upload essay, 4.Delete essay, 5.View dashboard, 6.View essay, 7.Exit app");
 
             int choice = scanner.nextInt();
             scanner.nextLine();
 
             switch (choice) {
                 case 1:
-                    System.out.print("Enter the name of the college: ");
+                    boolean addMore = true;
+                    while(addMore){
+                    System.out.print("Enter the name of the college to be added: ");
                     String collegeToAdd = scanner.nextLine();
-                    addCollege(collegeToAdd);
+                    System.out.println(addCollege(collegeToAdd));
+
+                    System.out.println("Add another college? (Yes/No): ");
+                    String response = scanner.nextLine();
+                    if(response.equalsIgnoreCase("No")){
+                        addMore = false;
+                        }
+                    }
                     break;
 
                 case 2:
-                    System.out.print("Enter the name of the college: ");
-                    String collegeToRemove = scanner.nextLine();
-                    removeCollege(collegeToRemove);
+                    boolean removeMore = true;
+                    while(removeMore) {
+                        System.out.print("Enter the name of the college to be removed: ");
+                        String collegeToRemove = scanner.nextLine();
+                        System.out.println(removeCollege(collegeToRemove));
+
+                        System.out.println("Remove another college? (Yes/No): ");
+                        String response = scanner.nextLine();
+                        if (response.equalsIgnoreCase("No")){
+                            removeMore = false;
+                        }
+                    }
                     break;
 
                 case 3:
@@ -48,6 +91,14 @@ public class DashUI extends DashLogic {
                     break;
 
                 case 6:
+                    System.out.println("Enter College: ");
+                    String collegeName2 = scanner.nextLine(); //I know its not good code practice but the name works and I couldn't think of a better one
+                    System.out.println("Choose which essay to access (Personal/Supplement: ");
+                    String essayType2 = scanner.nextLine();
+                    System.out.println(viewEssay(collegeName2, essayType2));
+                    break;
+
+                case 7:
                     System.out.println("Exiting the app");
                     System.exit(0);
 

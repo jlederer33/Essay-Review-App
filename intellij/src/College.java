@@ -1,4 +1,8 @@
 public class College {
+    /*
+    This class meant to model the individual colleges in the dashboard. Future functionality will change the supplement essay so that a college can have 0..*
+    Supplement essays.
+     */
     private String name;
     private PersonalEssay perEssay;
     private SupplementEssay supEssay;
@@ -28,4 +32,6 @@ public class College {
         }
 
         }
+
+
 }
