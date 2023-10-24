@@ -83,15 +83,21 @@ public class DashLogic
             }
         }
     }
-    public void submitEssay(String title, String content, String essayType){
+    public void submitEssay(String title, String content, String essayType, String collegeName){
+        College college = colleges.get(collegeName);
+
+        if (college == null){
+            System.out.println("College not found, essay is not submitted");
+        }
         Essay essay;
         if (essayType.equalsIgnoreCase("Personal")){
             essay = new PersonalEssay(title, content);
+            college.uploadPersonalEssay((PersonalEssay) essay);
         } else if (essayType.equalsIgnoreCase("Supplement")) {
             essay = new SupplementEssay(title, content);
-
+            college.uploadSupplementEssay((SupplementEssay) essay);
         }else{
-            System.out.println("Essay submitted successfully");
+            System.out.println("Essay submitted successfully to " + collegeName);
         }
     }
 
@@ -107,44 +113,6 @@ public class DashLogic
             college.uploadSupplementEssay(null);
             System.out.println("Supplement essay " + title + " has been successfully deleted");
     }
-        }
-    }
-
-    public void start() { //this method carries out the operations. It uses a switch case to carry out the logic. The int scanner should be replaced with a string scanner
-        Scanner scanner = new Scanner(System.in);
-        while (true) {
-            System.out.println("OPTIONS: ");
-            System.out.println("1.Add college, 2.Remove college, 3.View dashboard");
-
-
-            int choice = scanner.nextInt();
-            scanner.nextLine();
-
-            switch (choice) {
-                case 1:
-                    System.out.print("Enter the name of the college: ");
-                    String collegeToAdd = scanner.nextLine();
-                    addCollege(collegeToAdd);
-                    break;
-
-                case 2:
-                    System.out.print("Enter the name of the college: ");
-                    String collegeToRemove = scanner.nextLine();
-                    removeCollege(collegeToRemove);
-                    break;
-
-                case 3:
-                    viewDashboard();
-                    break;
-
-                case 4:
-                    System.out.println("Exiting the app");
-                    System.exit(0);
-
-                default:
-                    System.out.println("Invalid choice, please try again");
-            }
-
         }
     }
 }
