@@ -47,17 +47,6 @@ hide empty methods
 
 ```plantuml
 actor Applicant as applicant
-participant " : appDashboard " as appDashboard
-applicant-> appDashboard : view
-appDashboard-> applicant : Display Colleges
-appDashboard-> Essay : view
-appDashboard-> Essay : edit
-appDashboard-> Essay : upload
-
-
-```
-```plantuml
-actor Applicant as applicant
 participant " : DashView " as DashView
 applicant-> DashView : view
 DashView-> applicant : display
