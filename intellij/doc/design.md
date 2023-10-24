@@ -45,6 +45,23 @@ appDashboard-> Essay : upload
 
 
 ```
+```plantuml
+actor Applicant as applicant
+participant " : DashView " as DashView
+applicant-> DashView : view
+DashView-> applicant : display
+DashView-> DashController : shift
+DashController-> DashLogic : shift
+DashLogic-> DashController : edit
+DashLogic-> DashController : review
+DashLogic-> DashController : view
+
+
+
+
+
+
+```
 
 ```plantuml
 
