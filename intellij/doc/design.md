@@ -47,33 +47,57 @@ appDashboard-> Essay : upload
 ```
 
 ```plantuml
-class applicant{
-...
---
-+username()
-}
-
-class appDashboard{
-...
---
-+takeInEssay() : String
-+uploadEssay()
-+editEssay()
-}
 
 class Essay{
+title
+text
 ...
 --
++getTitle()
++text()
 +personalTags()
 +text()
 }
 
-class supEssay{
+class supplementEssay{
+title
+text
 ...
 --
 +collegeName()
 +text()
 }
 
-Essay <|--  supEssay
+class personalEssay{
+title
+text
+...
+--
++getTitle()
++getText()
+}
+Essay <|--  supplementEssay
+Essay <|-- personalEssay
+
+class DashController{
+...
+--
++main()
+}
+
+class DashLogic{
+...
+--
++addCollege()
++removeCollege()
++viewDashboard()
++submitEssay()
++deleteEssay()
+}
+
+class DashUI{
+...
+--
++startUI()
+}
 ```
