@@ -1,34 +1,31 @@
 public class College {
     private String name;
-    private Essay perEssay;
-    private Essay supEssay;
+    private PersonalEssay perEssay;
+    private SupplementEssay supEssay;
 
     public College(String name){
         this.name = name;
-        this.perEssay = null;
-        this.supEssay = null;
     }
     public String getName(){
         return name;
     }
 
-    public Essay getPersonalEssay(){
-        return perEssay;
+    public void uploadPersonalEssay(PersonalEssay perEssay){
+        this.perEssay = perEssay;
     }
 
-    public Essay getSupplementEssay(){
-        return supEssay;
+    public void uploadSupplementEssay(SupplementEssay supEssay){
+        this.supEssay = supEssay;
     }
 
-    public void setPersonalEssay(Essay essay){
-        if(essay instanceof PersonalEssay){
-            perEssay = essay;
+    public Essay getEssay(String essayType){
+        if(essayType.equalsIgnoreCase("Personal")){
+            return perEssay;
+        } else if (essayType.equalsIgnoreCase("Supplement")) {
+            return supEssay;
+        }else{
+            return null; //Input is not a valid input type
         }
-    }
 
-    public void setSupplementEssay(Essay essay){
-        if(essay instanceof SupplementEssay){
-            supEssay = essay;
         }
-    }
 }
