@@ -25,36 +25,44 @@ public class DashLogic
 
 
 
-    public void submitEssay(String title, String content, String essayType, String collegeName){
+    public String submitEssay(String title, String content, String essayType, String collegeName){
         College college = colleges.get(collegeName);
-
-        if (college == null){
-            System.out.println("College not found, essay is not submitted");
-        }
         Essay essay;
+        if(!colleges.containsKey(collegeName)){
+            return collegeName +  " is not in dashboard, unable to upload Essay";
+        }
         if (essayType.equalsIgnoreCase("Personal")){
             essay = new PersonalEssay(title, content);
             college.uploadPersonalEssay((PersonalEssay) essay);
+            return "Essay submitted successfully to " + collegeName;
         } else if (essayType.equalsIgnoreCase("Supplement")) {
             essay = new SupplementEssay(title, content);
             college.uploadSupplementEssay((SupplementEssay) essay);
+            return "Essay submitted successfully to " + collegeName;
         }else{
-            System.out.println("Essay submitted successfully to " + collegeName);
+            return "Essay type wasn't specified, unable to upload to college";
         }
     }
 
-    public void deleteEssay(String title){
-    for(College college: colleges.values())
-    {
-        if (college.getEssay("Personal") != null && college.getEssay("Personal").getTitle().equalsIgnoreCase(title)
-        ) {
-            college.uploadPersonalEssay(null);
+    public String deleteEssay(String collegeName, String essayType) {
+        College college = colleges.get(collegeName);
+        if(!colleges.containsKey(collegeName)){
+            return collegeName +  " is not in dashboard, unable to delete Essay";}
+        if (college.getEssay(essayType) != null) {
+            if (essayType.equalsIgnoreCase("Personal")) {
+                college.uploadPersonalEssay(null);
+            }
+            if (college.getEssay("Supplement") != null) {
+                college.uploadSupplementEssay(null);
+            }
+            return collegeName + essayType + " successfully deleted!";
         }
-        if (college.getEssay("Supplement") != null && college.getEssay("Supplement").getTitle().equalsIgnoreCase(title)) {
-            college.uploadSupplementEssay(null);
-    }
+        else{
+            return "Essay is not in college";
         }
     }
+
+
 
     public String viewEssay(String collegeName, String essayType){
         College college = colleges.get(collegeName);

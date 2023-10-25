@@ -29,34 +29,41 @@ public class DashUI extends DashLogic {
             }
         }
     }
-    public void start() { //this method carries out the operations. It uses a switch case to carry out the logic. The int scanner should be replaced with a string scanner
-        Scanner scanner = new Scanner(System.in);
+    public void startUI() { //this method carries out the operations. It uses a switch case to carry out the logic. The int scanner should be replaced with a string scanner
         while (true) {
-            System.out.println("OPTIONS: ");
-            System.out.println("1.Add college, 2.Remove college, 3.Upload essay, 4.Delete essay, 5.View dashboard, 6.View essay, 7.Exit app");
+            int choice = 0;
+            try {
+                while (true) {
+                    System.out.println("OPTIONS: ");
+                    System.out.println("1.Add college, 2.Remove college, 3.Upload essay, 4.Delete essay, 5.View dashboard, 6.View essay, 7.Exit app");
+                    Scanner scanner = new Scanner(System.in);
 
-            int choice = scanner.nextInt();
-            scanner.nextLine();
-
+                    choice = scanner.nextInt();
+                    scanner.nextLine();
+                    break;
+                }
+            }catch (InputMismatchException e) {
+                    System.out.println("Invalid input, please use ints 1-7 for the commands");
+                }
+            Scanner scanner = new Scanner(System.in);
             switch (choice) {
                 case 1:
                     System.out.print("Enter the name of the college to be added: ");
                     String collegeToAdd = scanner.nextLine();
                     System.out.println(addCollege(collegeToAdd));
                     boolean addMore = true;
-                    while(addMore){
-                    System.out.println("Add another college? (Yes/No): ");
-                    String response = scanner.nextLine();
-                    if(response.equalsIgnoreCase("No")){
-                        addMore = false;
+                    while (addMore) {
+                        System.out.println("Add another college? (Yes/No): ");
+                        String response = scanner.nextLine();
+                        if (response.equalsIgnoreCase("No")) {
+                            addMore = false;
                         } else if (response.equalsIgnoreCase("Yes")) {
-                        System.out.print("Enter the name of the college to be added: ");
-                        String collegeToAdd2 = scanner.nextLine();
-                        System.out.println(addCollege(collegeToAdd2));
-                    }else{
-                        System.out.println("Invalid input, please try again");
-                    }
-
+                            System.out.print("Enter the name of the college to be added: ");
+                            String collegeToAdd2 = scanner.nextLine();
+                            System.out.println(addCollege(collegeToAdd2));
+                        } else {
+                            System.out.println("Invalid input, please try again");
+                        }
                     }
                     break;
 
@@ -65,17 +72,19 @@ public class DashUI extends DashLogic {
                     String collegeToRemove = scanner.nextLine();
                     System.out.println(removeCollege(collegeToRemove));
                     boolean removeMore = true;
-                    while(removeMore) {
+                    while (removeMore) {
                         System.out.println("Remove another college? (Yes/No): ");
                         String response = scanner.nextLine();
-                        if (response.equalsIgnoreCase("No")){
+                        if (response.equalsIgnoreCase("No")) {
                             removeMore = false;
                         } else if (response.equalsIgnoreCase("Yes")) {
                             System.out.print("Enter the name of the college to be removed: ");
                             String collegeToRemove2 = scanner.nextLine();
                             System.out.println(removeCollege(collegeToRemove2));
-                        }else{System.out.println("Invalid input, please try again");}
+                        } else {
+                            System.out.println("Invalid input, please try again");
                         }
+                    }
                     break;
 
                 case 3:
@@ -87,15 +96,16 @@ public class DashUI extends DashLogic {
                     String essayType = scanner.nextLine();
                     System.out.println("Which college will it be added to?");
                     String collegeName = scanner.nextLine();
-                    if(!colleges.containsKey(collegeName)){
-                        System.out.println("College is not in dashboard, unable to upload Essay");
-                    }else{submitEssay(title, text, essayType, collegeName);}
+                    System.out.println(submitEssay(title, text, essayType, collegeName));
                     break;
 
                 case 4:
-                    System.out.println("Enter the title of essay to be deleted");
-                    String essayTitle = scanner.nextLine();
-                    deleteEssay(essayTitle);
+                    System.out.println("Enter college: ");
+                    String collegeName2 = scanner.nextLine(); //I know its not good code practice but the name works and I couldn't think of a better one
+                    System.out.println("Enter essay type to delete");
+                    String essayType2 = scanner.nextLine();
+                    System.out.println(deleteEssay(collegeName2, essayType2));
+                    break;
 
                 case 5:
                     viewDashboard();
@@ -103,10 +113,10 @@ public class DashUI extends DashLogic {
 
                 case 6:
                     System.out.println("Enter College: ");
-                    String collegeName2 = scanner.nextLine(); //I know its not good code practice but the name works and I couldn't think of a better one
+                    String collegeName3 = scanner.nextLine();
                     System.out.println("Choose which essay to access (Personal/Supplement: ");
-                    String essayType2 = scanner.nextLine();
-                    System.out.println(viewEssay(collegeName2, essayType2));
+                    String essayType3 = scanner.nextLine();
+                    System.out.println(viewEssay(collegeName3, essayType3));
                     break;
 
                 case 7:
@@ -120,10 +130,7 @@ public class DashUI extends DashLogic {
         }
     }
 
-    public void startUI() {
-        DashUI dashUI = new DashUI();
-        dashUI.start();
-    }
+
     public static void main(String[] args) {
         DashUI dashUI = new DashUI();
         dashUI.startUI();
