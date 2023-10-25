@@ -17,7 +17,7 @@
 2. Software must be written using Java
 
 **Interface**
-1. Will have to work with database of colleges and universities.
+1. No longer working with database, instead the colleges will be uploaded via crowd-sourcing.
 
 **Legal**
 1. None applied.
