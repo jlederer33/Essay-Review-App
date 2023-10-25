@@ -1,6 +1,31 @@
 
 **Adding and Removing Colleges:**
 
+<<<<<<< HEAD
+=======
+
+ 
+
+```
+
+```plantuml
+actor Applicant as applicant
+participant " : DashView " as DashView
+applicant-> DashView : view
+DashView-> applicant : display
+DashView-> DashController : shift
+DashController-> DashLogic : shift
+DashLogic-> DashController : edit
+DashLogic-> DashController : review
+DashLogic-> DashController : view
+
+
+
+
+
+
+```
+>>>>>>> 5d6c4abe4a6f2890ecc84288ca4dd79a55e906ab
 ```plantuml
 actor Applicant as applicant
 participant " : DashUI " as DashUI
