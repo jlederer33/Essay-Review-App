@@ -113,6 +113,11 @@ public class DashUI extends DashLogic {
         DashUI dashUI = new DashUI();
         dashUI.start();
     }
+    public static void main(String[] args) {
+        DashUI dashUI = new DashUI();
+        dashUI.startUI();
+        }
+
 }
 
 
