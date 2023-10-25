@@ -40,33 +40,42 @@ public class DashUI extends DashLogic {
 
             switch (choice) {
                 case 1:
-                    boolean addMore = true;
-                    while(addMore){
                     System.out.print("Enter the name of the college to be added: ");
                     String collegeToAdd = scanner.nextLine();
                     System.out.println(addCollege(collegeToAdd));
-
+                    boolean addMore = true;
+                    while(addMore){
                     System.out.println("Add another college? (Yes/No): ");
                     String response = scanner.nextLine();
                     if(response.equalsIgnoreCase("No")){
                         addMore = false;
-                        }
+                        } else if (response.equalsIgnoreCase("Yes")) {
+                        System.out.print("Enter the name of the college to be added: ");
+                        String collegeToAdd2 = scanner.nextLine();
+                        System.out.println(addCollege(collegeToAdd2));
+                    }else{
+                        System.out.println("Invalid input, please try again");
+                    }
+
                     }
                     break;
 
                 case 2:
+                    System.out.print("Enter the name of the college to be removed: ");
+                    String collegeToRemove = scanner.nextLine();
+                    System.out.println(removeCollege(collegeToRemove));
                     boolean removeMore = true;
                     while(removeMore) {
-                        System.out.print("Enter the name of the college to be removed: ");
-                        String collegeToRemove = scanner.nextLine();
-                        System.out.println(removeCollege(collegeToRemove));
-
                         System.out.println("Remove another college? (Yes/No): ");
                         String response = scanner.nextLine();
                         if (response.equalsIgnoreCase("No")){
                             removeMore = false;
+                        } else if (response.equalsIgnoreCase("Yes")) {
+                            System.out.print("Enter the name of the college to be removed: ");
+                            String collegeToRemove2 = scanner.nextLine();
+                            System.out.println(removeCollege(collegeToRemove2));
+                        }else{System.out.println("Invalid input, please try again");}
                         }
-                    }
                     break;
 
                 case 3:
@@ -78,7 +87,9 @@ public class DashUI extends DashLogic {
                     String essayType = scanner.nextLine();
                     System.out.println("Which college will it be added to?");
                     String collegeName = scanner.nextLine();
-                    submitEssay(title, text, essayType, collegeName);
+                    if(!colleges.containsKey(collegeName)){
+                        System.out.println("College is not in dashboard, unable to upload Essay");
+                    }else{submitEssay(title, text, essayType, collegeName);}
                     break;
 
                 case 4:
