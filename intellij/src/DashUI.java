@@ -4,7 +4,10 @@
 import java.util.*;
 
 public class DashUI extends DashLogic {
-
+    /*
+    The view component of the app. The reason it is a subclass of dashLogic is that I did not feel like making a dashLogic object then call that over and over.
+    View dashboard acts as the toString, while the controller and all the print methods are contained in start().
+     */
     public void viewDashboard(){//The toString() of these methods, in order to reflect the central function the dashboard will have in the app
         System.out.println("DASHBOARD: ");
         List<String> collegeNames = new ArrayList<>(colleges.keySet());

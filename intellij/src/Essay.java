@@ -1,4 +1,7 @@
 public abstract class Essay {
+    /*
+    Abstract class representing an essay. The two essay sub-types are personal essay and supplement essay
+     */
     private String title;
     private String text;
 
@@ -7,10 +10,10 @@ public abstract class Essay {
         this.text = text;
     }
 
-    public String getTitle() {
+    public String getTitle() {//returns the title of an essay
         return title;
     }
-    public String getText() {
+    public String getText() {//returns the text of an essay
         return text;
     }
 
