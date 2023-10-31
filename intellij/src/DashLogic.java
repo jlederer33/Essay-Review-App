@@ -1,10 +1,12 @@
 import java.util.*;
 public class DashLogic
-{
+{ /*
+    This is the controller class for the app. The
+  */
     public Map<String, College> colleges = new HashMap<>();
 
 
-    public String addCollege(String collegeName) {
+    public String addCollege(String collegeName) {//adds a college to the dashboard based on its name(case matches)
         if(!colleges.containsKey(collegeName)){
             colleges.put(collegeName, new College(collegeName));
             return collegeName +" added successfully";
@@ -14,7 +16,7 @@ public class DashLogic
     }
 
 
-    public String removeCollege (String collegeName) { //method to remove a college from the dashboard
+    public String removeCollege (String collegeName) { //method to remove a college from the dashboard(case matches)
        College college = colleges.remove(collegeName);
        if(college != null){
            return collegeName + " removed successfully";
@@ -25,7 +27,7 @@ public class DashLogic
 
 
 
-    public String submitEssay(String title, String content, String essayType, String collegeName){
+    public String submitEssay(String title, String content, String essayType, String collegeName){//method to submit an essay, and is stored in respective college
         College college = colleges.get(collegeName);
         Essay essay;
         if(!colleges.containsKey(collegeName)){
@@ -44,7 +46,7 @@ public class DashLogic
         }
     }
 
-    public String deleteEssay(String collegeName, String essayType) {
+    public String deleteEssay(String collegeName, String essayType) {//deletes an essay based on college and the type
         College college = colleges.get(collegeName);
         if(!colleges.containsKey(collegeName)){
             return collegeName +  " is not in dashboard, unable to delete Essay";}
@@ -64,7 +66,7 @@ public class DashLogic
 
 
 
-    public String viewEssay(String collegeName, String essayType){
+    public String viewEssay(String collegeName, String essayType){ // similar logic to deleteEssay, except it will return the text
         College college = colleges.get(collegeName);
 
         if(college == null){

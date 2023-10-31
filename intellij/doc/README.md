@@ -18,5 +18,5 @@ Currently, there are 7 commands. They are:
 6. View essay 
 7. Exit app
 
-In order to execute each command, type in the corresponding integer. From there, the user will be prompted to enter the specific information depending on the command. 
+The main method is in DashUI. In order to execute each command, type in the corresponding integer. From there, the user will be prompted to enter the specific information depending on the command. 
 Command 7, Exit app, will quit the program. Otherwise, the program will continue to loop, even in the event of an improper input. 

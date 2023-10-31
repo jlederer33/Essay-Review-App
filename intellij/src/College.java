@@ -16,13 +16,13 @@ public class College {
 
     public void uploadPersonalEssay(PersonalEssay perEssay){
         this.perEssay = perEssay;
-    }
+    } //adds a personal essay to the college
 
     public void uploadSupplementEssay(SupplementEssay supEssay){
         this.supEssay = supEssay;
-    }
+    } //adds a supplement essay to the college
 
-    public Essay getEssay(String essayType){
+    public Essay getEssay(String essayType){//generalized method to return the type of essay in a college
         if(essayType.equalsIgnoreCase("Personal")){
             return perEssay;
         } else if (essayType.equalsIgnoreCase("Supplement")) {
