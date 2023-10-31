@@ -7,10 +7,10 @@ public abstract class Essay {
         this.text = text;
     }
 
-    public String getTitle() {
-        return title;
+    public String getTitle(){
+         return title;
     }
-    public String getText() {
+    public String getText(){
         return text;
     }
 
