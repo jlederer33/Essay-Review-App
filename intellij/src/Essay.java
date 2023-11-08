@@ -5,23 +5,20 @@ public abstract class Essay {
     private String title;
     private String text;
 
-    public Essay(String title, String text){
+    public Essay(String title, String text) {
         this.title = title;
         this.text = text;
     }
 
-<<<<<<< HEAD
-    public String getTitle(){
-         return title;
-    }
-    public String getText(){
-=======
-    public String getTitle() {//returns the title of an essay
+    public String getTitle() {
         return title;
     }
-    public String getText() {//returns the text of an essay
->>>>>>> 1822f511cba1b3dc716294739dc2efd2f591c884
-        return text;
-    }
 
+    public String getText() {
+        {//returns the title of an essay
+            return title;
+        }
+
+
+    }
 }
