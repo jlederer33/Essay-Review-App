@@ -1,15 +1,26 @@
 
-**Adding and Removing Colleges:**
+**Adding Colleges:**
 
 ```plantuml
 actor Applicant as applicant
 participant " : DashUI " as DashUI
-DashLogic -> College : edit
-applicant-> DashUI : input
-DashUI ->  applicant : display
+DashLogic -> CollegeLibrary : edit
+CollegeLibrary <- College : addCollege()
+applicant -> DashUI : StartUI()
+applicant <- DashUI : viewDashboard()
 DashUI-> DashLogic : informs
-DashLogic-> DashUI : add college
-DashLogic-> DashUI : remove college
+
+```
+**Removing Colleges:**
+
+```plantuml
+actor Applicant as applicant
+participant " : DashUI " as DashUI
+DashLogic -> CollegeLibrary : edit
+CollegeLibrary <- College : removeCollege()
+applicant -> DashUI : StartUI()
+applicant <- DashUI : viewDashboard()
+DashUI-> DashLogic : informs
 
 
 ```
@@ -18,12 +29,27 @@ DashLogic-> DashUI : remove college
 ```plantuml
 actor Applicant as applicant
 participant " : DashUI " as DashUI
-applicant-> DashUI : view
-DashLogic -> Essay : updates
+applicant-> DashUI : StartUI()
 DashLogic -> Essay : edits
-Essay -> DashLogic : returns
 DashLogic -> DashUI : return
+applicant <- DashUI : viewDashboard()
+applicant <- DashUI : viewEssay()
 DashUI-> DashLogic : update
+Essay -> College : submitEssay()
+
+```
+**Delete Essays:**
+
+```plantuml
+actor Applicant as applicant
+participant " : DashUI " as DashUI
+applicant-> DashUI : StartUI()
+DashLogic -> Essay : edits
+DashLogic -> DashUI : return
+applicant <- DashUI : viewDashboard()
+applicant <- DashUI : viewEssay()
+DashUI-> DashLogic : update
+Essay -> College : deleteEssay()
 
 ```
 **Class Diagram:**
