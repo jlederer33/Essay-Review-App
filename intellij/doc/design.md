@@ -75,17 +75,17 @@ class CollegeLibrary{
 --
 +getCollege()
 }
-CollegeLibrary .> College
+CollegeLibrary <. College
 
 
 class DashLogic{
 ...
 --
-+addCollege()
-+removeCollege()
-+viewDashboard()
-+submitEssay()
-+deleteEssay()
++addCollege((String collegeName)
++removeCollege(String collegeName)
++submitEssay(String title, String content, String essayType, String collegeName)
++deleteEssay(String collegeName, String essayType)
++viewEssay(String collegeName, String essayType)
 }
 class College{
 ...
@@ -97,13 +97,14 @@ class DashUI{
 --
 +main()
 +start()
++viewDashboard()
 +startUI()
 }
-DashLogic <|-- DashUI
-College .> Essay
+DashLogic <-- DashUI
 Essay .> College
 DashUI .> Essay
-
+College *- "(0..*)\nColleges" CollegeLibrary : \t\t
+Essay *- "(0..*)\nEssays" College: \t\t
 
 ```
 
