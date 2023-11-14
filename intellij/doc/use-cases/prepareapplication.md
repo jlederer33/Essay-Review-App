@@ -20,16 +20,12 @@ start
 :Display checklist;
 |Applicant|
 :Chooses tasks to work on;
-|System|
-while (Personal essay) is (Yes)
 |Applicant|
-:draft;
-|System|
-endwhile(no)
-while (supplement essay) is (Yes)
+while (work on essays?) is (Yes)
 |Applicant|
-:draft;
+:uploadEssays;
 |System|
+:updates application with essay;
 endwhile(no)
 while (other materials like SAT score, letter of rec.) is (Yes)
 |Applicant|
