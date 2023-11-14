@@ -59,6 +59,7 @@ Essay -> College : deleteEssay()
 class Essay{
 title
 text
+type
 ...
 --
 +getTitle()
@@ -67,26 +68,14 @@ text
 +text()
 }
 
-class supplementEssay{
-title
-text
+
+
+class CollegeLibrary{
 ...
 --
-+collegeName()
-+text()
++getCollege()
 }
-
-class personalEssay{
-title
-text
-...
---
-+getTitle()
-+getText()
-}
-Essay <|--  supplementEssay
-Essay <|-- personalEssay
-
+CollegeLibrary .> College
 
 
 class DashLogic{
