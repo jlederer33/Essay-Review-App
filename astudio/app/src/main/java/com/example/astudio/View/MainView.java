@@ -1,8 +1,9 @@
-package com.example.astudio;
+package com.example.astudio.View;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.astudio.databinding.MainBinding;
 import android.view.View;
@@ -13,6 +14,7 @@ public class MainView implements IMainView {
 
     MainBinding binding;
 
+    public MainView(){}
     public MainView(FragmentActivity activity){
         this.fragManager = activity.getSupportFragmentManager();
         this.binding = MainBinding.inflate(activity.getLayoutInflater());
@@ -20,11 +22,16 @@ public class MainView implements IMainView {
 
     @Override
     public View getRootView() {
-        return null;
+
+        return this.binding.getRoot();
     }
 
     @Override
     public void displayFragment(Fragment fragment, boolean reversible, String name) {
+        FragmentTransaction ft = fragManager.beginTransaction();
+        ft.replace(this.binding.fragmentContainer.getId(), fragment);
+        if (reversible)  ft.addToBackStack(name);
+        ft.commit();
 
     }
 }

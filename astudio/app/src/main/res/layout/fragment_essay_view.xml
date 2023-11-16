@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/titleEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Title" />
+
+    <EditText
+        android:id="@+id/textEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/titleEditText"
+        android:layout_marginTop="8sp"
+        android:hint="Text" />
+
+    <Spinner
+        android:id="@+id/typeSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textEditText"
+        android:layout_marginTop="8sp"/>
+
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/typeSpinner"
+        android:layout_marginTop="20sp"
+        android:text="Submit Essay" />
+
+    <!-- RecyclerView for displaying a list of essays -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewEssays"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/submitButton"
+        android:layout_marginTop="16sp"/>
+</RelativeLayout>
