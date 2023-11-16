@@ -5,9 +5,9 @@ public class Essay {
     String title;
     String text;
 
-    EssayTypes type;
+    String type;
 
-    public Essay(String title, String text, EssayTypes type){
+    public Essay(String title, String text, String type){
         this.title = title;
         this.text = text;
         this.type = type;
@@ -30,11 +30,11 @@ public class Essay {
         this.text = text;
     }
 
-    public EssayTypes getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(EssayTypes type) {
+    public void setType(String type) {
         this.type = type;
     }
 }

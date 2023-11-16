@@ -40,4 +40,6 @@ public class EssayDashAdapter extends RecyclerView.Adapter<EssayDashViewHolder>{
     public int getItemCount() {
         return essaysList.size();
     }
+
+
 }
