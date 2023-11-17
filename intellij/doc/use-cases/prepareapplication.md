@@ -1,6 +1,6 @@
-# Use Checklist:
+# Prepare Application:
 **Primary Actor**
-1. **Applicant:** wants to view remainging and completed tasks. Wants to be able to manually check tasks off 
+1. **Applicant:** wants to view in progress and completed tasks. Wants to be able to manually check tasks off 
 
 **Other Stakeholders:**
 1. **None**
@@ -9,7 +9,7 @@
 * Applicant has accessed college dashboard
 
 **Postconditions**
-* System updates checklist with completed tasks
+* System updates application with completed tasks
 
 ```plantuml
 |#lightblue|Applicant|

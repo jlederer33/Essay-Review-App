@@ -6,18 +6,29 @@ title Applicant Navigate Screen (Fully Dressed)
 
 |Applicant|
 start
-:opens dashboard;
-:executes applicantDashboard;
+:opens Main Menu;
+Switch(choose options)
+case (essays)
+:Executes uploadEssays;
+|System|
+:Dashboard updates based on choices in uploadEssays;
+stop
+case (colleges)
 |Applicant|
-:checks checklist;
+:Executes applicantDashboard;
 while (Tasks remaining?) is (Yes)
-:execute prepareApplication;
-endwhile(no)
+Switch(Choices)
+case (colleges)
+:Chooses to add and remove colleges;
+Case (checklist)
+:Chooses which tasks to set completed;
+endswitch
 |Applicant|
-:Exeute uploadEssays;
-:submit essay;
+:execute prepareApplication;
 |System| 
-:System adds essay to dashboard and forum;
+:updates based on user choices;
+endwhile(no)
+endswitch
 stop
 
 ```

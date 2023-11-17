@@ -6,13 +6,15 @@ title Upload Essay (Fully Dressed)
 
 |System|
 start
-:Displays;
+:Displays essay dashboard;
 |Applicant|
-switch (Essay)
+switch (Work on essays)
 case (edits)
+:Choose existing essay to edit;
 :Make edits to essay;
 case(add)
-:Add new essay;
+:Fill out title, text, and type;
+:submit essay;
 case (remove)
 :Delete essay;
 endswitch
@@ -21,7 +23,7 @@ endswitch
 while (save as draft) is (Yes)
 :Yes;
 |System|
-:Updates essay;
+:Essay saved as draft;
 endwhile (No)
 :Essay deleted;
 
