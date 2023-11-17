@@ -3,24 +3,24 @@
 
 ```plantuml
 actor Applicant as applicant
-participant " : DashUI " as DashUI
-DashLogic -> CollegeLibrary : edit
+participant " : IMainMenuView " as IMainMenuView
+Controller -> CollegeLibrary : edit
 CollegeLibrary <- College : addCollege()
-applicant -> DashUI : StartUI()
-applicant <- DashUI : viewDashboard()
-DashUI-> DashLogic : informs
+applicant -> IMainMenuView : StartUI()
+applicant <- IMainMenuView : viewDashboard()
+IMainMenuView-> controller : informs
 
 ```
 **Removing Colleges:**
 
 ```plantuml
 actor Applicant as applicant
-participant " : DashUI " as DashUI
-DashLogic -> CollegeLibrary : edit
+participant " : IMainMenuView " as IMainMenuView
+Controller -> CollegeLibrary : edit
 CollegeLibrary <- College : removeCollege()
-applicant -> DashUI : StartUI()
-applicant <- DashUI : viewDashboard()
-DashUI-> DashLogic : informs
+applicant -> IMainMenuView : StartUI()
+applicant <- IMainMenuView : viewDashboard()
+IMainMenuView-> CAONTROLLER : informs
 
 
 ```
@@ -28,13 +28,13 @@ DashUI-> DashLogic : informs
 
 ```plantuml
 actor Applicant as applicant
-participant " : DashUI " as DashUI
-applicant-> DashUI : StartUI()
-DashLogic -> Essay : edits
-DashLogic -> DashUI : return
-applicant <- DashUI : viewDashboard()
-applicant <- DashUI : viewEssay()
-DashUI-> DashLogic : update
+participant " : IMainMenuView " as IMainMenuView
+applicant-> IMainMenuView : StartUI()
+Controller -> Essay : edits
+Controller -> IMainMenuView : return
+applicant <- IMainMenuView : viewDashboard()
+applicant <- IMainMenuView : viewEssay()
+IMainMenuView-> Controller : update
 Essay -> College : submitEssay()
 
 ```
@@ -42,13 +42,13 @@ Essay -> College : submitEssay()
 
 ```plantuml
 actor Applicant as applicant
-participant " : DashUI " as DashUI
-applicant-> DashUI : StartUI()
-DashLogic -> Essay : edits
-DashLogic -> DashUI : return
-applicant <- DashUI : viewDashboard()
-applicant <- DashUI : viewEssay()
-DashUI-> DashLogic : update
+participant " : IMainMenuView " as IMainMenuView
+applicant-> IMainMenuView : StartUI()
+Controller -> Essay : edits
+Controller -> IMainMenuView : return
+applicant <- IMainMenuView : viewDashboard()
+applicant <- IMainMenuView : viewEssay()
+IMainMenuView-> Controller : update
 Essay -> College : deleteEssay()
 
 ```
@@ -68,6 +68,11 @@ type
 +text()
 }
 
+class IEssayView{
+...
+--
++getEssay()
+}
 
 
 class CollegeLibrary{
@@ -78,7 +83,7 @@ class CollegeLibrary{
 CollegeLibrary <. College
 
 
-class DashLogic{
+class Controller{
 ...
 --
 +addCollege((String collegeName)
@@ -92,7 +97,7 @@ class College{
 --
 +collegeName
 }
-class DashUI{
+class IMainMenuView{
 ...
 --
 +main()
@@ -100,9 +105,9 @@ class DashUI{
 +viewDashboard()
 +startUI()
 }
-DashLogic <-- DashUI
+Controller <-- IMainMenuView
 Essay .> College
-DashUI .> Essay
+IMainMenuView .> Essay
 College *- "(0..*)\nColleges" CollegeLibrary : \t\t
 Essay *- "(0..*)\nEssays" College: \t\t
 
