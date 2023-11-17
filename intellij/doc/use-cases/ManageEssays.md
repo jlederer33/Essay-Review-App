@@ -8,13 +8,13 @@ title Upload Essay (Fully Dressed)
 start
 :Displays;
 |Applicant|
-switch (essay)
+switch (Essay)
 case (edits)
-:make edits to essay;
+:Make edits to essay;
 case(add)
-:add new essay;
+:Add new essay;
 case (remove)
-:delete essay;
+:Delete essay;
 endswitch
 
 |Applicant|
@@ -23,7 +23,7 @@ while (save as draft) is (Yes)
 |System|
 :Updates essay;
 endwhile (No)
-:DONE;
+:Essay deleted;
 
 
 ```
