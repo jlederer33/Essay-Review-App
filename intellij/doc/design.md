@@ -28,15 +28,16 @@ DashUI-> DashLogic : informs
 
 ```plantuml
 actor Applicant as applicant
-participant " : DashUI " as DashUI
-applicant-> DashUI : StartUI()
-DashLogic -> Essay : edits
-DashLogic -> DashUI : return
-applicant <- DashUI : viewDashboard()
-applicant <- DashUI : viewEssay()
-DashUI-> DashLogic : update
-Essay -> College : submitEssay()
 
+applicant-> IMainView : views
+IMainView -> IMenuView : displayFragment()
+applicant <- IMainView : displays
+Controller -> IEssaysView : onEssaysClicked()
+Controller <- IMenuView : onEssaysClicked()
+Controller -> IMenuView: onBack()
+IEssaysView <- Dashboards : addToEssaysList()
+Dashboards <- Essays : addToEssaysList()
+IEssaysView -> Controller : onBack()
 ```
 **Delete Essays:**
 
