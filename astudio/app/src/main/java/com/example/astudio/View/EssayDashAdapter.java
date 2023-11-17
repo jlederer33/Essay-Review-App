@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.astudio.Model.Dashboards;
 import com.example.astudio.Model.Essay;
 import com.example.astudio.R;
 
@@ -16,11 +17,10 @@ import java.util.List;
 public class EssayDashAdapter extends RecyclerView.Adapter<EssayDashViewHolder>{
 
     Context context;
-    List<Essay> essaysList;
 
-    public EssayDashAdapter(Context context, List<Essay> essaysList){
+
+    public EssayDashAdapter(Context context){
         this.context = context;
-        this.essaysList = essaysList;
     }
     @NonNull
     @Override
@@ -30,7 +30,7 @@ public class EssayDashAdapter extends RecyclerView.Adapter<EssayDashViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull EssayDashViewHolder holder, int position) {
-       Essay essay = essaysList.get(position);
+       Essay essay = Dashboards.essayList.get(position);
        holder.titleView.setText(essay.getTitle());
        holder.typeView.setText(essay.getType().toString());
        holder.textView.setText(essay.getText());
@@ -38,6 +38,8 @@ public class EssayDashAdapter extends RecyclerView.Adapter<EssayDashViewHolder>{
 
     @Override
     public int getItemCount() {
-        return essaysList.size();
+        return Dashboards.essayList.size();
     }
+
+
 }

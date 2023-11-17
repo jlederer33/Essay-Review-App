@@ -28,6 +28,7 @@ IMainMenuView-> CAONTROLLER : informs
 
 ```plantuml
 actor Applicant as applicant
+<<<<<<< HEAD
 participant " : IMainMenuView " as IMainMenuView
 applicant-> IMainMenuView : StartUI()
 Controller -> Essay : edits
@@ -36,7 +37,18 @@ applicant <- IMainMenuView : viewDashboard()
 applicant <- IMainMenuView : viewEssay()
 IMainMenuView-> Controller : update
 Essay -> College : submitEssay()
+=======
+>>>>>>> 07a8a23306628dc1089d95209d967cd319be3b40
 
+applicant-> IMainView : views
+IMainView -> IMenuView : displayFragment()
+applicant <- IMainView : displays
+Controller -> IEssaysView : onEssaysClicked()
+Controller <- IMenuView : onEssaysClicked()
+Controller -> IMenuView: onBack()
+IEssaysView <- Dashboards : addToEssaysList()
+Dashboards <- Essays : addToEssaysList()
+IEssaysView -> Controller : onBack()
 ```
 **Delete Essays:**
 
