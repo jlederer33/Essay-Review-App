@@ -109,7 +109,7 @@ public class EssayDashboardFragment extends Fragment implements IEssaysView{
                 essayTitleEditable.clear();
                 essayTextEditable.clear();
 
-                EssayDashboardFragment.this.listener.onSubmitEssayClicked(essayTitleString, essayTextString, type[0]);
+                EssayDashboardFragment.this.listener.onSubmitEssayClicked(essayTitleString, essayTextString, type[0], EssayDashboardFragment.this);
 
 
             }
@@ -118,4 +118,9 @@ public class EssayDashboardFragment extends Fragment implements IEssaysView{
 
 
     }
+
+    @Override
+    public void updateEssaysDisplay() {
+        this.binding.recyclerViewEssays.getAdapter().notifyDataSetChanged();
     }
+}
