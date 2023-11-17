@@ -1,6 +1,5 @@
 package com.example.astudio.View;
 
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,40 +7,33 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.astudio.Model.Dashboards;
-import com.example.astudio.Model.Essay;
 import com.example.astudio.R;
 import com.example.astudio.databinding.FragmentEssayViewBinding;
-import com.example.astudio.databinding.FragmentMainmenuBinding;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.List;
 
+/**
+ * This is the Essay dashboard fragment, which represents the view of the Essay dashboard. The essays
+ * are displayed in a recyclerview. The user will have options to add and remove essays from this
+ * dashboard.
+ */
 
 public class EssayDashboardFragment extends Fragment implements IEssaysView{
     private FragmentEssayViewBinding binding;
 
     private final Listener listener;
 
-    //List<Essay> essaysList = Dashboards.essayList;
     RecyclerView recyclerView;
-
-    Context context;
 
     public EssayDashboardFragment(@NotNull Listener listener) {
         this.listener = listener;
@@ -83,7 +75,7 @@ public class EssayDashboardFragment extends Fragment implements IEssaysView{
             }
         });
 
-        //Register back button
+        //Register back button (Switches back to main menu)
         this.binding.backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

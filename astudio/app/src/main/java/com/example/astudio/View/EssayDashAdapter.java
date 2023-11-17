@@ -14,6 +14,9 @@ import com.example.astudio.R;
 
 import java.util.List;
 
+/**
+ * The adapter for the recyclerview. Uses the essayList from Dashboard
+ */
 public class EssayDashAdapter extends RecyclerView.Adapter<EssayDashViewHolder>{
 
     Context context;

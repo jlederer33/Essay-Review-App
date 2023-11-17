@@ -8,6 +8,10 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.astudio.databinding.MainBinding;
 import android.view.View;
 
+/**
+ * This is the main view of the app. The view has a fragment container. Using MainMenuFragment,
+ * the fragments are displayed on this screen
+ */
 public class MainView implements IMainView {
 
     FragmentManager fragManager;

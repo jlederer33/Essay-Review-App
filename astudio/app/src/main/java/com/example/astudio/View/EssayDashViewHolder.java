@@ -8,6 +8,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.astudio.R;
 
+/**
+ * The viewholder for the essay_view recyclerview. The items it uses are Essays, and displays the
+ * type, title and text
+ */
 public class EssayDashViewHolder extends RecyclerView.ViewHolder {
     TextView titleView, textView, typeView;
 

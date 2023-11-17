@@ -16,7 +16,10 @@ import com.google.android.material.button.MaterialButton;
 
 import org.jetbrains.annotations.NotNull;
 
-
+/**
+ * This fragment represents the default main menu screen. Users will be able to access
+ * the different functions of the app from this fragment
+ */
 public class MainMenuFragment extends Fragment implements IMenuView {
 
     private FragmentMainmenuBinding binding;
@@ -26,7 +29,6 @@ public class MainMenuFragment extends Fragment implements IMenuView {
         this.listener = listener;
     }
 
-    // TODO: Rename and change types and number of parameters
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

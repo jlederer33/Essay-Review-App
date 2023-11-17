@@ -41,6 +41,14 @@ public class Controller extends AppCompatActivity implements IMenuView.Listener,
         this.mainView.displayFragment(mainMenu,false,"main menu");
     }
 
+    /**
+     * Registers when the submit button is essays view is clicked, and passes the information to
+     * Dashboard
+     * @param title
+     * @param text
+     * @param type
+     * @param view
+     */
     @Override
     public void onSubmitEssayClicked(String title, String text, String type, IEssaysView view) {
         Dashboard.addToEssayList(title, text, type);

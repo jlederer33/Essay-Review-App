@@ -1,6 +1,8 @@
 package com.example.astudio.View;
 
-
+/**
+ * The interface for the view of EssayDashboardFragment.
+ */
 public interface IEssaysView {
 
     interface Listener{
