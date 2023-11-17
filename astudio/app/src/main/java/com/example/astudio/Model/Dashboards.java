@@ -9,7 +9,7 @@ import java.util.List;
  * which are self explanatory.
  */
 public class Dashboards {
-    public List essayList = new ArrayList<>();
+    public static List<Essay> essayList = new ArrayList<>();
 
     public void addToEssayList(String title, String text, String type){
         essayList.add(new Essay(title, text, type));
