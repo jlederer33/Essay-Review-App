@@ -17,11 +17,10 @@ import java.util.List;
 public class EssayDashAdapter extends RecyclerView.Adapter<EssayDashViewHolder>{
 
     Context context;
-    //List<Essay> essaysList = Dashboards.essayList;
+
 
     public EssayDashAdapter(Context context){
         this.context = context;
-        //this.essaysList = essaysList;
     }
     @NonNull
     @Override
