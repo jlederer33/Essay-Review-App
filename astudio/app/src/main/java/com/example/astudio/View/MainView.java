@@ -18,7 +18,6 @@ public class MainView implements IMainView {
 
     MainBinding binding;
 
-    public MainView(){}
     public MainView(FragmentActivity activity){
         this.fragManager = activity.getSupportFragmentManager();
         this.binding = MainBinding.inflate(activity.getLayoutInflater());
