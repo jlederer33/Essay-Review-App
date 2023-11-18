@@ -3,24 +3,33 @@
 
 ```plantuml
 actor Applicant as applicant
-participant " : IMainMenuView " as IMainMenuView
-Controller -> CollegeLibrary : edit
-CollegeLibrary <- College : addCollege()
-applicant -> IMainMenuView : StartUI()
-applicant <- IMainMenuView : viewDashboard()
-IMainMenuView-> controller : informs
+applicant-> IMainView : views
+IMainView -> IMenuView : displayFragment()
+applicant <- IMainView : displays
+IMenuView -> Controller : onCollegesClicked()
+Controller -> ICollegeView: displayFragment()
+Controller -> ICollegeView: onAddClicked()
+ICollegeView -> Controller : updateView()
+Dashboards-> College : addCollege()
+Dashboards -> ICollegeView: addCollege() 
 
 ```
 **Removing Colleges:**
 
 ```plantuml
 actor Applicant as applicant
-participant " : IMainMenuView " as IMainMenuView
-Controller -> CollegeLibrary : edit
-CollegeLibrary <- College : removeCollege()
-applicant -> IMainMenuView : StartUI()
-applicant <- IMainMenuView : viewDashboard()
-IMainMenuView-> CONTROLLER : informs
+applicant-> IMainView : views
+IMainView -> IMenuView : displayFragment()
+applicant <- IMainView : displays
+IMenuView -> Controller : onCollegesClicked()
+Controller -> ICollegeView: displayFragment()
+Controller -> ICollegeView: onRemoveClicked()
+ICollegeView -> Controller : updateView()
+Dashboards-> College : removeCollege()
+Dashboards -> ICollegeView: removeCollege() 
+
+
+
 
 
 ```
@@ -32,24 +41,41 @@ applicant-> IMainView : views
 IMainView -> IMenuView : displayFragment()
 applicant <- IMainView : displays
 Controller -> IEssaysView : onEssaysClicked()
+Controller -> IEssaysView : submitEssayClicked()
 Controller <- IMenuView : onEssaysClicked()
-Controller -> IMenuView: onBack()
 IEssaysView <- Dashboards : addToEssaysList()
+IEssaysView -> Dashboards : onSubmitEssayClicked()
+Dashboards -> IEssaysView : updatesView()
 Dashboards <- Essays : addToEssaysList()
-IEssaysView -> Controller : onBack()
 ```
 **Delete Essays:**
 
 ```plantuml
 actor Applicant as applicant
-participant " : IMainMenuView " as IMainMenuView
-applicant-> IMainMenuView : StartUI()
-Controller -> Essay : edits
-Controller -> IMainMenuView : return
-applicant <- IMainMenuView : viewDashboard()
-applicant <- IMainMenuView : viewEssay()
-IMainMenuView-> Controller : update
-Essay -> College : deleteEssay()
+applicant-> IMainView : views
+IMainView -> IMenuView : displayFragment()
+applicant <- IMainView : displays
+Controller -> IEssaysView : onEssaysClicked()
+Controller <- IMenuView : onEssaysClicked()
+IEssaysView <- Dashboards : removeFromEssaysList()
+Dashboards -> Essays : removeFromEssaysList()
+
+```
+
+**Adding and Editing Reviews**
+```plantuml
+actor Reviewer as reviewer
+reviewer-> IMainView : views
+IMainView -> IMenuView : displayFragment()
+reviewer <- IMainView : displays
+Controller -> IReviewerView : onReviewsClicked()
+Controller <- IReviewerView : updateView()
+IReviewerView -> Dashboards : onEditReviews()  
+Dashboards -> Essays : onEditReviews() 
+Controller <- IMenuView : onReviewsClicked()
+Controller -> IMenuView: onBack()
+IReviewerView -> Dashboards : addReviewsToEssay()
+Dashboards -> Essays : addReviewsToEssay()
 
 ```
 **Class Diagram:**
@@ -57,59 +83,129 @@ Essay -> College : deleteEssay()
 ```plantuml
 
 class Essay{
-title
-text
-type
+String title
+String text
+String type
+reviewList<Review>
 ...
 --
 +getTitle()
-+text()
-+personalTags()
-+text()
++getText()
++getType()
++seeReviews()
 }
 
-class IEssayView{
-...
+
+class Dashboard{
+essayList<Essay>
+collegeList<College>
+reviewerEssayList<Essay>
 --
-+getEssay()
++addToEssayList(String title, String text, String type)
++removeFromEssayList(int position)
++addToCollegeList(String name)
++removeCollegeFromList(int position)
++addReview()
++deleteReview()
++editReview
 }
-
-
-class CollegeLibrary{
-...
---
-+getCollege()
-}
-CollegeLibrary <. College
-
 
 class Controller{
-...
+IMainView mainView
 --
-+addCollege((String collegeName)
-+removeCollege(String collegeName)
-+submitEssay(String title, String content, String essayType, String collegeName)
-+deleteEssay(String collegeName, String essayType)
-+viewEssay(String collegeName, String essayType)
++onEssaysClicked()
++onCollegesClicked()
++onReviewsClicked()
++onBack()
+
 }
 class College{
+essaysInCollegeList<Essay>
+String collegeName
+int numOfReviews
+--
++getCollegeName()
++getNumOfReviews
++addEssayToCollege(Essay essay)
++removeEssayFromCollege(Essay essay)
+}
+
+class Review extends Essay{
+}
+
+Interface IMainView{
 ...
 --
-+collegeName
++getRootView()
++displayFragment(Fragment fragment, boolean reversible, String name)
 }
-class IMainMenuView{
+
+Class MainView{
 ...
 --
-+main()
-+start()
-+viewDashboard()
-+startUI()
+...
 }
-Controller <-- IMainMenuView
-Essay .> College
-IMainMenuView .> Essay
-College *- "(0..*)\nColleges" CollegeLibrary : \t\t
-Essay *- "(0..*)\nEssays" College: \t\t
+
+
+
+package "view" as View{
+}
+
+
+Controller <-- MainView
+View --> MainView
+IMainView <|-- MainView
+College <. Essay
+Controller <-- Dashboard
+Dashboard <. College
+
+College *- "(0..*)\nColleges" Dashboard : \t\t
+Essay *- "(0..*)\nEssays" Dashboard: \t\t
+
+```
+**View diagrams:**
+
+```plantuml
+
+interface IMenuView{
+...
++onEssaysClicked()
++onCollegesClicked()
++onReviewerClicked()
+}
+
+interface IEssayView{
+...
++onBack()
++onSubmitEssayClicked()
++onDeleteEssayClicked()
+}
+
+interface ICollegeView{
+...
++onBack()
++onAddCollegesClicked()
++onRemoveCollegesClicked()
++onAddEssayToCollege()
++onRemoveEssayToCollege()
+}
+
+interface IReviewerView{
+...
++onBack()
++onAddReview()
++onRemoveReview()
+}
+
+class EssayDashboardFragment {}
+class MenuDashboardFragment {}
+class CollegeDashboardFragment {}
+class ReviewerDashboardFragment {}
+
+IEssayView <|-- EssayDashboardFragment
+IMenuView <|-- MenuDashboardFragment
+ICollegeView <|-- CollegeDashboardFragment
+IReviewerView <|-- ReviewerDashboardFragment
 
 ```
 
