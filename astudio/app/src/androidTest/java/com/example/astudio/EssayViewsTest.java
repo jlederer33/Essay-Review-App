@@ -45,4 +45,11 @@ public class EssayViewsTest {
         item.check(ViewAssertions.matches(withText(R.string.Title)));
         item.check(ViewAssertions.matches(withText(R.string.Text)));
     }
+
+    @org.junit.Test
+    public void testEssayButton() {
+        onView(withId(R.id.essaysButton)).perform(click());
+        ViewInteraction essay = onView(withId(R.id.titleEditText));
+        essay.check(ViewAssertions.matches(withText(R.string.Title)));
+    }
 }
