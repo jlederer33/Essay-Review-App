@@ -7,4 +7,10 @@
         <item>Personal</item>
         <item>Supplement</item>
     </string-array>
+    <string name="MainMenu">Main Menu</string>
+    <string name="Title">Title</string>
+    <string name="Text">Text</string>
+
+
+
 </resources>

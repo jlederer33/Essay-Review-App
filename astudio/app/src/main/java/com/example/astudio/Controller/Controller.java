@@ -1,5 +1,4 @@
 package com.example.astudio.Controller;
-
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -49,6 +48,7 @@ public class Controller extends AppCompatActivity implements IMenuView.Listener,
      * @param type
      * @param view
      */
+
     @Override
     public void onSubmitEssayClicked(String title, String text, String type, IEssaysView view) {
         Dashboard.addToEssayList(title, text, type);
