@@ -1,4 +1,4 @@
-package com.example.astudio.View;
+package com.example.astudio.view;
 
 /**
  * The interface for the view of EssayDashboardFragment.

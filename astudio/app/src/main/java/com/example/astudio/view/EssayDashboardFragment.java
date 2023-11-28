@@ -1,5 +1,6 @@
-package com.example.astudio.View;
+package com.example.astudio.view;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,12 +12,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.astudio.R;
 import com.example.astudio.databinding.FragmentEssayViewBinding;
+import com.example.astudio.model.Dashboards;
+import com.example.astudio.model.Essay;
+import com.example.astudio.R;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.jetbrains.annotations.NotNull;
@@ -29,6 +33,56 @@ import org.jetbrains.annotations.NotNull;
  */
 
 public class EssayDashboardFragment extends Fragment implements IEssaysView{
+
+    public class EssayDashAdapter extends RecyclerView.Adapter<EssayDashViewHolder>{
+
+        /**
+         * The adapter for the recyclerview. Uses the essayList from Dashboard
+         */
+
+        Context context;
+
+
+        public EssayDashAdapter(Context context){
+            this.context = context;
+        }
+        @NonNull
+        @Override
+        public EssayDashViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            return new EssayDashViewHolder(LayoutInflater.from(context).inflate(R.layout.essayitem, parent, false));
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull EssayDashViewHolder holder, int position) {
+            Essay essay = Dashboards.essayList.get(position);
+            holder.titleView.setText(essay.getTitle());
+            holder.typeView.setText(essay.getType().toString());
+            holder.textView.setText(essay.getText());
+        }
+
+        @Override
+        public int getItemCount() {
+            return Dashboards.essayList.size();
+        }
+
+
+    }
+
+    public class EssayDashViewHolder extends RecyclerView.ViewHolder {
+        /**
+         * The viewholder for the essay_view recyclerview. The items it uses are Essays, and displays the
+         * type, title and text
+         */
+        TextView titleView, textView, typeView;
+
+        public EssayDashViewHolder(@NonNull View itemView){
+            super(itemView);
+            titleView = itemView.findViewById(R.id.titleTextView);
+            typeView = itemView.findViewById(R.id.typeTextView);
+            textView = itemView.findViewById(R.id.textTextView);
+
+        }
+    }
     private FragmentEssayViewBinding binding;
 
     private final Listener listener;
@@ -105,8 +159,9 @@ public class EssayDashboardFragment extends Fragment implements IEssaysView{
 
 
             }
-        });
 
+
+        });
 
 
     }

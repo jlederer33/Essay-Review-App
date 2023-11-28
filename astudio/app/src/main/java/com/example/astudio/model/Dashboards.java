@@ -1,4 +1,4 @@
-package com.example.astudio.Model;
+package com.example.astudio.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,5 +14,9 @@ public class Dashboards {
 
     public void addToEssayList(String title, String text, String type){
         essayList.add(new Essay(title, text, type));
+    }
+
+    public void removeFromEssayList(int position){
+
     }
 }

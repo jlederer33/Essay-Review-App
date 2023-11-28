@@ -1,10 +1,8 @@
-package com.example.astudio.Model;
+package com.example.astudio.model;
 
 import junit.framework.TestCase;
 import org.junit.Test;
 import org.junit.Before;
-import static org.junit.Assert.*;
-import java.util.List;
 
 
 public class DashboardsTest extends TestCase {

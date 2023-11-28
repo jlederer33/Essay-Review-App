@@ -1,16 +1,16 @@
-package com.example.astudio.Controller;
+package com.example.astudio.controller;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import com.example.astudio.Model.Dashboards;
-import com.example.astudio.View.EssayDashboardFragment;
-import com.example.astudio.View.IEssaysView;
-import com.example.astudio.View.IMainView;
-import com.example.astudio.View.IMenuView;
-import com.example.astudio.View.MainMenuFragment;
-import com.example.astudio.View.MainView;
+import com.example.astudio.model.Dashboards;
+import com.example.astudio.view.EssayDashboardFragment;
+import com.example.astudio.view.IEssaysView;
+import com.example.astudio.view.IMainView;
+import com.example.astudio.view.IMenuView;
+import com.example.astudio.view.MainMenuFragment;
+import com.example.astudio.view.MainView;
 
 public class Controller extends AppCompatActivity implements IMenuView.Listener, IEssaysView.Listener {
     IMainView mainView;
@@ -32,6 +32,11 @@ public class Controller extends AppCompatActivity implements IMenuView.Listener,
     public void onEssaysClicked() {
         Fragment essayView = new EssayDashboardFragment(this);
         this.mainView.displayFragment(essayView, false, "essay dashboard");
+    }
+
+    @Override
+    public void onReviewsClicked(){
+        //Fragment reviewerView = new ReviewEssaysFragment(this);
     }
 
     @Override

@@ -1,11 +1,10 @@
-package com.example.astudio.View;
+package com.example.astudio.view;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.astudio.databinding.MainBinding;
 import android.view.View;
 
 /**
