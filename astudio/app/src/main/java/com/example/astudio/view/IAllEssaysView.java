@@ -1,6 +1,6 @@
 package com.example.astudio.view;
 
-public interface IReviewsView {
+public interface IAllEssaysView {
     interface Listener {
         void onBack();
     }

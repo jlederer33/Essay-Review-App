@@ -12,12 +12,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.astudio.databinding.FragmentEssayViewBinding;
+import com.example.astudio.databinding.FragmentUseressaysViewBinding;
+import com.example.astudio.databinding.FragmentUseressaysViewBinding;
 import com.example.astudio.model.Dashboards;
 import com.example.astudio.model.Essay;
 import com.example.astudio.R;
@@ -32,7 +34,7 @@ import org.jetbrains.annotations.NotNull;
  * dashboard.
  */
 
-public class EssayDashboardFragment extends Fragment implements IEssaysView{
+public class UserEssaysFragment extends Fragment implements IUserEssaysView {
 
     public class EssayDashAdapter extends RecyclerView.Adapter<EssayDashViewHolder>{
 
@@ -58,7 +60,17 @@ public class EssayDashboardFragment extends Fragment implements IEssaysView{
             holder.titleView.setText(essay.getTitle());
             holder.typeView.setText(essay.getType().toString());
             holder.textView.setText(essay.getText());
+
+            holder.deleteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    UserEssaysFragment.this.listener.onDeleteEssayClicked(position, UserEssaysFragment.this);
+                }
+            });
+
         }
+
+
 
         @Override
         public int getItemCount() {
@@ -74,6 +86,7 @@ public class EssayDashboardFragment extends Fragment implements IEssaysView{
          * type, title and text
          */
         TextView titleView, textView, typeView;
+        private ImageButton deleteButton;
 
         public EssayDashViewHolder(@NonNull View itemView){
             super(itemView);
@@ -81,22 +94,23 @@ public class EssayDashboardFragment extends Fragment implements IEssaysView{
             typeView = itemView.findViewById(R.id.typeTextView);
             textView = itemView.findViewById(R.id.textTextView);
 
+            deleteButton = itemView.findViewById(R.id.deleteButton);
         }
     }
-    private FragmentEssayViewBinding binding;
+    private FragmentUseressaysViewBinding binding;
 
     private final Listener listener;
 
     RecyclerView recyclerView;
 
-    public EssayDashboardFragment(@NotNull Listener listener) {
+    public UserEssaysFragment(@NotNull Listener listener) {
         this.listener = listener;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        this.binding = FragmentEssayViewBinding.inflate(inflater);
+        this.binding = FragmentUseressaysViewBinding.inflate(inflater);
         return this.binding.getRoot();
     }
 
@@ -133,17 +147,17 @@ public class EssayDashboardFragment extends Fragment implements IEssaysView{
         this.binding.backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EssayDashboardFragment.this.listener.onBack();
+                UserEssaysFragment.this.listener.onBack();
             }
         });
 
         //Register Submit Essay click listener
         this.binding.submitButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                final Editable essayTitleEditable = EssayDashboardFragment.this.binding.titleEditText.getText();
+                final Editable essayTitleEditable = UserEssaysFragment.this.binding.titleEditText.getText();
                 final String essayTitleString = essayTitleEditable.toString();
 
-                final Editable essayTextEditable = EssayDashboardFragment.this.binding.textEditText.getText();
+                final Editable essayTextEditable = UserEssaysFragment.this.binding.textEditText.getText();
                 final String essayTextString = essayTextEditable.toString();
 
                 if(essayTextString.isEmpty() || essayTextString.isEmpty()){
@@ -155,7 +169,7 @@ public class EssayDashboardFragment extends Fragment implements IEssaysView{
                 essayTitleEditable.clear();
                 essayTextEditable.clear();
 
-                EssayDashboardFragment.this.listener.onSubmitEssayClicked(essayTitleString, essayTextString, type[0], EssayDashboardFragment.this);
+                UserEssaysFragment.this.listener.onSubmitEssayClicked(essayTitleString, essayTextString, type[0], UserEssaysFragment.this);
 
 
             }

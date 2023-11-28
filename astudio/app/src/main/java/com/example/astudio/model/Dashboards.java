@@ -17,6 +17,7 @@ public class Dashboards {
     }
 
     public void removeFromEssayList(int position){
+        essayList.remove(position);
 
     }
 }
