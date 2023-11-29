@@ -45,5 +45,12 @@ public class MainMenuFragment extends Fragment implements IMenuView {
             }
         });
 
+        this.binding.allEssaysButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainMenuFragment.this.listener.onAllEssaysClicked();
+            }
+        });
+
     }
 }

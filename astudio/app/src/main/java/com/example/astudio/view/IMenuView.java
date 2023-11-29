@@ -4,6 +4,6 @@ public interface IMenuView {
     interface Listener{
        void onEssaysClicked();
 
-       void onReviewsClicked();
+       void onAllEssaysClicked();
     }
 }

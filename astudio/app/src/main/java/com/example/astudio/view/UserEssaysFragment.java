@@ -35,6 +35,23 @@ import org.jetbrains.annotations.NotNull;
  */
 
 public class UserEssaysFragment extends Fragment implements IUserEssaysView {
+    public class EssayDashViewHolder extends RecyclerView.ViewHolder {
+        /**
+         * The viewholder for the essay_view recyclerview. The items it uses are Essays, and displays the
+         * type, title and text
+         */
+        TextView titleView, textView, typeView;
+        private ImageButton deleteButton;
+
+        public EssayDashViewHolder(@NonNull View itemView){
+            super(itemView);
+            titleView = itemView.findViewById(R.id.titleTextView);
+            typeView = itemView.findViewById(R.id.typeTextView);
+            textView = itemView.findViewById(R.id.textTextView);
+
+            deleteButton = itemView.findViewById(R.id.deleteButton);
+        }
+    }
 
     public class EssayDashAdapter extends RecyclerView.Adapter<EssayDashViewHolder>{
 
@@ -80,23 +97,7 @@ public class UserEssaysFragment extends Fragment implements IUserEssaysView {
 
     }
 
-    public class EssayDashViewHolder extends RecyclerView.ViewHolder {
-        /**
-         * The viewholder for the essay_view recyclerview. The items it uses are Essays, and displays the
-         * type, title and text
-         */
-        TextView titleView, textView, typeView;
-        private ImageButton deleteButton;
 
-        public EssayDashViewHolder(@NonNull View itemView){
-            super(itemView);
-            titleView = itemView.findViewById(R.id.titleTextView);
-            typeView = itemView.findViewById(R.id.typeTextView);
-            textView = itemView.findViewById(R.id.textTextView);
-
-            deleteButton = itemView.findViewById(R.id.deleteButton);
-        }
-    }
     private FragmentUseressaysViewBinding binding;
 
     private final Listener listener;
@@ -120,7 +121,7 @@ public class UserEssaysFragment extends Fragment implements IUserEssaysView {
 
         recyclerView = view.findViewById(R.id.recyclerViewEssays);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.binding.getRoot().getContext()));
-        recyclerView.setAdapter(new EssayDashAdapter(this.binding.getRoot().getContext() ));//, Dashboards.essayList));
+        recyclerView.setAdapter(new EssayDashAdapter(this.binding.getRoot().getContext() ));
 
         final String[] type = new String[1];
 
@@ -144,7 +145,7 @@ public class UserEssaysFragment extends Fragment implements IUserEssaysView {
         });
 
         //Register back button (Switches back to main menu)
-        this.binding.backButton.setOnClickListener(new View.OnClickListener() {
+        this.binding.ueBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 UserEssaysFragment.this.listener.onBack();
