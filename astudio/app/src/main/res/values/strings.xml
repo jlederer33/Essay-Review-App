@@ -10,7 +10,8 @@
     <string name="MainMenu">Main Menu</string>
     <string name="Title">Title</string>
     <string name="Text">Text</string>
-
+    <string name="SubmitEssay">Submit Essay</string>
+    <string name="Essays">Essays</string>
 
 
 </resources>
