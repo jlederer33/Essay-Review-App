@@ -1,4 +1,4 @@
-package com.example.astudio.View;
+package com.example.astudio.view;
 
 import android.view.View;
 

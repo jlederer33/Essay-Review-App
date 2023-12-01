@@ -1,11 +1,15 @@
-package com.example.astudio.Model;
+package com.example.astudio.model;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Essay {
 
     String title;
     String text;
-
     String type;
+
+    public List<Review> reviewList = new ArrayList<>();
 
     public Essay(String title, String text, String type){
         this.title = title;
@@ -30,11 +34,14 @@ public class Essay {
         this.text = text;
     }
 
-    public String getType() {
-        return type;
+    public String getType() {return type;
     }
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public int numOfReviews(){
+        return reviewList.size();
     }
 }

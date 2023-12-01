@@ -1,4 +1,4 @@
-package com.example.astudio.View;
+package com.example.astudio.view;
 
 import android.os.Bundle;
 
@@ -8,11 +8,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
-import com.example.astudio.R;
 import com.example.astudio.databinding.FragmentMainmenuBinding;
-import com.google.android.material.button.MaterialButton;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -45,6 +42,13 @@ public class MainMenuFragment extends Fragment implements IMenuView {
         this.binding.essaysButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 MainMenuFragment.this.listener.onEssaysClicked();
+            }
+        });
+
+        this.binding.allEssaysButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainMenuFragment.this.listener.onAllEssaysClicked();
             }
         });
 

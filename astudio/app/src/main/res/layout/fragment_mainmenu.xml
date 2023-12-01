@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".View.MainMenuFragment">
+    tools:context=".view.MainMenuFragment">
 
     <TextView
         android:id="@+id/menuLabel"
@@ -27,5 +27,16 @@
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/menuLabel" />
+
+    <Button
+        android:id="@+id/allEssaysButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4sp"
+        android:layout_marginTop="60dp"
+        android:text="All Essays"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/essaysButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
