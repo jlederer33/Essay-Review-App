@@ -22,12 +22,6 @@
         android:textSize="16sp"
         tools:text="Type" />
 
-    <TextView
-        android:id="@+id/textTextView"
-        android:layout_width="387dp"
-        android:layout_height="33dp"
-        android:textSize="18sp"
-        tools:text="Text" />
 
     <ImageButton
         android:id="@+id/deleteButton"
