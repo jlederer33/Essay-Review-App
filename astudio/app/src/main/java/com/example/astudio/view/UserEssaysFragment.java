@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -42,6 +43,7 @@ public class UserEssaysFragment extends Fragment implements IUserEssaysView {
          */
         TextView titleView, textView, typeView;
         private ImageButton deleteButton;
+        public LinearLayout essayItem;
 
         public EssayDashViewHolder(@NonNull View itemView){
             super(itemView);
@@ -49,7 +51,10 @@ public class UserEssaysFragment extends Fragment implements IUserEssaysView {
             typeView = itemView.findViewById(R.id.typeTextView);
             textView = itemView.findViewById(R.id.textTextView);
 
+            essayItem = itemView.findViewById(R.id.essayItem);
+
             deleteButton = itemView.findViewById(R.id.deleteButton);
+
         }
     }
 
@@ -78,12 +83,23 @@ public class UserEssaysFragment extends Fragment implements IUserEssaysView {
             holder.typeView.setText(essay.getType().toString());
             holder.textView.setText(essay.getText());
 
+            holder.essayItem.setOnClickListener(new View.OnClickListener() {//Allows the essay to be clicked on, accessing the selected essay
+                @Override
+                public void onClick(View view) {
+                    UserEssaysFragment.this.listener.onUserEssayClicked(essay);
+
+                }
+            });
+
             holder.deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     UserEssaysFragment.this.listener.onDeleteEssayClicked(position, UserEssaysFragment.this);
                 }
+
             });
+
+
 
         }
 

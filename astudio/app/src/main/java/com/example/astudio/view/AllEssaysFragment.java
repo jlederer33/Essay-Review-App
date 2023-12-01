@@ -22,12 +22,11 @@ import org.jetbrains.annotations.NotNull;
 
 public class AllEssaysFragment extends Fragment implements IAllEssaysView{
     public class AllEssaysViewholder extends RecyclerView.ViewHolder{
-        TextView titleView, textView, typeView;
+        TextView titleView, typeView;
         public AllEssaysViewholder(@NonNull View itemView) {
             super(itemView);
             titleView = itemView.findViewById(R.id.titleTextView);
             typeView = itemView.findViewById(R.id.typeTextView);
-            textView = itemView.findViewById(R.id.textTextView);
         }
     }
 
@@ -48,7 +47,6 @@ public class AllEssaysFragment extends Fragment implements IAllEssaysView{
             Essay essay = Dashboards.allEssaysList.get(position);
             holder.titleView.setText(essay.getTitle());
             holder.typeView.setText(essay.getType().toString());
-            holder.textView.setText(essay.getText());
         }
 
         @Override

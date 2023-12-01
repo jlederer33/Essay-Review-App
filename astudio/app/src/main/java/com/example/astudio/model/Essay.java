@@ -9,7 +9,7 @@ public class Essay {
     String text;
     String type;
 
-    List<Review> reviewList = new ArrayList<>();
+    public List<Review> reviewList = new ArrayList<>();
 
     public Essay(String title, String text, String type){
         this.title = title;
