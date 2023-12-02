@@ -85,11 +85,11 @@ public class SelectedEssayFragment extends Fragment implements ISelectedEssayVie
         this.binding.selectedEssayTitle.setText(essay.getTitle());
         this.binding.selectedEssayText.setText(essay.getText());
 
-        /**
-        recyclerView = view.findViewById(R.id.recyclerViewEssays);
+
+        recyclerView = view.findViewById(R.id.recyclerViewReviews);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.binding.getRoot().getContext()));
         recyclerView.setAdapter(new ReviewAdapter(this.binding.getRoot().getContext() ));
-         */
+
         this.binding.backToUserEssays.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
