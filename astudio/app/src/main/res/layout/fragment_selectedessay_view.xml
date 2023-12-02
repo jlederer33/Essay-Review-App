@@ -30,20 +30,33 @@
 
     <Button
         android:id="@+id/backToUserEssays"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="174dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="104dp"
         android:text="User Essays"
-        tools:layout_editor_absoluteX="153dp"
-        tools:layout_editor_absoluteY="667dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.527"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/recyclerViewReviews"
         android:layout_width="381dp"
         android:layout_height="247dp"
         android:layout_marginTop="1dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/selectedEssayText" />
+
+    <Button
+        android:id="@+id/addReviewButton"
+        android:layout_width="187dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="16dp"
+        android:text="Add Review"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.558"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

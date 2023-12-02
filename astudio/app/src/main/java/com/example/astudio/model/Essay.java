@@ -44,4 +44,8 @@ public class Essay {
     public int numOfReviews(){
         return reviewList.size();
     }
+
+    public void addReview(Review review){ //adds a review to the review
+        reviewList.add(review);
+    }
 }

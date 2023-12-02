@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -68,6 +69,8 @@ public class SelectedEssayFragment extends Fragment implements ISelectedEssayVie
 
     private Essay essay;
 
+    RecyclerView recyclerView;
+
 
     public SelectedEssayFragment(Listener listener, Essay essay) {
         this.essay = essay;
@@ -86,6 +89,10 @@ public class SelectedEssayFragment extends Fragment implements ISelectedEssayVie
         this.binding.selectedEssayTitle.setText(essay.getTitle());
         this.binding.selectedEssayText.setText(essay.getText());
 
+        recyclerView = view.findViewById(R.id.recyclerViewEssays);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.binding.getRoot().getContext()));
+        recyclerView.setAdapter(new ReviewAdapter(this.binding.getRoot().getContext() ));
+
         this.binding.backToUserEssays.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,4 +100,6 @@ public class SelectedEssayFragment extends Fragment implements ISelectedEssayVie
             }
         });
     }
+
+
 }

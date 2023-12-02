@@ -20,7 +20,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.astudio.databinding.FragmentUseressaysViewBinding;
-import com.example.astudio.databinding.FragmentUseressaysViewBinding;
 import com.example.astudio.model.Dashboards;
 import com.example.astudio.model.Essay;
 import com.example.astudio.R;
@@ -41,7 +40,7 @@ public class UserEssaysFragment extends Fragment implements IUserEssaysView {
          * The viewholder for the essay_view recyclerview. The items it uses are Essays, and displays the
          * type, title and text
          */
-        TextView titleView, textView, typeView;
+        TextView titleView, typeView;
         private ImageButton deleteButton;
         public LinearLayout essayItem;
 
@@ -49,7 +48,7 @@ public class UserEssaysFragment extends Fragment implements IUserEssaysView {
             super(itemView);
             titleView = itemView.findViewById(R.id.titleTextView);
             typeView = itemView.findViewById(R.id.typeTextView);
-            textView = itemView.findViewById(R.id.textTextView);
+            //textView = itemView.findViewById(R.id.textTextView);
 
             essayItem = itemView.findViewById(R.id.essayItem);
 
@@ -81,7 +80,7 @@ public class UserEssaysFragment extends Fragment implements IUserEssaysView {
             Essay essay = Dashboards.essayList.get(position);
             holder.titleView.setText(essay.getTitle());
             holder.typeView.setText(essay.getType().toString());
-            holder.textView.setText(essay.getText());
+            //holder.textView.setText(essay.getText());
 
             holder.essayItem.setOnClickListener(new View.OnClickListener() {//Allows the essay to be clicked on, accessing the selected essay
                 @Override
