@@ -22,10 +22,11 @@ public class EssayViewsTest {
 
     @org.junit.Test
     public void testBackButton() {
-        Espresso.onView(withId(R.id.backButton)).perform(click());
+        Espresso.onView(withId(R.id.mainmenu)).perform(click());
         ViewInteraction menu = onView(withId(R.id.menuLabel));
         menu.check(ViewAssertions.matches(withText(R.string.MainMenu)));
     }
+    //menu is the back button.
 
     @org.junit.Test
     public void testSubmitButton() {
