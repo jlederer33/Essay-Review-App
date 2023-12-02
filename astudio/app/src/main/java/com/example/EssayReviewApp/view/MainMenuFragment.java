@@ -1,4 +1,4 @@
-package com.example.astudio.view;
+package com.example.EssayReviewApp.view;
 
 import android.os.Bundle;
 
@@ -9,7 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.astudio.databinding.FragmentMainmenuBinding;
+import com.example.EssayReviewApp.databinding.FragmentMainmenuBinding;
 
 import org.jetbrains.annotations.NotNull;
 

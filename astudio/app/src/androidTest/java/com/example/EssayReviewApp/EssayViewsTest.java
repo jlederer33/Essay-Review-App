@@ -1,4 +1,4 @@
-package com.example.astudio;
+package com.example.EssayReviewApp;
 
 
 
@@ -14,7 +14,7 @@ import androidx.test.espresso.ViewInteraction;
 import androidx.test.espresso.assertion.ViewAssertions;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 
-import com.example.astudio.controller.Controller;
+import com.example.EssayReviewApp.controller.Controller;
 
 public class EssayViewsTest {
     @org.junit.Rule

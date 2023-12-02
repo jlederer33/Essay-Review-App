@@ -1,4 +1,4 @@
-package com.example.astudio.view;
+package com.example.EssayReviewApp.view;
 
 public interface IMenuView {
     interface Listener{

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "661464121589",
+    "project_id": "essayreviewapp",
+    "storage_bucket": "essayreviewapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:661464121589:android:9f6a5a9a439ff383d3c5bc",
+        "android_client_info": {
+          "package_name": "com.example.EssayReviewApp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3kAUmw5j4IWHeZbiJ3t94009ytjOyGEk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,4 +1,4 @@
-package com.example.astudio.view;
+package com.example.EssayReviewApp.view;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -19,10 +19,10 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.astudio.databinding.FragmentUseressaysViewBinding;
-import com.example.astudio.model.Dashboards;
-import com.example.astudio.model.Essay;
-import com.example.astudio.R;
+import com.example.EssayReviewApp.databinding.FragmentUseressaysViewBinding;
+import com.example.EssayReviewApp.model.Dashboards;
+import com.example.EssayReviewApp.model.Essay;
+import com.example.EssayReviewApp.R;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.jetbrains.annotations.NotNull;

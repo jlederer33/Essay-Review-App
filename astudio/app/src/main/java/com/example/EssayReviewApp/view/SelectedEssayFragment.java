@@ -1,4 +1,4 @@
-package com.example.astudio.view;
+package com.example.EssayReviewApp.view;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -14,15 +14,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.astudio.R;
-import com.example.astudio.databinding.FragmentSelectedessayViewBinding;
-import com.example.astudio.databinding.FragmentUseressaysViewBinding;
-import com.example.astudio.model.Essay;
-import com.example.astudio.model.Review;
-
-import org.w3c.dom.Text;
-
-import java.util.ListIterator;
+import com.example.EssayReviewApp.R;
+import com.example.EssayReviewApp.databinding.FragmentSelectedessayViewBinding;
+import com.example.EssayReviewApp.databinding.FragmentUseressaysViewBinding;
+import com.example.EssayReviewApp.model.Essay;
+import com.example.EssayReviewApp.model.Review;
 
 public class SelectedEssayFragment extends Fragment implements ISelectedEssayView{
 
@@ -89,16 +85,21 @@ public class SelectedEssayFragment extends Fragment implements ISelectedEssayVie
         this.binding.selectedEssayTitle.setText(essay.getTitle());
         this.binding.selectedEssayText.setText(essay.getText());
 
+        /**
         recyclerView = view.findViewById(R.id.recyclerViewEssays);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.binding.getRoot().getContext()));
         recyclerView.setAdapter(new ReviewAdapter(this.binding.getRoot().getContext() ));
-
+         */
         this.binding.backToUserEssays.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                SelectedEssayFragment.this.listener.onEssaysClicked();
             }
         });
+    }
+
+    public void updateReviewsDisplay(){
+        this.binding.recyclerViewReviews.getAdapter().notifyDataSetChanged();
     }
 
 
