@@ -86,6 +86,7 @@ class Essay{
 String title
 String text
 String type
+int date
 reviewList<Review>
 ...
 --
@@ -160,7 +161,9 @@ Controller <-- Dashboard
 Dashboard <. College
 
 College *- "(0..*)\nColleges" Dashboard : \t\t
-Essay *- "(0..*)\nEssays" Dashboard: \t\t
+Dashboard *- "(0..*)\nEssays" Essay: \t\t
+IMainView *- "mainView(1 - 1)\nColleges" Controller : \t\t\t
+
 
 ```
 **View diagrams:**
@@ -197,6 +200,19 @@ interface IReviewerView{
 +onRemoveReview()
 }
 
+interface IEssayView.Listener{
+
+}
+interface IMenuView.Listener{
+
+}
+
+interface ICollegeView.Listener{
+}
+
+interface IReviewerView.Listener{
+
+}
 class EssayDashboardFragment {}
 class MenuDashboardFragment {}
 class CollegeDashboardFragment {}
@@ -206,6 +222,13 @@ IEssayView <|-- EssayDashboardFragment
 IMenuView <|-- MenuDashboardFragment
 ICollegeView <|-- CollegeDashboardFragment
 IReviewerView <|-- ReviewerDashboardFragment
+IEssayView.Listener <-- IEssayView
+IMenuView.Listener <-- IMenuView
+ICollegeView.Listener <-- ICollegeView
+IReviewerView.Listener <-- IReviewerView
+
+
+
 
 ```
 
