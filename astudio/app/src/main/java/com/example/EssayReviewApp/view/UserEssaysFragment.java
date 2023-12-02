@@ -160,7 +160,7 @@ public class UserEssaysFragment extends Fragment implements IUserEssaysView {
         });
 
         //Register back button (Switches back to main menu)
-        this.binding.ueBackButton.setOnClickListener(new View.OnClickListener() {
+        this.binding.mainmenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 UserEssaysFragment.this.listener.onBack();
