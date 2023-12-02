@@ -1,4 +1,4 @@
-package com.example.astudio.model;
+package com.example.EssayReviewApp.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +46,6 @@ public class Essay {
     }
 
     public void addReview(Review review){ //adds a review to the review
-        reviewList.add(review);
+        this.reviewList.add(review);
     }
 }

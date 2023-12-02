@@ -1,4 +1,4 @@
-package com.example.astudio;
+package com.example.EssayReviewApp;
 
 import org.junit.Test;
 

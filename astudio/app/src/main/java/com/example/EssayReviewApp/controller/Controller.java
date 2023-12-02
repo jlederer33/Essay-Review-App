@@ -1,23 +1,23 @@
-package com.example.astudio.controller;
+package com.example.EssayReviewApp.controller;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import com.example.astudio.model.Dashboards;
-import com.example.astudio.model.Essay;
-import com.example.astudio.model.Review;
-import com.example.astudio.view.AllEssaysFragment;
-import com.example.astudio.view.IAddReviewsView;
-import com.example.astudio.view.IAllEssaysView;
-import com.example.astudio.view.ISelectedEssayView;
-import com.example.astudio.view.SelectedEssayFragment;
-import com.example.astudio.view.UserEssaysFragment;
-import com.example.astudio.view.IUserEssaysView;
-import com.example.astudio.view.IMainView;
-import com.example.astudio.view.IMenuView;
-import com.example.astudio.view.MainMenuFragment;
-import com.example.astudio.view.MainView;
+import com.example.EssayReviewApp.model.Dashboards;
+import com.example.EssayReviewApp.model.Essay;
+import com.example.EssayReviewApp.model.Review;
+import com.example.EssayReviewApp.view.AllEssaysFragment;
+import com.example.EssayReviewApp.view.IAddReviewsView;
+import com.example.EssayReviewApp.view.IAllEssaysView;
+import com.example.EssayReviewApp.view.ISelectedEssayView;
+import com.example.EssayReviewApp.view.SelectedEssayFragment;
+import com.example.EssayReviewApp.view.UserEssaysFragment;
+import com.example.EssayReviewApp.view.IUserEssaysView;
+import com.example.EssayReviewApp.view.IMainView;
+import com.example.EssayReviewApp.view.IMenuView;
+import com.example.EssayReviewApp.view.MainMenuFragment;
+import com.example.EssayReviewApp.view.MainView;
 
 public class Controller extends AppCompatActivity implements IMenuView.Listener, IUserEssaysView.Listener, IAllEssaysView.Listener, ISelectedEssayView.Listener, IAddReviewsView.Listener {
     IMainView mainView;
@@ -83,8 +83,11 @@ public class Controller extends AppCompatActivity implements IMenuView.Listener,
         this.mainView.displayFragment(selectedEssay, false, "Selected Essay");
     }
 
+
     @Override
-    public void onSubmitReviewClicked(Essay essay, Review review, ISelectedEssayView view) {
+    public void onSubmitReviewClicked(Essay essay, Review review) {
         essay.addReview(review);
+
     }
 }
+

@@ -1,6 +1,6 @@
-package com.example.astudio.view;
+package com.example.EssayReviewApp.view;
 
-import com.example.astudio.model.Essay;
+import com.example.EssayReviewApp.model.Essay;
 
 /**
  * The interface for the view of EssayDashboardFragment.

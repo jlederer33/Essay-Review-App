@@ -1,4 +1,4 @@
-package com.example.astudio.model;
+package com.example.EssayReviewApp.model;
 
 import java.util.ArrayList;
 import java.util.List;
