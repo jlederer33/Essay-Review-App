@@ -45,7 +45,7 @@ public class Essay {
         return reviewList.size();
     }
 
-    public void addReview(Review review){ //adds a review to the review
-        this.reviewList.add(review);
+    public void addReview(String title, String text){ //adds a review to the Essay
+        reviewList.add(new Review(title, text));
     }
 }

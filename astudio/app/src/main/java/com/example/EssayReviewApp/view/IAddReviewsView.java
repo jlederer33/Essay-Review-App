@@ -5,7 +5,7 @@ import com.example.EssayReviewApp.model.Review;
 
 public interface IAddReviewsView {
     interface Listener {
-        void onSubmitReviewClicked(Essay essay, Review review);
+        void onSubmitReviewClicked(Essay essay, String title, String text);
 
         void onUserEssayClicked(Essay essay);
     }

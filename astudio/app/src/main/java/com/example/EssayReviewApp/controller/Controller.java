@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import com.example.EssayReviewApp.model.Dashboards;
 import com.example.EssayReviewApp.model.Essay;
 import com.example.EssayReviewApp.model.Review;
+import com.example.EssayReviewApp.view.AddReviewsFragment;
 import com.example.EssayReviewApp.view.AllEssaysFragment;
 import com.example.EssayReviewApp.view.IAddReviewsView;
 import com.example.EssayReviewApp.view.IAllEssaysView;
@@ -43,6 +44,7 @@ public class Controller extends AppCompatActivity implements IMenuView.Listener,
         Fragment essayView = new UserEssaysFragment(this);
         this.mainView.displayFragment(essayView, false, "user essay dashboard");
     }
+
 
     @Override
     public void onAllEssaysClicked() {
@@ -85,9 +87,16 @@ public class Controller extends AppCompatActivity implements IMenuView.Listener,
 
 
     @Override
-    public void onSubmitReviewClicked(Essay essay, Review review) {
-        essay.addReview(review);
-
+    public void onSubmitReviewClicked(Essay essay, String title, String text) {
+        essay.addReview(title, text);
     }
+
+    @Override
+    public void onAddReviewClicked() {
+        AddReviewsFragment addReview = new AddReviewsFragment();
+        this.mainView.displayFragment(addReview, false, "Add review");
+    }
+
+
 }
 
