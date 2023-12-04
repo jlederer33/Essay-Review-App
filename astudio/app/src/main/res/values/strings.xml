@@ -8,6 +8,7 @@
         <item>Supplement</item>
     </string-array>
     <string name="MainMenu">Main Menu</string>
+    <string name="MM">Main </string>
     <string name="Title">Title</string>
     <string name="Type">Type</string>
     <string name="Text">Text</string>

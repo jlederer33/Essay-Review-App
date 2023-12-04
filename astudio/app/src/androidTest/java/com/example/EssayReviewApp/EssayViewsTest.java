@@ -6,6 +6,7 @@ import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.typeText;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
@@ -16,15 +17,19 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule;
 
 import com.example.EssayReviewApp.controller.Controller;
 
+import com.example.EssayReviewApp.controller.Controller;
+
 public class EssayViewsTest {
     @org.junit.Rule
     public ActivityScenarioRule<Controller> activityRule = new ActivityScenarioRule<>(Controller.class);
 
     @org.junit.Test
     public void testBackButton() {
-        Espresso.onView(withId(R.id.mainmenu)).perform(click());
-        ViewInteraction menu = onView(withId(R.id.menuLabel));
-        menu.check(ViewAssertions.matches(withText(R.string.MainMenu)));
+        Espresso.onView(withId(R.id.aeBackButton)).perform(click());
+       ViewInteraction menu = onView(withId(R.id.menuLabel));
+       menu.check(ViewAssertions.matches(withText(R.string.MainMenu)));
+
+
     }
     //menu is the back button.
 
@@ -40,15 +45,15 @@ public class EssayViewsTest {
         ViewInteraction item = onView(withId(R.id.titleEditText));
 
         // Check if the new essay item is displayed
-        item.check(ViewAssertions.matches(withText(R.string.Title)));
-        item.check(ViewAssertions.matches(withText(R.string.Type)));
-        item.check(ViewAssertions.matches(withText(R.string.Text)));
+        item.check(matches(withText(R.string.Title)));
+        item.check(matches(withText(R.string.Type)));
+        item.check(matches(withText(R.string.Text)));
     }
 
     @org.junit.Test
     public void testEssayButton() {
         onView(withId(R.id.essaysButton)).perform(click());
         ViewInteraction essay = onView(withId(R.id.titleEditText));
-        essay.check(ViewAssertions.matches(withText(R.string.Title)));
+        essay.check(matches(withText(R.string.Title)));
     }
 }
