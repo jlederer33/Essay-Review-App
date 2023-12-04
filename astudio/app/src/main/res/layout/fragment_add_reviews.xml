@@ -28,16 +28,29 @@
         app:layout_constraintTop_toBottomOf="@+id/addReviewTitle" />
 
     <EditText
-        android:id="@+id/enterReviewText"
-        android:layout_width="347dp"
-        android:layout_height="61dp"
-        android:layout_marginTop="136dp"
+        android:id="@+id/enterReviewTitle"
+        android:layout_width="329dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="84dp"
         android:ems="10"
-        android:gravity="start|top"
-        android:inputType="textMultiLine"
+        android:hint="Title"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addReviewEssayText" />
+
+    <EditText
+        android:id="@+id/enterReviewText"
+        android:layout_width="309dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="Text"
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enterReviewTitle" />
 
     <Button
         android:id="@+id/submitReview"
@@ -48,20 +61,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/enterReviewText"
-        app:layout_constraintVertical_bias="0.623" />
-
-    <EditText
-        android:id="@+id/enterReviewTitle"
-        android:layout_width="329dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="32dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Name"
-        app:layout_constraintBottom_toTopOf="@+id/submitReview"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addReviewEssayText" />
+        app:layout_constraintVertical_bias="0.328" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

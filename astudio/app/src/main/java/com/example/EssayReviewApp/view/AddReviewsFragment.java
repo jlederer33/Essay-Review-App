@@ -29,9 +29,9 @@ public class AddReviewsFragment extends Fragment implements IAddReviewsView {
     Listener listener;
     private FragmentAddReviewsBinding binding;
 
-    public AddReviewsFragment() {
-
-        //this.essay = essay;
+    public AddReviewsFragment(Listener listener, Essay essay) {
+        this.essay = essay;
+        this.listener = listener;
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -57,11 +57,11 @@ public class AddReviewsFragment extends Fragment implements IAddReviewsView {
                     return;
                 }
 
-               AddReviewsFragment.this.listener.onSubmitReviewClicked(essay, reviewTitleString, reviewTextString);
+                reviewTitleEditable.clear();
+                reviewTextEditable.clear();
+                AddReviewsFragment.this.listener.onSubmitReviewClicked(essay, reviewTitleString, reviewTextString);
 
-                //AddReviewsFragment.this.listener.onSubmitReviewClicked(essay, review, SelectedEssayFragment.this);
 
-                //AddReviewsFragment.this.listener.onUserEssayClicked();
             }
         });
     }

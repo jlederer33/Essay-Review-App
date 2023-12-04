@@ -40,20 +40,20 @@ public class Controller extends AppCompatActivity implements IMenuView.Listener,
      * These are the methods displayed in the main menu fragment
      */
     @Override
-    public void onEssaysClicked() {
+    public void onEssaysClicked() { //sets the view to the user essays screen
         Fragment essayView = new UserEssaysFragment(this);
         this.mainView.displayFragment(essayView, false, "user essay dashboard");
     }
 
 
     @Override
-    public void onAllEssaysClicked() {
+    public void onAllEssaysClicked() { // sets the view to the all essays screen
         Fragment allEssaysView = new AllEssaysFragment(this);
         this.mainView.displayFragment(allEssaysView,false, "all essays dashboard");
     }
 
     @Override
-    public void onBack() {
+    public void onBack() {// sets the view to the Main Menu
         MainMenuFragment mainMenu = new MainMenuFragment(this);
         this.mainView.displayFragment(mainMenu,false,"main menu");
     }
@@ -85,17 +85,26 @@ public class Controller extends AppCompatActivity implements IMenuView.Listener,
         this.mainView.displayFragment(selectedEssay, false, "Selected Essay");
     }
 
+    @Override
+    public void onAddReviewClicked(Essay essay) {
+        AddReviewsFragment addReview = new AddReviewsFragment(this, essay);
+        this.mainView.displayFragment(addReview, false, "Add review");
+    }
 
+    /**
+     * This Method binds the submit review button to the addReview method in Essays object
+     * @param essay
+     * @param title
+     * @param text
+     */
     @Override
     public void onSubmitReviewClicked(Essay essay, String title, String text) {
         essay.addReview(title, text);
+        SelectedEssayFragment selectedEssay = new SelectedEssayFragment(this, essay);
+        this.mainView.displayFragment(selectedEssay, false, "Selected Essay");
     }
 
-    @Override
-    public void onAddReviewClicked() {
-        AddReviewsFragment addReview = new AddReviewsFragment();
-        this.mainView.displayFragment(addReview, false, "Add review");
-    }
+
 
 
 }

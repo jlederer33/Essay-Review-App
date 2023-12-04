@@ -1,6 +1,10 @@
 package com.example.EssayReviewApp.model;
 
 public class Review{
+    /**
+     * This class represents the reviews given to the essay. They are composed of String title and
+     * String text
+     */
     String title;
     String text;
 

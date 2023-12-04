@@ -56,7 +56,7 @@ public class SelectedEssayFragment extends Fragment implements ISelectedEssayVie
 
         @Override
         public int getItemCount() {
-            return 0;
+            return essay.numOfReviews();
         }
     }
 
@@ -100,7 +100,7 @@ public class SelectedEssayFragment extends Fragment implements ISelectedEssayVie
         this.binding.addReviewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SelectedEssayFragment.this.listener.onAddReviewClicked();
+                SelectedEssayFragment.this.listener.onAddReviewClicked(essay);
             }
         });
     }
@@ -108,6 +108,8 @@ public class SelectedEssayFragment extends Fragment implements ISelectedEssayVie
     public void updateReviewsDisplay(){
         this.binding.recyclerViewReviews.getAdapter().notifyDataSetChanged();
     }
+
+
 
 
 }

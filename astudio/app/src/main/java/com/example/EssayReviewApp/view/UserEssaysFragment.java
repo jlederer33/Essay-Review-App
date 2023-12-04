@@ -40,7 +40,7 @@ public class UserEssaysFragment extends Fragment implements IUserEssaysView {
          * The viewholder for the essay_view recyclerview. The items it uses are Essays, and displays the
          * type, title and text
          */
-        TextView titleView, typeView;
+        TextView titleView, typeView, numOfReviews;
         private ImageButton deleteButton;
         public LinearLayout essayItem;
 
@@ -48,7 +48,7 @@ public class UserEssaysFragment extends Fragment implements IUserEssaysView {
             super(itemView);
             titleView = itemView.findViewById(R.id.titleTextView);
             typeView = itemView.findViewById(R.id.typeTextView);
-            //textView = itemView.findViewById(R.id.textTextView);
+            numOfReviews = itemView.findViewById(R.id.numOfReviews);
 
             essayItem = itemView.findViewById(R.id.essayItem);
 
@@ -80,8 +80,7 @@ public class UserEssaysFragment extends Fragment implements IUserEssaysView {
             Essay essay = Dashboards.essayList.get(position);
             holder.titleView.setText(essay.getTitle());
             holder.typeView.setText(essay.getType().toString());
-            //holder.textView.setText(essay.getText());
-
+            holder.numOfReviews.setText(String.valueOf(essay.numOfReviews()));
             holder.essayItem.setOnClickListener(new View.OnClickListener() {//Allows the essay to be clicked on, accessing the selected essay
                 @Override
                 public void onClick(View view) {
