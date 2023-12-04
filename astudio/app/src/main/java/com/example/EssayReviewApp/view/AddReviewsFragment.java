@@ -25,14 +25,13 @@ import com.google.android.material.snackbar.Snackbar;
  */
 public class AddReviewsFragment extends Fragment implements IAddReviewsView {
     private Essay essay;
-    private Review review;
 
     Listener listener;
     private FragmentAddReviewsBinding binding;
 
-    public AddReviewsFragment(Essay essay, Review review) {
-        this.essay = essay;
-        this.review = review;
+    public AddReviewsFragment() {
+
+        //this.essay = essay;
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -46,18 +45,19 @@ public class AddReviewsFragment extends Fragment implements IAddReviewsView {
         this.binding.submitReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Editable reviewTextEditable= AddReviewsFragment.this.binding.enterReview.getText();
+                final Editable reviewTitleEditable = AddReviewsFragment.this.binding.enterReviewTitle.getText();
+                final String reviewTitleString = reviewTitleEditable.toString();
+
+                final Editable reviewTextEditable= AddReviewsFragment.this.binding.enterReviewText.getText();
                 final String reviewTextString = reviewTextEditable.toString();
 
-                if(reviewTextString.isEmpty()){
+                if(reviewTitleString.isEmpty() || reviewTextString.isEmpty()){
                     String errMsgStr = "Must fill in review!";
                     Snackbar.make(view, errMsgStr, Snackbar.LENGTH_LONG).show();
                     return;
                 }
 
-                review.setText(reviewTextString);
-
-                reviewTextEditable.clear();
+               AddReviewsFragment.this.listener.onSubmitReviewClicked(essay, reviewTitleString, reviewTextString);
 
                 //AddReviewsFragment.this.listener.onSubmitReviewClicked(essay, review, SelectedEssayFragment.this);
 

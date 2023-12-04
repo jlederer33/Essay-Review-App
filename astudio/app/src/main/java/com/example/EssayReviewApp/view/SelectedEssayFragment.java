@@ -96,6 +96,13 @@ public class SelectedEssayFragment extends Fragment implements ISelectedEssayVie
                SelectedEssayFragment.this.listener.onEssaysClicked();
             }
         });
+
+        this.binding.addReviewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SelectedEssayFragment.this.listener.onAddReviewClicked();
+            }
+        });
     }
 
     public void updateReviewsDisplay(){
