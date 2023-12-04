@@ -43,7 +43,7 @@ public class SelectedEssayFragment extends Fragment implements ISelectedEssayVie
         @NonNull
         @Override
         public ReviewViewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            return new SelectedEssayFragment.ReviewViewholder(LayoutInflater.from(context).inflate(R.layout.essayitem, parent, false));
+            return new SelectedEssayFragment.ReviewViewholder(LayoutInflater.from(context).inflate(R.layout.reviewitem, parent, false));
 
         }
 
