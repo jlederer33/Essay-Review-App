@@ -1,4 +1,4 @@
-package com.example.astudio.view;
+package com.example.EssayReviewApp.view;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.view.View;
 
-import com.example.astudio.databinding.MainBinding;
+import com.example.EssayReviewApp.databinding.MainBinding;
 
 /**
  * This is the main view of the app. The view has a fragment container. Using MainMenuFragment,

@@ -31,7 +31,7 @@
                 android:id="@+id/titleEditText"
                 android:layout_width="354dp"
                 android:layout_height="47dp"
-                android:hint="Title"
+                android:hint="@string/Title"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -41,7 +41,7 @@
                 android:layout_width="354dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="8sp"
-                android:hint="Text"
+                android:hint="@string/Text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/titleEditText" />
@@ -79,7 +79,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/ueBackButton"
+        android:id="@+id/mainmenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

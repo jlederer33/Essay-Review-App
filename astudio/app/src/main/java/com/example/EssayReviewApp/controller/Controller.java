@@ -1,23 +1,24 @@
-package com.example.astudio.controller;
+package com.example.EssayReviewApp.controller;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import com.example.astudio.model.Dashboards;
-import com.example.astudio.model.Essay;
-import com.example.astudio.model.Review;
-import com.example.astudio.view.AllEssaysFragment;
-import com.example.astudio.view.IAddReviewsView;
-import com.example.astudio.view.IAllEssaysView;
-import com.example.astudio.view.ISelectedEssayView;
-import com.example.astudio.view.SelectedEssayFragment;
-import com.example.astudio.view.UserEssaysFragment;
-import com.example.astudio.view.IUserEssaysView;
-import com.example.astudio.view.IMainView;
-import com.example.astudio.view.IMenuView;
-import com.example.astudio.view.MainMenuFragment;
-import com.example.astudio.view.MainView;
+import com.example.EssayReviewApp.model.Dashboards;
+import com.example.EssayReviewApp.model.Essay;
+import com.example.EssayReviewApp.model.Review;
+import com.example.EssayReviewApp.view.AddReviewsFragment;
+import com.example.EssayReviewApp.view.AllEssaysFragment;
+import com.example.EssayReviewApp.view.IAddReviewsView;
+import com.example.EssayReviewApp.view.IAllEssaysView;
+import com.example.EssayReviewApp.view.ISelectedEssayView;
+import com.example.EssayReviewApp.view.SelectedEssayFragment;
+import com.example.EssayReviewApp.view.UserEssaysFragment;
+import com.example.EssayReviewApp.view.IUserEssaysView;
+import com.example.EssayReviewApp.view.IMainView;
+import com.example.EssayReviewApp.view.IMenuView;
+import com.example.EssayReviewApp.view.MainMenuFragment;
+import com.example.EssayReviewApp.view.MainView;
 
 public class Controller extends AppCompatActivity implements IMenuView.Listener, IUserEssaysView.Listener, IAllEssaysView.Listener, ISelectedEssayView.Listener, IAddReviewsView.Listener {
     IMainView mainView;
@@ -39,19 +40,20 @@ public class Controller extends AppCompatActivity implements IMenuView.Listener,
      * These are the methods displayed in the main menu fragment
      */
     @Override
-    public void onEssaysClicked() {
+    public void onEssaysClicked() { //sets the view to the user essays screen
         Fragment essayView = new UserEssaysFragment(this);
         this.mainView.displayFragment(essayView, false, "user essay dashboard");
     }
 
+
     @Override
-    public void onAllEssaysClicked() {
+    public void onAllEssaysClicked() { // sets the view to the all essays screen
         Fragment allEssaysView = new AllEssaysFragment(this);
         this.mainView.displayFragment(allEssaysView,false, "all essays dashboard");
     }
 
     @Override
-    public void onBack() {
+    public void onBack() {// sets the view to the Main Menu
         MainMenuFragment mainMenu = new MainMenuFragment(this);
         this.mainView.displayFragment(mainMenu,false,"main menu");
     }
@@ -84,7 +86,26 @@ public class Controller extends AppCompatActivity implements IMenuView.Listener,
     }
 
     @Override
-    public void onSubmitReviewClicked(Essay essay, Review review, ISelectedEssayView view) {
-        essay.addReview(review);
+    public void onAddReviewClicked(Essay essay) {
+        AddReviewsFragment addReview = new AddReviewsFragment(this, essay);
+        this.mainView.displayFragment(addReview, false, "Add review");
     }
+
+    /**
+     * This Method binds the submit review button to the addReview method in Essays object
+     * @param essay
+     * @param title
+     * @param text
+     */
+    @Override
+    public void onSubmitReviewClicked(Essay essay, String title, String text) {
+        essay.addReview(title, text);
+        SelectedEssayFragment selectedEssay = new SelectedEssayFragment(this, essay);
+        this.mainView.displayFragment(selectedEssay, false, "Selected Essay");
+    }
+
+
+
+
 }
+

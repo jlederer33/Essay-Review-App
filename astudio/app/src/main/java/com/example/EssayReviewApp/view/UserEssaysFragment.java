@@ -1,4 +1,4 @@
-package com.example.astudio.view;
+package com.example.EssayReviewApp.view;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -19,10 +19,10 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.astudio.databinding.FragmentUseressaysViewBinding;
-import com.example.astudio.model.Dashboards;
-import com.example.astudio.model.Essay;
-import com.example.astudio.R;
+import com.example.EssayReviewApp.databinding.FragmentUseressaysViewBinding;
+import com.example.EssayReviewApp.model.Dashboards;
+import com.example.EssayReviewApp.model.Essay;
+import com.example.EssayReviewApp.R;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.jetbrains.annotations.NotNull;
@@ -40,7 +40,7 @@ public class UserEssaysFragment extends Fragment implements IUserEssaysView {
          * The viewholder for the essay_view recyclerview. The items it uses are Essays, and displays the
          * type, title and text
          */
-        TextView titleView, typeView;
+        TextView titleView, typeView, numOfReviews;
         private ImageButton deleteButton;
         public LinearLayout essayItem;
 
@@ -48,7 +48,7 @@ public class UserEssaysFragment extends Fragment implements IUserEssaysView {
             super(itemView);
             titleView = itemView.findViewById(R.id.titleTextView);
             typeView = itemView.findViewById(R.id.typeTextView);
-            //textView = itemView.findViewById(R.id.textTextView);
+            numOfReviews = itemView.findViewById(R.id.numOfReviews);
 
             essayItem = itemView.findViewById(R.id.essayItem);
 
@@ -80,8 +80,7 @@ public class UserEssaysFragment extends Fragment implements IUserEssaysView {
             Essay essay = Dashboards.essayList.get(position);
             holder.titleView.setText(essay.getTitle());
             holder.typeView.setText(essay.getType().toString());
-            //holder.textView.setText(essay.getText());
-
+            holder.numOfReviews.setText(String.valueOf(essay.numOfReviews()));
             holder.essayItem.setOnClickListener(new View.OnClickListener() {//Allows the essay to be clicked on, accessing the selected essay
                 @Override
                 public void onClick(View view) {
@@ -160,7 +159,7 @@ public class UserEssaysFragment extends Fragment implements IUserEssaysView {
         });
 
         //Register back button (Switches back to main menu)
-        this.binding.ueBackButton.setOnClickListener(new View.OnClickListener() {
+        this.binding.mainmenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 UserEssaysFragment.this.listener.onBack();

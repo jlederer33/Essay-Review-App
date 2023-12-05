@@ -22,22 +22,35 @@
         android:layout_width="362dp"
         android:layout_height="236dp"
         android:layout_marginTop="25dp"
-        android:text="TextView"
+        android:text="Title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addReviewTitle" />
 
     <EditText
-        android:id="@+id/enterReview"
-        android:layout_width="347dp"
-        android:layout_height="61dp"
-        android:layout_marginTop="20dp"
+        android:id="@+id/enterReviewTitle"
+        android:layout_width="329dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="84dp"
         android:ems="10"
-        android:gravity="start|top"
-        android:inputType="textMultiLine"
+        android:hint="Title"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addReviewEssayText" />
+
+    <EditText
+        android:id="@+id/enterReviewText"
+        android:layout_width="309dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="Text"
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enterReviewTitle" />
 
     <Button
         android:id="@+id/submitReview"
@@ -47,8 +60,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enterReview"
-        app:layout_constraintVertical_bias="0.623" />
+        app:layout_constraintTop_toBottomOf="@+id/enterReviewText"
+        app:layout_constraintVertical_bias="0.328" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
