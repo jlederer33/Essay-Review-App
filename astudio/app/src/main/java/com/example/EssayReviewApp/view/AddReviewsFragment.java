@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 
 import com.example.EssayReviewApp.R;
 import com.example.EssayReviewApp.databinding.FragmentAddReviewsBinding;
+import com.example.EssayReviewApp.databinding.FragmentSelectedessayViewBinding;
 import com.example.EssayReviewApp.model.Essay;
 import com.example.EssayReviewApp.model.Review;
 import com.google.android.material.snackbar.Snackbar;
@@ -59,6 +60,7 @@ public class AddReviewsFragment extends Fragment implements IAddReviewsView {
                 reviewTitleEditable.clear();
                 reviewTextEditable.clear();
                 AddReviewsFragment.this.listener.onSubmitReviewClicked(essay, reviewTitleString, reviewTextString);
+
 
             }
         });

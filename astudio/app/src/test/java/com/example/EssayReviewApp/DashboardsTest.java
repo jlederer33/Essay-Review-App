@@ -36,7 +36,7 @@ public class DashboardsTest {
                 String text = "This is a test essay.";
                 String type = "Test Type";
 
-        dashboards.addToUserEssayList(title, text, type);
+        dashboards.addToEssayList(title, text, type);
 
         assertFalse("Essay list should not be empty after adding an essay", Dashboards.essayList.isEmpty());
         assertEquals("Essay list size should be 1 after adding one essay", 1, Dashboards.essayList.size());
@@ -68,12 +68,10 @@ public class DashboardsTest {
    // }
 
 
-   private Dashboards dashboard;
+   private Dashboards dashboard = new Dashboards();
 
     @Before
     public void setUp() {
-         //Initialize the Dashboards instance
-        dashboard = new Dashboards();
 
         // Resetting the static lists to a known state before each test
         Dashboards.essayList.clear();
@@ -87,9 +85,9 @@ public class DashboardsTest {
 
     @Test
     public void testRemoveFromEssayList_NormalCase() {
+        setUp();
         // Remove the second essay
         dashboard.removeFromEssayList(1);
-
         // Assertions to check if the essay is removed
         assertEquals("List size should be reduced by 1", 2, Dashboards.essayList.size());
         assertEquals("First essay should remain", "Essay1", Dashboards.essayList.get(0).getTitle());
