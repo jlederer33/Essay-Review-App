@@ -7,8 +7,8 @@ import java.util.Arrays;
 
 import static org.junit.Assert.*;
 
-import com.example.astudio.model.Dashboards;
-import com.example.astudio.model.Essay;
+import com.example.EssayReviewApp.model.Dashboards;
+import com.example.EssayReviewApp.model.Essay;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -68,12 +68,10 @@ public class DashboardsTest {
    // }
 
 
-   private Dashboards dashboard;
+   private Dashboards dashboard = new Dashboards();
 
     @Before
     public void setUp() {
-         //Initialize the Dashboards instance
-        dashboard = new Dashboards();
 
         // Resetting the static lists to a known state before each test
         Dashboards.essayList.clear();
@@ -87,9 +85,9 @@ public class DashboardsTest {
 
     @Test
     public void testRemoveFromEssayList_NormalCase() {
+        setUp();
         // Remove the second essay
         dashboard.removeFromEssayList(1);
-
         // Assertions to check if the essay is removed
         assertEquals("List size should be reduced by 1", 2, Dashboards.essayList.size());
         assertEquals("First essay should remain", "Essay1", Dashboards.essayList.get(0).getTitle());
