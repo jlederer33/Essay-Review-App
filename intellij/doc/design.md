@@ -1,38 +1,4 @@
 
-**Adding Colleges:**
-
-```plantuml
-actor Applicant as applicant
-applicant-> IMainView : views
-IMainView -> IMenuView : displayFragment()
-applicant <- IMainView : displays
-IMenuView -> Controller : onCollegesClicked()
-Controller -> ICollegeView: displayFragment()
-Controller -> ICollegeView: onAddClicked()
-ICollegeView -> Controller : updateView()
-Dashboards-> College : addCollege()
-Dashboards -> ICollegeView: addCollege() 
-
-```
-**Removing Colleges:**
-
-```plantuml
-actor Applicant as applicant
-applicant-> IMainView : views
-IMainView -> IMenuView : displayFragment()
-applicant <- IMainView : displays
-IMenuView -> Controller : onCollegesClicked()
-Controller -> ICollegeView: displayFragment()
-Controller -> ICollegeView: onRemoveClicked()
-ICollegeView -> Controller : updateView()
-Dashboards-> College : removeCollege()
-Dashboards -> ICollegeView: removeCollege() 
-
-
-
-
-
-```
 **Editing and Uploading Essays:**
 
 ```plantuml
@@ -99,13 +65,10 @@ reviewList<Review>
 
 class Dashboard{
 essayList<Essay>
-collegeList<College>
-reviewerEssayList<Essay>
+allEssaysList<Essay>
 --
 +addToEssayList(String title, String text, String type)
 +removeFromEssayList(int position)
-+addToCollegeList(String name)
-+removeCollegeFromList(int position)
 +addReview()
 +deleteReview()
 +editReview
@@ -120,8 +83,7 @@ IMainView mainView
 +onBack()
 
 }
-class College{
-essaysInCollegeList<Essay>
+class allEssaysList{
 String collegeName
 int numOfReviews
 --
@@ -131,7 +93,11 @@ int numOfReviews
 +removeEssayFromCollege(Essay essay)
 }
 
-class Review extends Essay{
+class Review{
+string Title
+string Text
+--
+
 }
 
 Interface IMainView{
@@ -156,11 +122,8 @@ package "view" as View{
 Controller <-- MainView
 View --> MainView
 IMainView <|-- MainView
-College <. Essay
 Controller <-- Dashboard
-Dashboard <. College
 
-College *- "(0..*)\nColleges" Dashboard : \t\t
 Dashboard *- "(0..*)\nEssays" Essay: \t\t
 IMainView *- "mainView(1 - 1)\nColleges" Controller : \t\t\t
 
