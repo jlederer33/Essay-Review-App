@@ -7,8 +7,8 @@ import java.util.Arrays;
 
 import static org.junit.Assert.*;
 
-import com.example.astudio.model.Dashboards;
-import com.example.astudio.model.Essay;
+import com.example.EssayReviewApp.model.Dashboards;
+import com.example.EssayReviewApp.model.Essay;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -36,7 +36,7 @@ public class DashboardsTest {
                 String text = "This is a test essay.";
                 String type = "Test Type";
 
-        dashboards.addToEssayList(title, text, type);
+        dashboards.addToUserEssayList(title, text, type);
 
         assertFalse("Essay list should not be empty after adding an essay", Dashboards.essayList.isEmpty());
         assertEquals("Essay list size should be 1 after adding one essay", 1, Dashboards.essayList.size());

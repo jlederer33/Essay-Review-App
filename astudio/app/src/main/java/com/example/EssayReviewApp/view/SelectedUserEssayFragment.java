@@ -12,23 +12,27 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.EssayReviewApp.R;
-import com.example.EssayReviewApp.databinding.FragmentSelectedessayViewBinding;
-import com.example.EssayReviewApp.databinding.FragmentUseressaysViewBinding;
+import com.example.EssayReviewApp.databinding.FragmentSelecteduseressayViewBinding;
 import com.example.EssayReviewApp.model.Essay;
 import com.example.EssayReviewApp.model.Review;
 
-public class SelectedEssayFragment extends Fragment implements ISelectedEssayView{
+public class SelectedUserEssayFragment extends Fragment implements ISelectedUserEssayView {
 
     public class ReviewViewholder extends RecyclerView.ViewHolder{
         TextView reviewTitle, reviewText;
+
+        public LinearLayout reviewItem;
 
         public ReviewViewholder(@NonNull View itemView) {
             super(itemView);
             reviewTitle = itemView.findViewById(R.id.reviewTitle);
             reviewText = itemView.findViewById(R.id.reviewText);
+
+            reviewItem = itemView.findViewById(R.id.reviewItem);
 
         }
     }
@@ -43,7 +47,7 @@ public class SelectedEssayFragment extends Fragment implements ISelectedEssayVie
         @NonNull
         @Override
         public ReviewViewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            return new SelectedEssayFragment.ReviewViewholder(LayoutInflater.from(context).inflate(R.layout.reviewitem, parent, false));
+            return new SelectedUserEssayFragment.ReviewViewholder(LayoutInflater.from(context).inflate(R.layout.reviewitem, parent, false));
 
         }
 
@@ -52,6 +56,13 @@ public class SelectedEssayFragment extends Fragment implements ISelectedEssayVie
             Review review = essay.reviewList.get(position);
             holder.reviewTitle.setText(review.getTitle());
             holder.reviewTitle.setText(review.getText());
+
+            holder.reviewItem.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });
         }
 
         @Override
@@ -61,14 +72,14 @@ public class SelectedEssayFragment extends Fragment implements ISelectedEssayVie
     }
 
     private final Listener listener;
-    private FragmentSelectedessayViewBinding binding;
+    private FragmentSelecteduseressayViewBinding binding;
 
     private Essay essay;
 
     RecyclerView recyclerView;
 
 
-    public SelectedEssayFragment(Listener listener, Essay essay) {
+    public SelectedUserEssayFragment(Listener listener, Essay essay) {
         this.essay = essay;
         this.listener = listener;
     }
@@ -77,7 +88,7 @@ public class SelectedEssayFragment extends Fragment implements ISelectedEssayVie
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        this.binding = FragmentSelectedessayViewBinding.inflate(inflater);
+        this.binding = FragmentSelecteduseressayViewBinding.inflate(inflater);
         return this.binding.getRoot();
     }
 
@@ -93,14 +104,14 @@ public class SelectedEssayFragment extends Fragment implements ISelectedEssayVie
         this.binding.backToUserEssays.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               SelectedEssayFragment.this.listener.onEssaysClicked();
+               SelectedUserEssayFragment.this.listener.onEssaysClicked();
             }
         });
 
         this.binding.addReviewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SelectedEssayFragment.this.listener.onAddReviewClicked(essay);
+                SelectedUserEssayFragment.this.listener.onAddReviewClicked(essay);
             }
         });
     }

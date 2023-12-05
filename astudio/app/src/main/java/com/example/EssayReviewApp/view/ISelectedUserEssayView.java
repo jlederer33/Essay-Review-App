@@ -1,10 +1,13 @@
 package com.example.EssayReviewApp.view;
 
 import com.example.EssayReviewApp.model.Essay;
+import com.example.EssayReviewApp.model.Review;
 
-public interface ISelectedEssayView {
+public interface ISelectedUserEssayView {
     interface Listener {
         void onEssaysClicked();
         void onAddReviewClicked(Essay essay);
+
+        //void onSelectedReviewClicked(Review review);
     }
 }

@@ -77,7 +77,7 @@ public class UserEssaysFragment extends Fragment implements IUserEssaysView {
 
         @Override
         public void onBindViewHolder(@NonNull EssayDashViewHolder holder, int position) {
-            Essay essay = Dashboards.essayList.get(position);
+            Essay essay = Dashboards.userEssayList.get(position);
             holder.titleView.setText(essay.getTitle());
             holder.typeView.setText(essay.getType().toString());
             holder.numOfReviews.setText(String.valueOf(essay.numOfReviews()));
@@ -85,7 +85,6 @@ public class UserEssaysFragment extends Fragment implements IUserEssaysView {
                 @Override
                 public void onClick(View view) {
                     UserEssaysFragment.this.listener.onUserEssayClicked(essay);
-
                 }
             });
 
@@ -105,7 +104,7 @@ public class UserEssaysFragment extends Fragment implements IUserEssaysView {
 
         @Override
         public int getItemCount() {
-            return Dashboards.essayList.size();
+            return Dashboards.userEssayList.size();
         }
 
 
