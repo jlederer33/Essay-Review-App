@@ -53,6 +53,7 @@ public class SelectedUserEssayFragment extends Fragment implements ISelectedUser
 
         @Override
         public void onBindViewHolder(@NonNull ReviewViewholder holder, int position) {
+
             Review review = essay.reviewList.get(position);
             holder.reviewTitle.setText(review.getTitle());
             holder.reviewTitle.setText(review.getText());
@@ -60,7 +61,7 @@ public class SelectedUserEssayFragment extends Fragment implements ISelectedUser
             holder.reviewItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
+                    SelectedUserEssayFragment.this.listener.onSelectedReviewClicked(essay, review);
                 }
             });
         }

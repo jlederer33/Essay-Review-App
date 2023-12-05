@@ -14,23 +14,24 @@ import com.example.EssayReviewApp.R;
 import com.example.EssayReviewApp.controller.Controller;
 import com.example.EssayReviewApp.databinding.FragmentSelectedreviewViewBinding;
 import com.example.EssayReviewApp.databinding.FragmentSelecteduseressayViewBinding;
+import com.example.EssayReviewApp.model.Essay;
 import com.example.EssayReviewApp.model.Review;
 import com.google.firebase.firestore.util.Listener;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link SelectedReviewFragment#ne} factory method to
- * create an instance of this fragment.
  */
 public class SelectedReviewFragment extends Fragment implements ISelectedReviewView {
     private final Listener listener;
     private FragmentSelectedreviewViewBinding binding;
 
+    private Essay essay;
     private Review review;
 
-    public SelectedReviewFragment(Listener listener, Review review) {
-        this.review = review;
+    public SelectedReviewFragment(Listener listener, Essay essay, Review review) {
         this.listener = listener;
+        this.essay = essay;
+        this.review = review;
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -45,7 +46,7 @@ public class SelectedReviewFragment extends Fragment implements ISelectedReviewV
         this.binding.backToSelectedEssay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                SelectedReviewFragment.this.listener.backToSelectedEssay(essay);
             }
         });
     }

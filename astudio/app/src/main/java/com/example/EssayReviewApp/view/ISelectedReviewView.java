@@ -5,6 +5,6 @@ import com.example.EssayReviewApp.model.Review;
 
 public interface ISelectedReviewView {
     interface Listener {
-        void backToSelectedEssay();
+        void backToSelectedEssay(Essay essay);
     }
 }

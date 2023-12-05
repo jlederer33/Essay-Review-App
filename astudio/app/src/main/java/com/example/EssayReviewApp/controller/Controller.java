@@ -22,7 +22,7 @@ import com.example.EssayReviewApp.view.IMenuView;
 import com.example.EssayReviewApp.view.MainMenuFragment;
 import com.example.EssayReviewApp.view.MainView;
 
-public class Controller extends AppCompatActivity implements IMenuView.Listener, IUserEssaysView.Listener, IAllEssaysView.Listener, ISelectedUserEssayView.Listener, IAddReviewsView.Listener {
+public class Controller extends AppCompatActivity implements IMenuView.Listener, IUserEssaysView.Listener, IAllEssaysView.Listener, ISelectedUserEssayView.Listener, IAddReviewsView.Listener, ISelectedReviewView.Listener {
     IMainView mainView;
     Dashboards Dashboard = new Dashboards();
 
@@ -93,13 +93,13 @@ public class Controller extends AppCompatActivity implements IMenuView.Listener,
         this.mainView.displayFragment(addReview, false, "Add review");
     }
 
-    /**
+
     @Override
-    public void onSelectedReviewClicked(Review review) {
-        SelectedReviewFragment selectedReview = new SelectedReviewFragment(this, review);
+    public void onSelectedReviewClicked(Essay essay, Review review) {
+        SelectedReviewFragment selectedReview = new SelectedReviewFragment(this, essay, review);
         this.mainView.displayFragment(selectedReview,false,"Selected review");
     }
-    */
+
     /**
      * This Method binds the submit review button to the addReview method in Essays object
      * @param essay
@@ -114,9 +114,10 @@ public class Controller extends AppCompatActivity implements IMenuView.Listener,
     }
 
 
-
-
-
-
+    @Override
+    public void backToSelectedEssay(Essay essay) {
+        SelectedUserEssayFragment selectedEssay = new SelectedUserEssayFragment(this, essay);
+        this.mainView.displayFragment(selectedEssay, false, "Selected Essay");
+    }
 }
 

@@ -28,7 +28,7 @@ public class MainMenuFragment extends Fragment implements IMenuView {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         this.binding = FragmentMainmenuBinding.inflate(inflater);

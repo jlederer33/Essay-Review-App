@@ -8,6 +8,6 @@ public interface ISelectedUserEssayView {
         void onEssaysClicked();
         void onAddReviewClicked(Essay essay);
 
-        //void onSelectedReviewClicked(Review review);
+        void onSelectedReviewClicked(Essay essay, Review review);
     }
 }
