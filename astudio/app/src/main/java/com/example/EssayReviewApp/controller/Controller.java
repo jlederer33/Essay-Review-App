@@ -75,8 +75,8 @@ public class Controller extends AppCompatActivity implements IMenuView.Listener,
     }
 
     @Override
-    public void onDeleteEssayClicked(int position, IUserEssaysView view){
-        Dashboard.removeFromEssayList(position);
+    public void onDeleteEssayClicked(Essay essay, IUserEssaysView view){
+        Dashboard.removeFromEssayList(essay);
         view.updateEssaysDisplay();
     }
 

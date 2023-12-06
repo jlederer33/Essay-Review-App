@@ -12,7 +12,7 @@ public interface IUserEssaysView {
 
         void onSubmitEssayClicked(String title, String text, String type, IUserEssaysView view);
 
-        void onDeleteEssayClicked(int position, IUserEssaysView view);
+        void onDeleteEssayClicked(Essay essay, IUserEssaysView view);
 
         void onUserEssayClicked(Essay essay);
     }

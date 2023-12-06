@@ -39,7 +39,7 @@ public class AllEssaysFragment extends Fragment implements IAllEssaysView{
         @NonNull
         @Override
         public AllEssaysViewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            return new AllEssaysViewholder(LayoutInflater.from(context).inflate(R.layout.essayitem, parent, false));
+            return new AllEssaysViewholder(LayoutInflater.from(context).inflate(R.layout.useressayitem, parent, false));
         }
 
         @Override
