@@ -34,7 +34,7 @@ public class DashboardsTest {
                 String text = "This is a test essay.";
                 String type = "Test Type";
 
-        dashboards.addToEssayList(title, text, type);
+        dashboards.addToUserEssayList(title, text, type);
 
         assertFalse("Essay list should not be empty after adding an essay", Dashboards.userEssayList.isEmpty());
         assertEquals("Essay list size should be 1 after adding one essay", 1, Dashboards.userEssayList.size());
@@ -49,8 +49,8 @@ public class DashboardsTest {
 
            @Test
             public void testAddMultipleEssays() {
-               dashboards.addToEssayList("Essay 1", "Text 1", "Type 1");
-               dashboards.addToEssayList("Essay 2", "Text 2", "Type 2");
+               dashboards.addToUserEssayList("Essay 1", "Text 1", "Type 1");
+               dashboards.addToUserEssayList("Essay 2", "Text 2", "Type 2");
 
                assertEquals("Essay list size should be 2 after adding two essays", 2, Dashboards.userEssayList.size());
 
@@ -76,9 +76,9 @@ public class DashboardsTest {
         Dashboards.allEssaysList.clear();
 
         // Adding some dummy essays for testing
-        dashboard.addToEssayList("Essay1", "Text1", "Type1");
-        dashboard.addToEssayList("Essay2", "Text2", "Type2");
-        dashboard.addToEssayList("Essay3", "Text3", "Type3");
+        dashboard.addToUserEssayList("Essay1", "Text1", "Type1");
+        dashboard.addToUserEssayList("Essay2", "Text2", "Type2");
+        dashboard.addToUserEssayList("Essay3", "Text3", "Type3");
     }
 
     @Test

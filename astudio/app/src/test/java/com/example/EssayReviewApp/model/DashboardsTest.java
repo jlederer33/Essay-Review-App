@@ -24,10 +24,10 @@ public class DashboardsTest extends TestCase {
 
             dashboard.addToEssayList(title, text, type);
 
-            assertFalse("The essay list should not be empty", Dashboards.userEssayList.isEmpty());
-            assertEquals("Essay list should have one essay", 1, Dashboards.userEssayList.size());
+            assertFalse("The essay list should not be empty", Dashboards.essayList.isEmpty());
+            assertEquals("Essay list should have one essay", 1, Dashboards.essayList.size());
 
-            Essay addedEssay = Dashboards.userEssayList.get(0);
+            Essay addedEssay = Dashboards.essayList.get(0);
             assertEquals("Essay list should match", title, addedEssay.getTitle());
             assertEquals("Essay list should match", text, addedEssay.getText());
             assertEquals("Essay list should match", type, addedEssay.getType());
