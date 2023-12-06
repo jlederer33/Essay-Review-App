@@ -12,9 +12,12 @@ import static androidx.test.espresso.matcher.ViewMatchers.withHint;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
+import android.os.SystemClock;
+
 import androidx.test.espresso.Espresso;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.espresso.assertion.ViewAssertions;
+import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 
 import com.example.EssayReviewApp.controller.Controller;
@@ -26,11 +29,12 @@ public class EssayViewsTest {
 
     @org.junit.Test
     public void testBackButton() {
-        testSubmitButton();
-        Espresso.onView(withId(R.id.mainmenu)).perform(click());
-       ViewInteraction menu = onView(withId(R.id.menuLabel));
-       menu.check(ViewAssertions.matches(withText("Main Menu")));
-
+        onView(withId(R.id.essaysButton)).perform(click());
+        ViewInteraction essay = onView(withId(R.id.titleEditText));
+        essay.check(matches(withHint(R.string.Title)));
+        
+        onView(withId(R.id.mainmenu)).perform(click());
+         onView(withId(R.id.menuLabel));
 
     }
     //menu is the back button.
@@ -46,11 +50,13 @@ public class EssayViewsTest {
         // Click on the submit button
         onView(withId(R.id.submitButton)).perform(click());
         ViewInteraction item = onView(withId(R.id.titleEditText));
+        ViewInteraction t = onView(withId(R.id.textEditText));
 
         // Check if the new essay item is displayed
-        item.check(matches(withHint(R.string.Title)));
+        item.check(ViewAssertions.matches(withHint(R.string.Title)));
         //item.check(matches(withText(R.string.Type)));
-        item.check(matches(withHint(R.string.Text)));
+        t.check(ViewAssertions.matches(withHint(R.string.Text)));
+
     }
 
     @org.junit.Test
