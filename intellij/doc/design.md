@@ -7,24 +7,24 @@ applicant-> IMainView : views
 IMainView -> IMenuView : displayFragment()
 applicant <- IMainView : displays
 Controller -> IEssaysView : onEssaysClicked()
-Controller -> IEssaysView : submitEssayClicked()
+Controller -> IEssaysView : submitEssayClicked( title,text, type, view)
 Controller <- IMenuView : onEssaysClicked()
-IEssaysView <- Dashboards : addToEssaysList()
-IEssaysView -> Dashboards : onSubmitEssayClicked()
+IEssaysView <- Dashboards : addToUserEssayList(title,text,type)
+IEssaysView -> Dashboards : onSubmitEssayClicked(title,text, type, view)
 Dashboards -> IEssaysView : updatesView()
-Dashboards <- Essays : addToEssaysList()
+Dashboards <- Essays : addToUserEssayList(title,text,type)
 ```
 **Delete Essays:**
 
 ```plantuml
 actor Applicant as applicant
 applicant-> IMainView : views
-IMainView -> IMenuView : displayFragment()
+IMainView -> IMenuView : displayFragment(fragment, reversible, name)
 applicant <- IMainView : displays
-Controller -> IEssaysView : onEssaysClicked()
-Controller <- IMenuView : onEssaysClicked()
-IEssaysView <- Dashboards : removeFromEssaysList()
-Dashboards -> Essays : removeFromEssaysList()
+Controller -> IEssaysView : onEssaysClicked(essay)
+Controller <- IMenuView : onEssaysClicked(essay)
+IEssaysView <- Dashboards : removeFromEssaysList(essay)
+Dashboards -> Essays : removeFromEssaysList(essay)
 
 ```
 
