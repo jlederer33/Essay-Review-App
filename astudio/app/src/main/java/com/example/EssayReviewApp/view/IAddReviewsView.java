@@ -7,7 +7,6 @@ public interface IAddReviewsView {
     interface Listener {
         void onSubmitReviewClicked(Essay essay, String title, String text);
 
-        void onUserEssayClicked(Essay essay);
     }
 
 }

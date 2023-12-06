@@ -24,10 +24,11 @@ public class Dashboards {
         userEssayList.remove(essay);
     }
 
-    public void submitToAllEssays(Essay essay, int position){
-        essay = userEssayList.get(position);
+    public void submitToAllEssays(Essay essay){
+        int position = userEssayList.indexOf(essay);
         allEssaysList.add(essay);
-        userEssayList.remove(position);
+        userEssayList.remove(essay);
+        essay.inAllEssays = true;
     }
 
 

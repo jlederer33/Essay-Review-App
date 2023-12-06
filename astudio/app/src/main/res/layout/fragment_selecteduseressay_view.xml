@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.SelectedUserEssayFragment">
+    tools:context=".view.SelectedEssayFragment">
 
     <TextView
         android:id="@+id/selectedEssayTitle"
@@ -30,14 +30,14 @@
 
     <Button
         android:id="@+id/backToUserEssays"
-        android:layout_width="174dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="104dp"
+        android:layout_width="164dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="28dp"
         android:text="User Essays"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.527"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerViewReviews" />
+        app:layout_constraintHorizontal_bias="0.892"
+        app:layout_constraintStart_toStartOf="@+id/addReviewButton"
+        app:layout_constraintTop_toBottomOf="@+id/backToAllEssays" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewReviews"
@@ -52,9 +52,32 @@
         android:id="@+id/addReviewButton"
         android:layout_width="187dp"
         android:layout_height="46dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:text="Add Review"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.066"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/submitToAllEssays" />
+
+    <Button
+        android:id="@+id/submitToAllEssays"
+        android:layout_width="190dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="52dp"
+        android:text="Submit to All Essays"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.072"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewReviews" />
+
+    <Button
+        android:id="@+id/backToAllEssays"
+        android:layout_width="166dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="52dp"
+        android:text="All Essays"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.906"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recyclerViewReviews" />
 

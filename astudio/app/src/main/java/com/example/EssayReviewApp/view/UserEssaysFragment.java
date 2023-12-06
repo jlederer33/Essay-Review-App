@@ -48,7 +48,7 @@ public class UserEssaysFragment extends Fragment implements IUserEssaysView {
             super(itemView);
             titleView = itemView.findViewById(R.id.titleTextView);
             typeView = itemView.findViewById(R.id.typeTextView);
-            numOfReviews = itemView.findViewById(R.id.numOfReviews);
+
 
             essayItem = itemView.findViewById(R.id.userEssayItem);
 
@@ -80,12 +80,11 @@ public class UserEssaysFragment extends Fragment implements IUserEssaysView {
             Essay essay = Dashboards.userEssayList.get(position);
             holder.titleView.setText(essay.getTitle());
             holder.typeView.setText(essay.getType().toString());
-            holder.numOfReviews.setText(String.valueOf(essay.numOfReviews()));
+
             holder.essayItem.setOnClickListener(new View.OnClickListener() {//Allows the essay to be clicked on, accessing the selected essay
                 @Override
                 public void onClick(View view) {
-                    UserEssaysFragment.this.listener.onUserEssayClicked(essay);
-
+                    UserEssaysFragment.this.listener.onEssayClicked(essay);
                 }
             });
 

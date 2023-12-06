@@ -14,7 +14,7 @@ public interface IUserEssaysView {
 
         void onDeleteEssayClicked(Essay essay, IUserEssaysView view);
 
-        void onUserEssayClicked(Essay essay);
+        void onEssayClicked(Essay essay);
     }
 
     void updateEssaysDisplay();

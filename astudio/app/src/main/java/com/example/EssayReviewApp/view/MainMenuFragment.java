@@ -41,7 +41,7 @@ public class MainMenuFragment extends Fragment implements IMenuView {
         //register essay button on click listener
         this.binding.essaysButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                MainMenuFragment.this.listener.onEssaysClicked();
+                MainMenuFragment.this.listener.onUserEssaysClicked();
             }
         });
 
