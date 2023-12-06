@@ -14,7 +14,7 @@ public class Dashboards {
 
     public static List<Essay> allEssaysList = new ArrayList<>(); //This is the "All Essays" screen, where users can add reviews and the like
 
-    public void addToEssayList(String title, String text, String type){
+    public void addToUserEssayList(String title, String text, String type){
         essayList.add(new Essay(title, text, type));
     }
 
