@@ -2,8 +2,6 @@ package com.example.EssayReviewApp;
 
 import org.junit.Test;
 import org.junit.Before;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 import static org.junit.Assert.*;
 
@@ -27,7 +25,7 @@ public class DashboardsTest {
            @Before
         public void SetUp() {
                dashboards = new Dashboards();
-               Dashboards.essayList.clear(); // Clear the list before each test
+               Dashboards.userEssayList.clear(); // Clear the list before each test
             }
 
             @Test
@@ -38,10 +36,10 @@ public class DashboardsTest {
 
         dashboards.addToUserEssayList(title, text, type);
 
-        assertFalse("Essay list should not be empty after adding an essay", Dashboards.essayList.isEmpty());
-        assertEquals("Essay list size should be 1 after adding one essay", 1, Dashboards.essayList.size());
+        assertFalse("Essay list should not be empty after adding an essay", Dashboards.userEssayList.isEmpty());
+        assertEquals("Essay list size should be 1 after adding one essay", 1, Dashboards.userEssayList.size());
 
-        Essay addedEssay = Dashboards.essayList.get(0);
+        Essay addedEssay = Dashboards.userEssayList.get(0);
         assertEquals("Added essay should have the correct title", title, addedEssay.getTitle());
         assertEquals("Added essay should have the correct text", text, addedEssay.getText());
         assertEquals("Added essay should have the correct type", type, addedEssay.getType());
@@ -54,10 +52,10 @@ public class DashboardsTest {
                dashboards.addToUserEssayList("Essay 1", "Text 1", "Type 1");
                dashboards.addToUserEssayList("Essay 2", "Text 2", "Type 2");
 
-               assertEquals("Essay list size should be 2 after adding two essays", 2, Dashboards.essayList.size());
+               assertEquals("Essay list size should be 2 after adding two essays", 2, Dashboards.userEssayList.size());
 
-               assertEquals("First added essay should be in the first position", "Essay 1", Dashboards.essayList.get(0).getTitle());
-               assertEquals("Second added essay should be in the second position", "Essay 2", Dashboards.essayList.get(1).getTitle());
+               assertEquals("First added essay should be in the first position", "Essay 1", Dashboards.userEssayList.get(0).getTitle());
+               assertEquals("Second added essay should be in the second position", "Essay 2", Dashboards.userEssayList.get(1).getTitle());
 
 
            }
@@ -74,7 +72,7 @@ public class DashboardsTest {
     public void setUp() {
 
         // Resetting the static lists to a known state before each test
-        Dashboards.essayList.clear();
+        Dashboards.userEssayList.clear();
         Dashboards.allEssaysList.clear();
 
         // Adding some dummy essays for testing
@@ -89,9 +87,9 @@ public class DashboardsTest {
         // Remove the second essay
         dashboard.removeFromEssayList(1);
         // Assertions to check if the essay is removed
-        assertEquals("List size should be reduced by 1", 2, Dashboards.essayList.size());
-        assertEquals("First essay should remain", "Essay1", Dashboards.essayList.get(0).getTitle());
-        assertEquals("Third essay should shift up", "Essay3", Dashboards.essayList.get(1).getTitle());
+        assertEquals("List size should be reduced by 1", 2, Dashboards.userEssayList.size());
+        assertEquals("First essay should remain", "Essay1", Dashboards.userEssayList.get(0).getTitle());
+        assertEquals("Third essay should shift up", "Essay3", Dashboards.userEssayList.get(1).getTitle());
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
@@ -103,7 +101,7 @@ public class DashboardsTest {
     @Test
     public void testRemoveFromEssayList_EmptyList() {
         // Clear the list
-        Dashboards.essayList.clear();
+        Dashboards.userEssayList.clear();
 
         // Attempt to remove an item from an empty list
         try {

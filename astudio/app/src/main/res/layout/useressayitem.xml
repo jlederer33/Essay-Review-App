@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="16dp"
-    android:id="@+id/essayItem">
+    android:id="@+id/userEssayItem">
 
     <TextView
         android:id="@+id/titleTextView"

@@ -10,16 +10,25 @@ import java.util.List;
  * as the removeFromEssayList, addToCollegeList, and removeFromCollegeList in future iterations
  */
 public class Dashboards {
-    public static List<Essay> essayList = new ArrayList<>(); //Where User essays are stored, and what the User recyclerview references
+    public static List<Essay> userEssayList = new ArrayList<>(); //Where User essays are stored, and what the User recyclerview references
 
     public static List<Essay> allEssaysList = new ArrayList<>(); //This is the "All Essays" screen, where users can add reviews and the like
 
     public void addToUserEssayList(String title, String text, String type){
-        essayList.add(new Essay(title, text, type));
+        userEssayList.add(new Essay(title, text, type));
     }
 
-    public void removeFromEssayList(int position){
-        essayList.remove(position);
+    //public void removeFromEssayList(int position){userEssayList.remove(position);}
+
+    public void removeFromEssayList(Essay essay){
+        userEssayList.remove(essay);
     }
+
+    public void submitToAllEssays(Essay essay, int position){
+        essay = userEssayList.get(position);
+        allEssaysList.add(essay);
+        userEssayList.remove(position);
+    }
+
 
 }

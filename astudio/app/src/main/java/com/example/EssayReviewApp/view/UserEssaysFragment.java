@@ -50,7 +50,7 @@ public class UserEssaysFragment extends Fragment implements IUserEssaysView {
             typeView = itemView.findViewById(R.id.typeTextView);
             numOfReviews = itemView.findViewById(R.id.numOfReviews);
 
-            essayItem = itemView.findViewById(R.id.essayItem);
+            essayItem = itemView.findViewById(R.id.userEssayItem);
 
             deleteButton = itemView.findViewById(R.id.deleteButton);
 
@@ -72,12 +72,12 @@ public class UserEssaysFragment extends Fragment implements IUserEssaysView {
         @NonNull
         @Override
         public EssayDashViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            return new EssayDashViewHolder(LayoutInflater.from(context).inflate(R.layout.essayitem, parent, false));
+            return new EssayDashViewHolder(LayoutInflater.from(context).inflate(R.layout.useressayitem, parent, false));
         }
 
         @Override
         public void onBindViewHolder(@NonNull EssayDashViewHolder holder, int position) {
-            Essay essay = Dashboards.essayList.get(position);
+            Essay essay = Dashboards.userEssayList.get(position);
             holder.titleView.setText(essay.getTitle());
             holder.typeView.setText(essay.getType().toString());
             holder.numOfReviews.setText(String.valueOf(essay.numOfReviews()));
@@ -92,7 +92,7 @@ public class UserEssaysFragment extends Fragment implements IUserEssaysView {
             holder.deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    UserEssaysFragment.this.listener.onDeleteEssayClicked(position, UserEssaysFragment.this);
+                    UserEssaysFragment.this.listener.onDeleteEssayClicked(essay, UserEssaysFragment.this);
                 }
 
             });
@@ -105,7 +105,7 @@ public class UserEssaysFragment extends Fragment implements IUserEssaysView {
 
         @Override
         public int getItemCount() {
-            return Dashboards.essayList.size();
+            return Dashboards.userEssayList.size();
         }
 
 
