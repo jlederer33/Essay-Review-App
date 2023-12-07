@@ -56,10 +56,8 @@ int date
 reviewList<Review>
 ...
 --
-+getTitle()
-+getText()
-+getType()
-+seeReviews()
++numOfReviews()
++addReview()
 }
 
 
@@ -67,30 +65,25 @@ class Dashboard{
 essayList<Essay>
 allEssaysList<Essay>
 --
-+addToEssayList(String title, String text, String type)
++addToUserEssayList(title,text, type)
 +removeFromEssayList(int position)
-+addReview()
-+deleteReview()
-+editReview
++submitToAllEssays(essay)
 }
 
 class Controller{
 IMainView mainView
 --
 +onEssaysClicked()
-+onCollegesClicked()
-+onReviewsClicked()
++onAllEssaysClicked()
++onSubmitEssayClicked(title,text.type, View)
++onDeleteEssayClicked(essay, view)
++onUserEssayClicked(essay)
++onAddReviewClicked(essay) 
++onSelectedReviewClicked(essay, review)
++onSubmitReviewClicked(essay, title, text)
++backToSelectedEssay(essay)
 +onBack()
 
-}
-class allEssaysList{
-String collegeName
-int numOfReviews
---
-+getCollegeName()
-+getNumOfReviews
-+addEssayToCollege(Essay essay)
-+removeEssayFromCollege(Essay essay)
 }
 
 class Review{
@@ -104,13 +97,14 @@ Interface IMainView{
 ...
 --
 +getRootView()
-+displayFragment(Fragment fragment, boolean reversible, String name)
++displayFragment(fragment,reversible, name)
 }
 
 Class MainView{
 ...
 --
-...
++getRootView()
++displayFragment(fragment,reversible, name)
 }
 
 
