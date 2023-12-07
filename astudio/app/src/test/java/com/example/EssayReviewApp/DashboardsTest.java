@@ -8,16 +8,14 @@ import static org.junit.Assert.*;
 import com.example.EssayReviewApp.model.Dashboards;
 import com.example.EssayReviewApp.model.Essay;
 
+import java.util.ArrayList;
+
 /**
  * Example local unit test, which will execute on the development machine (host).
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class DashboardsTest {
-
-    //public void addition_isCorrect() {
-        //assertEquals(4, 2 + 2);
-      //  assertEquals(6, 4 + 2);
 
 
             private Dashboards dashboards;
@@ -60,13 +58,10 @@ public class DashboardsTest {
 
            }
 
-  //  @Test
-  //  public void remove_isCorrect() {
-     //   assertEquals(2, 3 - 1);
-   // }
 
 
-   private Dashboards dashboard = new Dashboards();
+
+  /** private Dashboards dashboard = new Dashboards();
 
     @Before
     public void setUp() {
@@ -118,7 +113,87 @@ public class DashboardsTest {
     }
 
 }
+ */
 
+private Dashboards dashboard = new Dashboards();
+
+    private Essay essay1;
+    private Essay essay2;
+
+    @Before
+    public void setUp() {
+        dashboard = new Dashboards();
+        essay1 = new Essay("essay1", "text1", "type1"); // Assuming the Essay class has a constructor
+        essay2 = new Essay("essay2", "text2", "type2"); // Create another Essay for testing
+
+        // Initialize userEssayList with some essays
+        dashboard.userEssayList = new ArrayList<>();
+        dashboard.userEssayList.add(essay1);
+        dashboard.userEssayList.add(essay2);
+    }
+
+    @Test
+    public void testRemoveFromEssayList_NormalCase() {
+        setUp();
+        dashboard.removeFromEssayList(essay1);
+
+        assertFalse("List should not contain the removed essay",
+                dashboard.userEssayList.contains(essay1));
+        assertTrue("List should contain essays not removed",
+                dashboard.userEssayList.contains(essay2));
+    }
+
+    @Test
+    public void testRemoveFromEssayList_NonExistentEssay() {
+        Essay nonExistentEssay = new Essay("", "", "");
+        dashboard.removeFromEssayList(nonExistentEssay);
+
+        assertFalse("List should not contain the non-existent essay",
+                dashboard.userEssayList.contains(nonExistentEssay));
+        assertEquals("List size should remain unchanged", 0,
+                dashboard.userEssayList.size());
+    }
+    private Dashboards dash;
+    private Essay essay;
+
+    @Before
+    public void SEtUp() {
+        dash = new Dashboards();
+        essay = new Essay("title", "text", "type");
+
+        // Initialize the lists
+        dash.userEssayList = new ArrayList<>();
+        dash.allEssaysList = new ArrayList<>();
+
+        // Add the essay to userEssayList for testing
+        dash.userEssayList.add(essay);
+    }
+
+    @Test
+    public void testSubmitToAllEssays() {
+        SEtUp();
+        dash.submitToAllEssays(essay);
+
+        assertTrue("Essay should be added to allEssaysList",
+                dash.allEssaysList.contains(essay));
+        assertFalse("Essay should be removed from userEssayList",
+                dash.userEssayList.contains(essay));
+        assertTrue("Essay's inAllEssays flag should be set to true",
+                essay.inAllEssays);
+    }
+
+    @Test
+    public void testSubmitNonExistentEssay() {
+        SEtUp();
+        Essay nonExistentEssay = new Essay("", "", "");
+
+        dash.submitToAllEssays(nonExistentEssay);
+
+        assertTrue("Non-existent essay should not be added to allEssaysList",
+                dash.allEssaysList.contains(nonExistentEssay));
+    }
+
+}
 
 
 

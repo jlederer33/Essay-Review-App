@@ -31,5 +31,4 @@ public class Dashboards {
         essay.inAllEssays = true;
     }
 
-
 }
