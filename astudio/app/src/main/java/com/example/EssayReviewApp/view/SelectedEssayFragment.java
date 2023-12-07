@@ -20,7 +20,7 @@ import com.example.EssayReviewApp.databinding.FragmentSelecteduseressayViewBindi
 import com.example.EssayReviewApp.model.Essay;
 import com.example.EssayReviewApp.model.Review;
 
-public class SelectedUserEssayFragment extends Fragment implements ISelectedUserEssayView {
+public class SelectedEssayFragment extends Fragment implements ISelectedEssayView {
 
     public class ReviewViewholder extends RecyclerView.ViewHolder{
         TextView reviewTitle, reviewText;
@@ -47,7 +47,7 @@ public class SelectedUserEssayFragment extends Fragment implements ISelectedUser
         @NonNull
         @Override
         public ReviewViewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            return new SelectedUserEssayFragment.ReviewViewholder(LayoutInflater.from(context).inflate(R.layout.reviewitem, parent, false));
+            return new SelectedEssayFragment.ReviewViewholder(LayoutInflater.from(context).inflate(R.layout.reviewitem, parent, false));
 
         }
 
@@ -61,7 +61,7 @@ public class SelectedUserEssayFragment extends Fragment implements ISelectedUser
             holder.reviewItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    SelectedUserEssayFragment.this.listener.onSelectedReviewClicked(essay, review);
+                    SelectedEssayFragment.this.listener.onSelectedReviewClicked(essay, review);
                 }
             });
         }
@@ -80,7 +80,7 @@ public class SelectedUserEssayFragment extends Fragment implements ISelectedUser
     RecyclerView recyclerView;
 
 
-    public SelectedUserEssayFragment(Listener listener, Essay essay) {
+    public SelectedEssayFragment(Listener listener, Essay essay) {
         this.essay = essay;
         this.listener = listener;
     }
@@ -105,16 +105,42 @@ public class SelectedUserEssayFragment extends Fragment implements ISelectedUser
         this.binding.backToUserEssays.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               SelectedUserEssayFragment.this.listener.onEssaysClicked();
+               SelectedEssayFragment.this.listener.onUserEssaysClicked();
+            }
+        });
+
+        this.binding.backToAllEssays.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SelectedEssayFragment.this.listener.onAllEssaysClicked();
             }
         });
 
         this.binding.addReviewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SelectedUserEssayFragment.this.listener.onAddReviewClicked(essay);
+                SelectedEssayFragment.this.listener.onAddReviewClicked(essay);
             }
         });
+
+        this.binding.submitToAllEssays.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SelectedEssayFragment.this.listener.onSubmitToAllEssaysClicked(essay);
+            }
+        });
+
+        if(essay.inAllEssays == true){
+            this.binding.addReviewButton.setVisibility(View.VISIBLE);
+            this.binding.backToAllEssays.setVisibility(View.VISIBLE);
+            this.binding.submitToAllEssays.setVisibility(View.INVISIBLE);
+            this.binding.backToUserEssays.setVisibility(View.INVISIBLE);
+        }else{
+            this.binding.addReviewButton.setVisibility(View.INVISIBLE);
+            this.binding.backToAllEssays.setVisibility(View.INVISIBLE);
+            this.binding.submitToAllEssays.setVisibility(View.VISIBLE);
+            this.binding.backToUserEssays.setVisibility(View.VISIBLE);
+        }
     }
 
     public void updateReviewsDisplay(){

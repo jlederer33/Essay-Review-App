@@ -13,6 +13,8 @@ public class Essay {
     String text;
     String type;
 
+    public boolean inAllEssays = false; // This is to determine if an essay is in the All Essays list, allowing access to the add reviews functionality
+
     public List<Review> reviewList = new ArrayList<>(); // this list holds the Reviews for both storage and the recyclerview
 
     public Essay(String title, String text, String type){

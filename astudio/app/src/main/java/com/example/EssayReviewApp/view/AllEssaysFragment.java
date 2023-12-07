@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -22,11 +23,16 @@ import org.jetbrains.annotations.NotNull;
 
 public class AllEssaysFragment extends Fragment implements IAllEssaysView{
     public class AllEssaysViewholder extends RecyclerView.ViewHolder{
-        TextView titleView, typeView;
+        TextView titleView, typeView, numOfReviews;
+        public LinearLayout essayItem;
         public AllEssaysViewholder(@NonNull View itemView) {
             super(itemView);
             titleView = itemView.findViewById(R.id.titleTextView);
             typeView = itemView.findViewById(R.id.typeTextView);
+
+            essayItem = itemView.findViewById(R.id.allEssayItem);
+
+            numOfReviews = itemView.findViewById(R.id.numOfReviews);
         }
     }
 
@@ -39,7 +45,7 @@ public class AllEssaysFragment extends Fragment implements IAllEssaysView{
         @NonNull
         @Override
         public AllEssaysViewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            return new AllEssaysViewholder(LayoutInflater.from(context).inflate(R.layout.useressayitem, parent, false));
+            return new AllEssaysViewholder(LayoutInflater.from(context).inflate(R.layout.allessayitem, parent, false));
         }
 
         @Override
@@ -47,6 +53,15 @@ public class AllEssaysFragment extends Fragment implements IAllEssaysView{
             Essay essay = Dashboards.allEssaysList.get(position);
             holder.titleView.setText(essay.getTitle());
             holder.typeView.setText(essay.getType().toString());
+
+            holder.numOfReviews.setText(String.valueOf(essay.numOfReviews()));
+
+            holder.essayItem.setOnClickListener(new View.OnClickListener() {//Allows the essay to be clicked on, accessing the selected essay
+                @Override
+                public void onClick(View view) {
+                    AllEssaysFragment.this.listener.onEssayClicked(essay);
+                }
+            });
         }
 
         @Override

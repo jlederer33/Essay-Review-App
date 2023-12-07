@@ -10,10 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.EssayReviewApp.R;
-import com.example.EssayReviewApp.controller.Controller;
 import com.example.EssayReviewApp.databinding.FragmentSelectedreviewViewBinding;
-import com.example.EssayReviewApp.databinding.FragmentSelecteduseressayViewBinding;
 import com.example.EssayReviewApp.model.Essay;
 import com.example.EssayReviewApp.model.Review;
 import com.google.firebase.firestore.util.Listener;

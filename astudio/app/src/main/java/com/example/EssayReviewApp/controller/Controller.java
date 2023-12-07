@@ -12,9 +12,9 @@ import com.example.EssayReviewApp.view.AllEssaysFragment;
 import com.example.EssayReviewApp.view.IAddReviewsView;
 import com.example.EssayReviewApp.view.IAllEssaysView;
 import com.example.EssayReviewApp.view.ISelectedReviewView;
-import com.example.EssayReviewApp.view.ISelectedUserEssayView;
+import com.example.EssayReviewApp.view.ISelectedEssayView;
 import com.example.EssayReviewApp.view.SelectedReviewFragment;
-import com.example.EssayReviewApp.view.SelectedUserEssayFragment;
+import com.example.EssayReviewApp.view.SelectedEssayFragment;
 import com.example.EssayReviewApp.view.UserEssaysFragment;
 import com.example.EssayReviewApp.view.IUserEssaysView;
 import com.example.EssayReviewApp.view.IMainView;
@@ -22,7 +22,7 @@ import com.example.EssayReviewApp.view.IMenuView;
 import com.example.EssayReviewApp.view.MainMenuFragment;
 import com.example.EssayReviewApp.view.MainView;
 
-public class Controller extends AppCompatActivity implements IMenuView.Listener, IUserEssaysView.Listener, IAllEssaysView.Listener, ISelectedUserEssayView.Listener, IAddReviewsView.Listener, ISelectedReviewView.Listener {
+public class Controller extends AppCompatActivity implements IMenuView.Listener, IUserEssaysView.Listener, IAllEssaysView.Listener, ISelectedEssayView.Listener, IAddReviewsView.Listener, ISelectedReviewView.Listener{
     IMainView mainView;
     Dashboards Dashboard = new Dashboards();
 
@@ -42,7 +42,7 @@ public class Controller extends AppCompatActivity implements IMenuView.Listener,
      * These are the methods displayed in the main menu fragment
      */
     @Override
-    public void onEssaysClicked() { //sets the view to the user essays screen
+    public void onUserEssaysClicked() { //sets the view to the user essays screen
         Fragment essayView = new UserEssaysFragment(this);
         this.mainView.displayFragment(essayView, false, "user essay dashboard");
     }
@@ -82,8 +82,8 @@ public class Controller extends AppCompatActivity implements IMenuView.Listener,
 
 
     @Override
-    public void onUserEssayClicked(Essay essay) {
-        SelectedUserEssayFragment selectedEssay = new SelectedUserEssayFragment(this, essay);
+    public void onEssayClicked(Essay essay) { //method that displays the specific Essay
+        SelectedEssayFragment selectedEssay = new SelectedEssayFragment(this, essay);
         this.mainView.displayFragment(selectedEssay, false, "Selected User Essay");
     }
 
@@ -91,6 +91,13 @@ public class Controller extends AppCompatActivity implements IMenuView.Listener,
     public void onAddReviewClicked(Essay essay) {
         AddReviewsFragment addReview = new AddReviewsFragment(this, essay);
         this.mainView.displayFragment(addReview, false, "Add review");
+    }
+
+    @Override
+    public void onSubmitToAllEssaysClicked(Essay essay) {
+        Dashboard.submitToAllEssays(essay);
+        UserEssaysFragment userEssays= new UserEssaysFragment(this);
+        this.mainView.displayFragment(userEssays, false, "User Essays");
     }
 
 
@@ -109,14 +116,14 @@ public class Controller extends AppCompatActivity implements IMenuView.Listener,
     @Override
     public void onSubmitReviewClicked(Essay essay, String title, String text) {
         essay.addReview(title, text);
-        SelectedUserEssayFragment selectedEssay = new SelectedUserEssayFragment(this, essay);
+        SelectedEssayFragment selectedEssay = new SelectedEssayFragment(this, essay);
         this.mainView.displayFragment(selectedEssay, false, "Selected Essay");
     }
 
 
     @Override
     public void backToSelectedEssay(Essay essay) {
-        SelectedUserEssayFragment selectedEssay = new SelectedUserEssayFragment(this, essay);
+        SelectedEssayFragment selectedEssay = new SelectedEssayFragment(this, essay);
         this.mainView.displayFragment(selectedEssay, false, "Selected Essay");
     }
 }
