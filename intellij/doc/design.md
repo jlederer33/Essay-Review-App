@@ -129,11 +129,24 @@ IMainView *- "mainView(1 - 1)\nColleges" Controller : \t\t\t
 
 interface IMenuView{
 ...
-+onEssaysClicked()
-+onCollegesClicked()
-+onReviewerClicked()
++onUserEssaysClicked()
++onAllEssaysClicked()
 }
 
+interface ISelectedReviewView{
+...
+--
++backToSelectedEssay()
+}
+interface IUserEssaysView{
+...
+--
++onBack()
++onSubmitEssayClicked()
++onDeleteEssayClicked()
++onEssayClicked()
++updateEssaysDisplay()
+}
 interface IEssayView{
 ...
 +onBack()
@@ -141,22 +154,27 @@ interface IEssayView{
 +onDeleteEssayClicked()
 }
 
-interface ICollegeView{
+interface IAllEssaysView{
 ...
+--
 +onBack()
-+onAddCollegesClicked()
-+onRemoveCollegesClicked()
-+onAddEssayToCollege()
-+onRemoveEssayToCollege()
++onEssayClicked()
 }
 
-interface IReviewerView{
+interface IAddReviewsView{
 ...
-+onBack()
-+onAddReview()
-+onRemoveReview()
++onSubmitReviewClicked()
 }
 
+interface ISelectedEssayView{
+...
+--
++onUserEssaysClicked()
++onAllEssaysClicked()
++onAddReviewClicked()
++onSubmitToAllEssaysClicked()
++onSelectReviewClicked()
+}
 interface IEssayView.Listener{
 
 }
@@ -164,25 +182,46 @@ interface IMenuView.Listener{
 
 }
 
-interface ICollegeView.Listener{
+interface IAllEssaysView.Listener{
 }
 
-interface IReviewerView.Listener{
+interface IAddReviewsView.Listener{
+
+}
+
+interface ISelectedEssayView.Listener{
+
+}
+
+interface ISelectedReviewView.Listener{
+
+}
+
+interface IUserEssaysView.Listener{
 
 }
 class EssayDashboardFragment {}
 class MenuDashboardFragment {}
-class CollegeDashboardFragment {}
-class ReviewerDashboardFragment {}
+class SelectedReviewFragment {}
+class AddReviewsFragment {}
+class SelectedUserFragment{}
 
 IEssayView <|-- EssayDashboardFragment
 IMenuView <|-- MenuDashboardFragment
-ICollegeView <|-- CollegeDashboardFragment
 IReviewerView <|-- ReviewerDashboardFragment
 IEssayView.Listener <-- IEssayView
 IMenuView.Listener <-- IMenuView
-ICollegeView.Listener <-- ICollegeView
 IReviewerView.Listener <-- IReviewerView
+ISelectedEssayView.Listener <-- ISelectedEssayView
+ISelectedEssayView <|-- SelectedUserFragment
+ISelectedReviewView.Listener <-- ISelectedReviewView
+ISelectedReviewView <|-- SelectedReviewFragment
+IAddReviewsView.Listener <|-- IAddReviewsView
+IAddReviewsView <|-- AddReviewsFragment
+IUserEssaysView.Listener <|-- IUserEssaysView
+IAllEssaysView.Listener <|-- IAllEssaysView
+
+
 
 
 
