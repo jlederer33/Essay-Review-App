@@ -30,5 +30,4 @@ public class Dashboards implements java.io.Serializable{
         essay.inAllEssays = true;
     }
 
-
 }
