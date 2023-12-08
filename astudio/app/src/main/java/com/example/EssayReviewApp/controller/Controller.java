@@ -97,6 +97,8 @@ public class Controller extends AppCompatActivity
     public void onDeleteEssayClicked(Essay essay, IUserEssaysView view){
         dashboard.removeFromEssayList(essay);
         view.updateEssaysDisplay();
+        this.persFacade.removeUserEssay(essay);
+
     }
 
 
