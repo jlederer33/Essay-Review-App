@@ -14,6 +14,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.WriteBatch;
 
 import java.util.Map;
 
@@ -53,6 +54,39 @@ public class FirestoreFacade implements IPersistenceFacade {
             }
         });
     }
+
+    public void removeUserEssay(@NonNull Essay essay) {
+        CollectionReference cref = this.db.collection(USER_ESSAYS_COLLECTION);
+        DocumentReference dref = cref.document(essay.id.toString());
+        dref.delete();
+    }
+
+   /** public void removeAllEssay(@NonNull Essay essay){
+            CollectionReference cref = this.db.collection(ALL_ESSAYS_COLLECTION);
+            WriteBatch batch = db.batch();
+
+            cref.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    for (DocumentSnapshot document : task.getResult()) {
+                        batch.delete(document.getReference());
+                    }
+                    batch.commit().addOnSuccessListener(unused ->
+                                    Log.d("Essay Review App", "All essays deleted successfully"))
+                            .addOnFailureListener(e ->
+                                    Log.d("Essay Review App", "Error deleting essays: " + e.getMessage()));
+                } else {
+                    Log.d("Essay Review App", "Error getting documents: " + task.getException());
+                }
+            });
+        }
+*/
+   public void removeAllEssay(@NonNull Essay essay) {
+       CollectionReference cref = this.db.collection(ALL_ESSAYS_COLLECTION);
+       DocumentReference dref = cref.document(essay.id.toString());
+       dref.delete();
+   }
+
+
 
     @Override
     public void retrieveEssays(@NonNull Listener listener) {
