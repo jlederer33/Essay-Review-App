@@ -1,6 +1,12 @@
 package com.example.EssayReviewApp.model;
 
-public class Review{
+import androidx.annotation.NonNull;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
+public class Review implements java.io.Serializable{
     /**
      * This class represents the reviews given to the essay. They are composed of String title and
      * String text
@@ -8,9 +14,17 @@ public class Review{
     String title;
     String text;
 
-    public Review(String text, String title){
+    private UUID essayID;
+
+
+    private static final String TITLE = "title";
+    private static final String TEXT = "text";
+    private static final String ESSAYID = "essayID";
+
+    public Review(UUID essayID, String text, String title){
         this.title = title;
         this.text = text;
+        this.essayID = essayID;
     }
     public String getTitle() {
         return title;
@@ -28,6 +42,23 @@ public class Review{
         this.text = text;
     }
 
+    public Map<String, Object> toMap(){
+        Map<String, Object> map = new HashMap<>();
+        map.put(ESSAYID, this.essayID.toString());
+        map.put(TITLE, this.title);
+        map.put(TEXT, this.text);
+
+        return map;
+    }
+
+    public static Review fromMap(@NonNull Map<String,Object> map){
+        String essayIDString = (String) map.get("essayID");
+        UUID essayID = UUID.fromString(essayIDString);
+        String title = (String)map.get(TITLE);
+        String text = (String)map.get(TEXT);
+
+        return new Review(essayID, text, title);
+    }
 
 }
 

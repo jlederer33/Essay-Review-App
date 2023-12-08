@@ -1,12 +1,15 @@
 package com.example.EssayReviewApp.controller;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.EssayReviewApp.model.Dashboards;
 import com.example.EssayReviewApp.model.Essay;
 import com.example.EssayReviewApp.model.Review;
+import com.example.EssayReviewApp.persistence.FirestoreFacade;
+import com.example.EssayReviewApp.persistence.IPersistenceFacade;
 import com.example.EssayReviewApp.view.AddReviewsFragment;
 import com.example.EssayReviewApp.view.AllEssaysFragment;
 import com.example.EssayReviewApp.view.IAddReviewsView;
@@ -22,15 +25,28 @@ import com.example.EssayReviewApp.view.IMenuView;
 import com.example.EssayReviewApp.view.MainMenuFragment;
 import com.example.EssayReviewApp.view.MainView;
 
-public class Controller extends AppCompatActivity implements IMenuView.Listener, IUserEssaysView.Listener, IAllEssaysView.Listener, ISelectedEssayView.Listener, IAddReviewsView.Listener, ISelectedReviewView.Listener{
+public class Controller extends AppCompatActivity
+        implements IMenuView.Listener, IUserEssaysView.Listener, IAllEssaysView.Listener,
+        ISelectedEssayView.Listener, IAddReviewsView.Listener, ISelectedReviewView.Listener,
+        IPersistenceFacade.Listener{
     IMainView mainView;
-    Dashboards Dashboard = new Dashboards();
+    Dashboards dashboard = new Dashboards();
 
+    IPersistenceFacade persFacade;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.mainView = new MainView(this);
+
+        this.persFacade = new FirestoreFacade();
+
+        this.persFacade.retrieveEssays(new IPersistenceFacade.Listener() {
+            @Override
+            public void onEssaysRecieved(@NonNull Dashboards dashboard) {
+                Controller.this.dashboard = dashboard;
+            }
+        });
 
         MainMenuFragment mainMenuFragment = new MainMenuFragment(this);
         this.mainView.displayFragment(mainMenuFragment, false, "main menu");
@@ -70,13 +86,16 @@ public class Controller extends AppCompatActivity implements IMenuView.Listener,
          * @param type
          * @param view
          */
-        Dashboard.addToUserEssayList(title, text, type);
+
+        Essay essay = new Essay(title, text, type);
+        dashboard.addToUserEssayList(essay);
         view.updateEssaysDisplay();
+        this.persFacade.saveUserEssay(essay);
     }
 
     @Override
     public void onDeleteEssayClicked(Essay essay, IUserEssaysView view){
-        Dashboard.removeFromEssayList(essay);
+        dashboard.removeFromEssayList(essay);
         view.updateEssaysDisplay();
     }
 
@@ -95,9 +114,10 @@ public class Controller extends AppCompatActivity implements IMenuView.Listener,
 
     @Override
     public void onSubmitToAllEssaysClicked(Essay essay) {
-        Dashboard.submitToAllEssays(essay);
+        dashboard.submitToAllEssays(essay);
         UserEssaysFragment userEssays= new UserEssaysFragment(this);
         this.mainView.displayFragment(userEssays, false, "User Essays");
+        this.persFacade.saveAllEssay(essay);
     }
 
 
@@ -118,6 +138,7 @@ public class Controller extends AppCompatActivity implements IMenuView.Listener,
         essay.addReview(title, text);
         SelectedEssayFragment selectedEssay = new SelectedEssayFragment(this, essay);
         this.mainView.displayFragment(selectedEssay, false, "Selected Essay");
+        this.persFacade.saveAllEssay(essay);
     }
 
 
@@ -125,6 +146,11 @@ public class Controller extends AppCompatActivity implements IMenuView.Listener,
     public void backToSelectedEssay(Essay essay) {
         SelectedEssayFragment selectedEssay = new SelectedEssayFragment(this, essay);
         this.mainView.displayFragment(selectedEssay, false, "Selected Essay");
+    }
+
+    @Override
+    public void onEssaysRecieved(@NonNull Dashboards dashboard) {
+
     }
 }
 

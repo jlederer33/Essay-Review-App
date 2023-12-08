@@ -29,8 +29,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/allEssaysRV"
-        android:layout_width="372dp"
-        android:layout_height="567dp"
+        android:layout_width="374dp"
+        android:layout_height="565dp"
         app:layout_constraintBottom_toTopOf="@+id/aeBackButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
