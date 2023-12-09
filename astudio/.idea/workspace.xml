@@ -11,7 +11,8 @@
   <component name="ChangeListManager">
     <list default="true" id="5068c175-38ae-4be0-8b4f-b41d92bd1819" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/EssayReviewApp/persistence/FirestoreFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/EssayReviewApp/persistence/FirestoreFacade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/EssayReviewApp/view/AllEssaysFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/EssayReviewApp/view/AllEssaysFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_allessays_view.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_allessays_view.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -2,9 +2,11 @@ package com.example.EssayReviewApp.view;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -36,7 +38,80 @@ public class AllEssaysFragment extends Fragment implements IAllEssaysView{
         }
     }
 
-    public class AllEssaysViewAdapter extends RecyclerView.Adapter<AllEssaysViewholder>{
+   /** public class AllEssaysFragment extends Fragment implements IAllEssaysView{
+    private EditText searchEditText;
+    private RecyclerView essaysRecyclerView;
+    private EssaysAdapter essaysAdapter; //(adapter for recycler view)
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_all_essays, container, false);
+
+        searchEditText = view.findViewById(R.id.searchEditText);
+        essaysRecyclerView = view.findViewById(R.id.essaysRecyclerView);
+
+        // Set up RecyclerView, adapter, etc.
+
+        searchEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                essaysAdapter.getFilter().filter(s); // Filter as the user types
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+
+        return view;
+    }
+}
+    public class EssaysAdapter extends RecyclerView.Adapter<EssaysAdapter.ViewHolder> implements Filterable {
+
+        private List<Essay> originalEssays; // The full list of essays
+        private List<Essay> filteredEssays; // The filtered list of essays
+
+        // Constructor, ViewHolder, and other required methods...
+
+        @Override
+        public Filter getFilter() {
+            return new Filter() {
+                @Override
+                protected FilterResults performFiltering(CharSequence constraint) {
+                    List<Essay> filteredList = new ArrayList<>();
+                    if (constraint == null || constraint.length() == 0) {
+                        filteredList.addAll(originalEssays);
+                    } else {
+                        String filterPattern = constraint.toString().toLowerCase().trim();
+                        for (Essay essay : originalEssays) {
+                            if (essay.getTitle().toLowerCase().contains(filterPattern)) { // Assuming Essay has a getTitle method
+                                filteredList.add(essay);
+                            }
+                        }
+                    }
+                    FilterResults results = new FilterResults();
+                    results.values = filteredList;
+                    return results;
+                }
+
+                @Override
+                protected void publishResults(CharSequence constraint, FilterResults results) {
+                    filteredEssays.clear();
+                    filteredEssays.addAll((List) results.values);
+                    notifyDataSetChanged();
+                }
+            };
+        }
+    }
+    */
+
+
+public class AllEssaysViewAdapter extends RecyclerView.Adapter<AllEssaysViewholder>{
         Context context;
 
         public AllEssaysViewAdapter(Context context){
