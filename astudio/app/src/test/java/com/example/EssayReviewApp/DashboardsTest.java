@@ -44,36 +44,7 @@ public class DashboardsTest {
                 assertEquals("There should be exactly one essay in the list", 1, dashboards.userEssayList.size());
                 assertTrue("The list should contain the added essay", dashboards.userEssayList.contains(essay));
             }
-              /** String title = "Test Essay";
-                //String text = "This is a test essay.";
-                //String type = "Test Type";
 
-        //dashboards.addToUserEssayList(title, text, type);
-
-        assertFalse("Essay list should not be empty after adding an essay", Dashboards.userEssayList.isEmpty());
-        assertEquals("Essay list size should be 1 after adding one essay", 1, Dashboards.userEssayList.size());
-
-        Essay addedEssay = Dashboards.userEssayList.get(0);
-        assertEquals("Added essay should have the correct title", title, addedEssay.getTitle());
-        assertEquals("Added essay should have the correct text", text, addedEssay.getText());
-        assertEquals("Added essay should have the correct type", type, addedEssay.getType());
-            }
-
-            // Test adding multiple essays and check order
-
-           @Test
-            public void testAddMultipleEssays() {
-               dashboards.addToUserEssayList("Essay 1", "Text 1", "Type 1");
-               dashboards.addToUserEssayList("Essay 2", "Text 2", "Type 2");
-
-               assertEquals("Essay list size should be 2 after adding two essays", 2, Dashboards.userEssayList.size());
-
-               assertEquals("First added essay should be in the first position", "Essay 1", Dashboards.userEssayList.get(0).getTitle());
-               assertEquals("Second added essay should be in the second position", "Essay 2", Dashboards.userEssayList.get(1).getTitle());
-
-
-           }
-*/
 
 
 
