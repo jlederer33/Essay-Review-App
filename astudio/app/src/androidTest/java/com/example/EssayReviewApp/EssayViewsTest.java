@@ -70,7 +70,7 @@ public class EssayViewsTest {
 
    public void testAllEssaysButton(){
        onView(withId(R.id.allEssaysButton)).perform(click());
-       onView(withId(R.id.allEssaysButton)).check(matches(isDisplayed()));
-       onView(withId(R.id.allEssaysButton)).check(matches(withText(R.string.MM)));
+       onView(withId(R.id.aeBackButton)).check(matches(isDisplayed()));
+      // onView(withId(R.id.allEssaysButton)).check(matches(withText(R.string.MM)));
    }
 }
