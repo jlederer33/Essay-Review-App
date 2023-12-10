@@ -24,8 +24,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <!-- Your existing code for EditText, Spinner, Button here -->
-
             <EditText
                 android:id="@+id/titleEditText"
                 android:layout_width="354dp"
@@ -67,7 +65,6 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
-    <!-- RecyclerView for displaying a list of essays -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewEssays"
         android:layout_width="0dp"

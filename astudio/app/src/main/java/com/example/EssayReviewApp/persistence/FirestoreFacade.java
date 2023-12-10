@@ -80,13 +80,6 @@ public class FirestoreFacade implements IPersistenceFacade {
             });
         }
 */
-   public void removeAllEssay(@NonNull Essay essay) {
-       CollectionReference cref = this.db.collection(ALL_ESSAYS_COLLECTION);
-       DocumentReference dref = cref.document(essay.id.toString());
-       dref.delete();
-   }
-
-
 
     @Override
     public void retrieveEssays(@NonNull Listener listener) {

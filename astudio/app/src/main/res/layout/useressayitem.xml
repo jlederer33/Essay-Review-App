@@ -23,7 +23,7 @@
         tools:text="Type" />
 
     <ImageButton
-        android:id="@+id/deleteButton"
+        android:id="@+id/essayItemDeleteButton"
         android:layout_width="379dp"
         android:layout_height="29dp"
         android:src="@drawable/baseline_delete_24" />

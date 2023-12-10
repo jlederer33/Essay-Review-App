@@ -18,7 +18,6 @@ public class Dashboards implements java.io.Serializable{
         userEssayList.add(essay);
     }
 
-    //public void removeFromEssayList(int position){userEssayList.remove(position);}
 
     public void removeFromEssayList(Essay essay){
         userEssayList.remove(essay);

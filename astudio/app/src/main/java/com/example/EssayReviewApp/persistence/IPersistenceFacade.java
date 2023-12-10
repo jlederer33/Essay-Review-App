@@ -7,20 +7,15 @@ import com.example.EssayReviewApp.model.Essay;
 
 
 public interface IPersistenceFacade {
-    public void removeUserEssay(Essay essay);
-   public void removeAllEssay(Essay essay);
-
-
 
     interface Listener{
         void onEssaysRecieved(@NonNull Dashboards dashboard);
-
     }
 
     void saveUserEssay(@NonNull Essay Essay);
     void saveAllEssay(@NonNull Essay essay);
 
-
+    public void removeUserEssay(Essay essay);
 
     void retrieveEssays(@NonNull Listener listener);
 }

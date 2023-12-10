@@ -71,7 +71,7 @@ public class Controller extends AppCompatActivity
     }
 
     @Override
-    public void onBack() {// sets the view to the Main Menu
+    public void onBack() {//Switches the fragment to the Main menu
         MainMenuFragment mainMenu = new MainMenuFragment(this);
         this.mainView.displayFragment(mainMenu,false,"main menu");
     }
@@ -94,7 +94,7 @@ public class Controller extends AppCompatActivity
     }
 
     @Override
-    public void onDeleteEssayClicked(Essay essay, IUserEssaysView view){
+    public void onDeleteEssayClicked(Essay essay, IUserEssaysView view){ //Connects the delete essay button
         dashboard.removeFromEssayList(essay);
         view.updateEssaysDisplay();
         this.persFacade.removeUserEssay(essay);
@@ -103,19 +103,19 @@ public class Controller extends AppCompatActivity
 
 
     @Override
-    public void onEssayClicked(Essay essay) { //method that displays the specific Essay
+    public void onEssayClicked(Essay essay) {//method that displays the specific Essay
         SelectedEssayFragment selectedEssay = new SelectedEssayFragment(this, essay);
         this.mainView.displayFragment(selectedEssay, false, "Selected User Essay");
     }
 
     @Override
-    public void onAddReviewClicked(Essay essay) {
+    public void onAddReviewClicked(Essay essay) {//switches the view to display the Add Review
         AddReviewsFragment addReview = new AddReviewsFragment(this, essay);
         this.mainView.displayFragment(addReview, false, "Add review");
     }
 
     @Override
-    public void onSubmitToAllEssaysClicked(Essay essay) {
+    public void onSubmitToAllEssaysClicked(Essay essay) {//Calls on the submitToAllEssays method in the dashboards, allows user to submit an essay from the User screen to the All essays screen
         dashboard.submitToAllEssays(essay);
         UserEssaysFragment userEssays= new UserEssaysFragment(this);
         this.mainView.displayFragment(userEssays, false, "User Essays");
@@ -124,19 +124,19 @@ public class Controller extends AppCompatActivity
 
 
     @Override
-    public void onSelectedReviewClicked(Essay essay, Review review) {
+    public void onSelectedReviewClicked(Essay essay, Review review) {//Switches the view to display the selected review fragment
         SelectedReviewFragment selectedReview = new SelectedReviewFragment(this, essay, review);
         this.mainView.displayFragment(selectedReview,false,"Selected review");
     }
 
-    /**
-     * This Method binds the submit review button to the addReview method in Essays object
-     * @param essay
-     * @param title
-     * @param text
-     */
     @Override
-    public void onSubmitReviewClicked(Essay essay, String title, String text) {
+    public void onDeleteReviewClicked(Essay essay, Review review) {
+        essay.deleteReview(review);
+    }
+
+
+    @Override
+    public void onSubmitReviewClicked(Essay essay, String title, String text) {//This Method binds the submit review button to the addReview method in Essays object
         essay.addReview(title, text);
         SelectedEssayFragment selectedEssay = new SelectedEssayFragment(this, essay);
         this.mainView.displayFragment(selectedEssay, false, "Selected Essay");
@@ -145,7 +145,7 @@ public class Controller extends AppCompatActivity
 
 
     @Override
-    public void backToSelectedEssay(Essay essay) {
+    public void backToSelectedEssay(Essay essay) {//This method allows the user to go back to the selected essay fragment from the selected reviews fragment
         SelectedEssayFragment selectedEssay = new SelectedEssayFragment(this, essay);
         this.mainView.displayFragment(selectedEssay, false, "Selected Essay");
     }

@@ -44,12 +44,16 @@ public class AddReviewsFragment extends Fragment implements IAddReviewsView {
         this.binding.submitReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                //Title editable, lets user enter the title of their review then converts to a string
                 final Editable reviewTitleEditable = AddReviewsFragment.this.binding.enterReviewTitle.getText();
                 final String reviewTitleString = reviewTitleEditable.toString();
 
+                //Text editable, lets user enter the text of their review then converts to a string
                 final Editable reviewTextEditable= AddReviewsFragment.this.binding.enterReviewText.getText();
                 final String reviewTextString = reviewTextEditable.toString();
 
+                //To make sure that the title and text are both filled out, dont want to pass blank inputs
                 if(reviewTitleString.isEmpty() || reviewTextString.isEmpty()){
                     String errMsgStr = "Must fill in review!";
                     Snackbar.make(view, errMsgStr, Snackbar.LENGTH_LONG).show();

@@ -52,7 +52,7 @@ public class UserEssaysFragment extends Fragment implements IUserEssaysView {
 
             essayItem = itemView.findViewById(R.id.userEssayItem);
 
-            deleteButton = itemView.findViewById(R.id.deleteButton);
+            deleteButton = itemView.findViewById(R.id.essayItemDeleteButton);
 
         }
     }

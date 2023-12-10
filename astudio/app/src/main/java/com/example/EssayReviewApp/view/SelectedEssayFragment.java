@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -25,14 +26,16 @@ public class SelectedEssayFragment extends Fragment implements ISelectedEssayVie
     public class ReviewViewholder extends RecyclerView.ViewHolder{
         TextView reviewTitle, reviewText;
 
+        private ImageButton deleteButton;
         public LinearLayout reviewItem;
 
         public ReviewViewholder(@NonNull View itemView) {
             super(itemView);
             reviewTitle = itemView.findViewById(R.id.reviewTitle);
-            reviewText = itemView.findViewById(R.id.reviewText);
 
             reviewItem = itemView.findViewById(R.id.reviewItem);
+
+            deleteButton = itemView.findViewById(R.id.reviewItemDeleteButton);
 
         }
     }
@@ -64,6 +67,13 @@ public class SelectedEssayFragment extends Fragment implements ISelectedEssayVie
                     SelectedEssayFragment.this.listener.onSelectedReviewClicked(essay, review);
                 }
             });
+
+            holder.deleteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    SelectedEssayFragment.this.listener.onDeleteReviewClicked(essay, review);
+                }
+            });
         }
 
         @Override
@@ -84,7 +94,6 @@ public class SelectedEssayFragment extends Fragment implements ISelectedEssayVie
         this.essay = essay;
         this.listener = listener;
     }
-
 
     @Nullable
     @Override
@@ -130,12 +139,19 @@ public class SelectedEssayFragment extends Fragment implements ISelectedEssayVie
             }
         });
 
+        /**
+         * In order to reduce redundant code, all buttons are present in the Selected Essay Fragment XML.
+         * However, using the boolean isInAllEssays, this allows us to toggle which buttons are visible
+         * to the user.
+         */
         if(essay.inAllEssays == true){
+            //Users can add reviews if the essay is in the allEssays list
             this.binding.addReviewButton.setVisibility(View.VISIBLE);
             this.binding.backToAllEssays.setVisibility(View.VISIBLE);
             this.binding.submitToAllEssays.setVisibility(View.INVISIBLE);
             this.binding.backToUserEssays.setVisibility(View.INVISIBLE);
         }else{
+            //Users can add their essay drafts to All Essays from the user essay fragment
             this.binding.addReviewButton.setVisibility(View.INVISIBLE);
             this.binding.backToAllEssays.setVisibility(View.INVISIBLE);
             this.binding.submitToAllEssays.setVisibility(View.VISIBLE);

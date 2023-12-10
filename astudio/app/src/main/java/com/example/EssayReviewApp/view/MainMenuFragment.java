@@ -38,13 +38,14 @@ public class MainMenuFragment extends Fragment implements IMenuView {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
 
-        //register essay button on click listener
+        //Registers the user essays button so that when clicked it switches to the User Essays Fragment
         this.binding.essaysButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 MainMenuFragment.this.listener.onUserEssaysClicked();
             }
         });
 
+        //Registers the all essays button so that when clicked it switches to the All Essays Fragment
         this.binding.allEssaysButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -11,5 +11,7 @@ public interface ISelectedEssayView {
 
             void onSubmitToAllEssaysClicked(Essay essay);
             void onSelectedReviewClicked(Essay essay, Review review);
+
+            void onDeleteReviewClicked(Essay essay, Review review);
         }
 }

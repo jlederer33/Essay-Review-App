@@ -80,6 +80,10 @@ public class Essay implements java.io.Serializable {
         reviewList.add(new Review(id, title, text));
     } //adds a review to the respective essay
 
+    public void deleteReview(Review review){
+        reviewList.remove(review);
+    } //deletes a chosen review from the essay
+
     @NonNull
     public Map<String, Object> toMap(){
         Map<String, Object> map = new HashMap<>();
