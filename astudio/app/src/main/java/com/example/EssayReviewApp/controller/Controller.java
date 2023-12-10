@@ -130,8 +130,10 @@ public class Controller extends AppCompatActivity
     }
 
     @Override
-    public void onDeleteReviewClicked(Essay essay, Review review) {
+    public void onDeleteReviewClicked(Essay essay, Review review, ISelectedEssayView view) {
         essay.deleteReview(review);
+        view.updateReviewsDisplay();
+        this.persFacade.saveAllEssay(essay);
     }
 
 

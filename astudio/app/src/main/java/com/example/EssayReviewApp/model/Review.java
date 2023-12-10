@@ -22,9 +22,10 @@ public class Review implements java.io.Serializable{
     private static final String ESSAYID = "essayID";
 
     public Review(UUID essayID, String text, String title){
+        this.essayID = essayID;
         this.title = title;
         this.text = text;
-        this.essayID = essayID;
+
     }
     public String getTitle() {
         return title;
@@ -57,7 +58,7 @@ public class Review implements java.io.Serializable{
         String title = (String)map.get(TITLE);
         String text = (String)map.get(TEXT);
 
-        return new Review(essayID, text, title);
+        return new Review(essayID, title, text);
     }
 
 }

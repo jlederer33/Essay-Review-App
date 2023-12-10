@@ -50,7 +50,7 @@ public class AddReviewsFragment extends Fragment implements IAddReviewsView {
                 final String reviewTitleString = reviewTitleEditable.toString();
 
                 //Text editable, lets user enter the text of their review then converts to a string
-                final Editable reviewTextEditable= AddReviewsFragment.this.binding.enterReviewText.getText();
+                final Editable reviewTextEditable = AddReviewsFragment.this.binding.enterReviewText.getText();
                 final String reviewTextString = reviewTextEditable.toString();
 
                 //To make sure that the title and text are both filled out, dont want to pass blank inputs

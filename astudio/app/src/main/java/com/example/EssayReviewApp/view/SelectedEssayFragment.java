@@ -71,7 +71,7 @@ public class SelectedEssayFragment extends Fragment implements ISelectedEssayVie
             holder.deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    SelectedEssayFragment.this.listener.onDeleteReviewClicked(essay, review);
+                    SelectedEssayFragment.this.listener.onDeleteReviewClicked(essay, review, SelectedEssayFragment.this);
                 }
             });
         }
