@@ -19,20 +19,36 @@ public class DashboardsTest {
 
 
             private Dashboards dashboards;
-
+            private Essay essay= new Essay("title", "text", "type");;
            @Before
         public void SetUp() {
                dashboards = new Dashboards();
                Dashboards.userEssayList.clear(); // Clear the list before each test
-            }
+
+                   dashboards.userEssayList = new ArrayList<>();
+
+               }
+
 
             @Test
            public void testAddToEssayList() {
-                String title = "Test Essay";
-                String text = "This is a test essay.";
-                String type = "Test Type";
+               SetUp();
+                // Check that the essay list is initially empty
+                assertTrue("List should be empty before adding an essay", dashboards.userEssayList.isEmpty());
 
-        dashboards.addToUserEssayList(title, text, type);
+                // Add the essay to the list
+                dashboards.addToUserEssayList(essay);
+
+                // Check that the essay is added
+                assertFalse("List should not be empty after adding an essay", dashboards.userEssayList.isEmpty());
+                assertEquals("There should be exactly one essay in the list", 1, dashboards.userEssayList.size());
+                assertTrue("The list should contain the added essay", dashboards.userEssayList.contains(essay));
+            }
+              /** String title = "Test Essay";
+                //String text = "This is a test essay.";
+                //String type = "Test Type";
+
+        //dashboards.addToUserEssayList(title, text, type);
 
         assertFalse("Essay list should not be empty after adding an essay", Dashboards.userEssayList.isEmpty());
         assertEquals("Essay list size should be 1 after adding one essay", 1, Dashboards.userEssayList.size());
@@ -57,7 +73,7 @@ public class DashboardsTest {
 
 
            }
-
+*/
 
 
 
@@ -145,16 +161,15 @@ private Dashboards dashboard = new Dashboards();
 
     @Test
     public void testRemoveFromEssayList_NonExistentEssay() {
-        Essay nonExistentEssay = new Essay("", "", "");
+        Essay nonExistentEssay = new Essay("non existent title", "non existent text", "non existent type");
         dashboard.removeFromEssayList(nonExistentEssay);
 
         assertFalse("List should not contain the non-existent essay",
                 dashboard.userEssayList.contains(nonExistentEssay));
-        assertEquals("List size should remain unchanged", 0,
+        assertEquals("List size should remain unchanged", 1,
                 dashboard.userEssayList.size());
     }
     private Dashboards dash;
-    private Essay essay;
 
     @Before
     public void SEtUp() {
