@@ -69,12 +69,12 @@ public class EssayTest {
         originalEssay.addReview("Review Title", "Review Text");
 
         Map<String, Object> essayMap = originalEssay.toMap();
-        Essay reconstructedEssay = Essay.fromMap(essayMap);
+        Essay mappedEssay = Essay.fromMap(essayMap);
 
-        assertEquals("Title should match after reconstruction", originalEssay.getTitle(), reconstructedEssay.getTitle());
-        assertEquals("Text should match after reconstruction", originalEssay.getText(), reconstructedEssay.getText());
-        assertEquals("Type should match after reconstruction", originalEssay.getType(), reconstructedEssay.getType());
-        assertEquals("Number of reviews should match after reconstruction", originalEssay.numOfReviews(), reconstructedEssay.numOfReviews());
+        assertEquals("Title should match after mapped", originalEssay.getTitle(), mappedEssay.getTitle());
+        assertEquals("Text should match after mapped", originalEssay.getText(), mappedEssay.getText());
+        assertEquals("Type should match after mapped", originalEssay.getType(), mappedEssay.getType());
+        assertEquals("Number of reviews should match after mapped", originalEssay.numOfReviews(), mappedEssay.numOfReviews());
     }
 
 
