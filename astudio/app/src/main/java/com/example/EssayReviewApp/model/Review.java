@@ -55,7 +55,6 @@ public class Review implements java.io.Serializable{
     public static Review fromMap(@NonNull Map<String,Object> map){
         String essayIDString = (String) map.get("essayID");
         UUID essayID = UUID.fromString(essayIDString);
-        // bug where retrieving from map switches the title and text
         String title = (String)map.get(TITLE);
         String text = (String)map.get(TEXT);
 
