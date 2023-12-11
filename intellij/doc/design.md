@@ -28,7 +28,7 @@ Dashboards -> Essays : removeFromEssaysList(essay)
 
 ```
 
-**Adding and Editing Reviews**
+**Adding Reviews**
 ```plantuml
 actor Reviewer as reviewer
 reviewer-> IMainView : views
@@ -119,6 +119,7 @@ IMainView <|-- MainView
 Controller <-- Dashboard
 
 Dashboard *- "(0..*)\nEssays" Essay: \t\t
+Essay *- "(0..*)\nReviews" Review: \t\t
 IMainView *- "mainView(1 - 1)\nColleges" Controller : \t\t\t
 
 
@@ -147,12 +148,6 @@ interface IUserEssaysView{
 +onEssayClicked()
 +updateEssaysDisplay()
 }
-interface IEssayView{
-...
-+onBack()
-+onSubmitEssayClicked()
-+onDeleteEssayClicked()
-}
 
 interface IAllEssaysView{
 ...
@@ -175,9 +170,7 @@ interface ISelectedEssayView{
 +onSubmitToAllEssaysClicked()
 +onSelectReviewClicked()
 }
-interface IEssayView.Listener{
 
-}
 interface IMenuView.Listener{
 
 }
@@ -200,18 +193,14 @@ interface ISelectedReviewView.Listener{
 interface IUserEssaysView.Listener{
 
 }
-class EssayDashboardFragment {}
-class MenuDashboardFragment {}
+class MainMenuFragment {}
 class SelectedReviewFragment {}
 class AddReviewsFragment {}
 class SelectedUserFragment{}
 
-IEssayView <|-- EssayDashboardFragment
-IMenuView <|-- MenuDashboardFragment
-IReviewerView <|-- ReviewerDashboardFragment
-IEssayView.Listener <-- IEssayView
+
+IMenuView <|-- MainMenuFragment
 IMenuView.Listener <-- IMenuView
-IReviewerView.Listener <-- IReviewerView
 ISelectedEssayView.Listener <-- ISelectedEssayView
 ISelectedEssayView <|-- SelectedUserFragment
 ISelectedReviewView.Listener <-- ISelectedReviewView
@@ -219,7 +208,11 @@ ISelectedReviewView <|-- SelectedReviewFragment
 IAddReviewsView.Listener <|-- IAddReviewsView
 IAddReviewsView <|-- AddReviewsFragment
 IUserEssaysView.Listener <|-- IUserEssaysView
+IUserEssaysView <|-- UserEssaysFragment
 IAllEssaysView.Listener <|-- IAllEssaysView
+IAllEssaysView <|-- AllEssaysFragment
+
+
 
 
 
