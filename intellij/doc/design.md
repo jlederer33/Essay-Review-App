@@ -1,18 +1,18 @@
 
-**Editing and Uploading Essays:**
+**Uploading Essays:**
 
 ```plantuml
 actor Applicant as applicant
 applicant-> IMainView : views
 IMainView -> IMenuView : displayFragment()
 applicant <- IMainView : displays
-Controller -> IEssaysView : onEssaysClicked()
-Controller -> IEssaysView : submitEssayClicked( title,text, type, view)
+Controller <- IEssaysView : onEssaysClicked()
+Controller <- IEssaysView : submitEssayClicked( title,text, type, view)
 Controller <- IMenuView : onEssaysClicked()
 IEssaysView <- Dashboards : addToUserEssayList(title,text,type)
 IEssaysView -> Dashboards : onSubmitEssayClicked(title,text, type, view)
 Dashboards -> IEssaysView : updatesView()
-Dashboards <- Essays : addToUserEssayList(title,text,type)
+Dashboards -> Essays : addToUserEssayList(title,text,type)
 ```
 **Delete Essays:**
 
@@ -21,8 +21,8 @@ actor Applicant as applicant
 applicant-> IMainView : views
 IMainView -> IMenuView : displayFragment(fragment, reversible, name)
 applicant <- IMainView : displays
-Controller -> IEssaysView : onEssaysClicked(essay)
-Controller <- IMenuView : onEssaysClicked(essay)
+IEssaysView -> Controller : onEssaysClicked(essay)
+IEssaysView -> IMenuView : onEssaysClicked(essay)
 IEssaysView <- Dashboards : removeFromEssaysList(essay)
 Dashboards -> Essays : removeFromEssaysList(essay)
 
@@ -34,7 +34,7 @@ actor Reviewer as reviewer
 reviewer-> IMainView : views
 IMainView -> IMenuView : displayFragment()
 reviewer <- IMainView : displays
-Controller -> IReviewerView : onReviewsClicked()
+Controller <- IReviewerView : onReviewsClicked()
 Controller <- IReviewerView : updateView()
 IReviewerView -> Dashboards : onEditReviews()  
 Dashboards -> Essays : onEditReviews() 
@@ -70,8 +70,18 @@ allEssaysList<Essay>
 +submitToAllEssays(essay)
 }
 
+interface IPersistenceFacade{
+__
++saveUserEssay(@NonNull Essay Essay);
++saveAllEssay(Essay essay);
++removeUserEssay(Essay essay);
+}
+
+class PersistenceFacade{}
+
 class Controller{
 IMainView mainView
+IPersistenceFacade persFacade
 --
 +onEssaysClicked()
 +onAllEssaysClicked()
@@ -116,12 +126,14 @@ package "view" as View{
 Controller <-- MainView
 View --> MainView
 IMainView <|-- MainView
+IPersistenceFacade <|-- PersistenceFacade
 Controller <-- Dashboard
+Controller <-- PersistenceFacade
 
 Dashboard *- "(0..*)\nEssays" Essay: \t\t
 Essay *- "(0..*)\nReviews" Review: \t\t
-IMainView *- "mainView(1 - 1)\nColleges" Controller : \t\t\t
-
+IMainView *- "mainView(1 - 1)\n" Controller : \t\t\t
+IPersistenceFacade *-- "persistenceFacade(1 - 1)\n" Controller : \t\t\t
 
 ```
 **View diagrams:**
