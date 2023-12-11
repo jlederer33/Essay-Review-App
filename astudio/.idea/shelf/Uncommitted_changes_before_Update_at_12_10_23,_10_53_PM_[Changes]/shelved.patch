@@ -1,0 +1,151 @@
+Index: ../intellij/doc/use-cases/manageessays.md
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>```plantuml\n\ntitle Upload Essay (Fully Dressed)\n|#lightblue|Applicant| \n|#pink|System|\n\n|System|\nstart\n:Displays essay dashboard;\n|Applicant|\nswitch (Work on essays)\ncase (edits)\n:Choose existing essay to edit;\n:Make edits to essay;\ncase(add)\n:Fill out title, text, and type;\n:submit essay;\ncase (remove)\n:Delete essay;\nendswitch\n\n|Applicant|\nwhile (save as draft) is (Yes)\n:Yes;\n|System|\n:Essay saved as draft;\nendwhile (No)\n:Essay deleted;\n\n\n```
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../intellij/doc/use-cases/manageessays.md b/../intellij/doc/use-cases/manageessays.md
+--- a/../intellij/doc/use-cases/manageessays.md	
++++ b/../intellij/doc/use-cases/manageessays.md	
+@@ -7,6 +7,7 @@
+ |System|
+ start
+ :Displays essay dashboard;
++:Display previously worked on essays;
+ |Applicant|
+ switch (Work on essays)
+ case (edits)
+Index: ../intellij/doc/design.md
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\n**Editing and Uploading Essays:**\n\n```plantuml\nactor Applicant as applicant\napplicant-> IMainView : views\nIMainView -> IMenuView : displayFragment()\napplicant <- IMainView : displays\nController -> IEssaysView : onEssaysClicked()\nController -> IEssaysView : submitEssayClicked( title,text, type, view)\nController <- IMenuView : onEssaysClicked()\nIEssaysView <- Dashboards : addToUserEssayList(title,text,type)\nIEssaysView -> Dashboards : onSubmitEssayClicked(title,text, type, view)\nDashboards -> IEssaysView : updatesView()\nDashboards <- Essays : addToUserEssayList(title,text,type)\n```\n**Delete Essays:**\n\n```plantuml\nactor Applicant as applicant\napplicant-> IMainView : views\nIMainView -> IMenuView : displayFragment(fragment, reversible, name)\napplicant <- IMainView : displays\nController -> IEssaysView : onEssaysClicked(essay)\nController <- IMenuView : onEssaysClicked(essay)\nIEssaysView <- Dashboards : removeFromEssaysList(essay)\nDashboards -> Essays : removeFromEssaysList(essay)\n\n```\n\n**Adding and Editing Reviews**\n```plantuml\nactor Reviewer as reviewer\nreviewer-> IMainView : views\nIMainView -> IMenuView : displayFragment()\nreviewer <- IMainView : displays\nController -> IReviewerView : onReviewsClicked()\nController <- IReviewerView : updateView()\nIReviewerView -> Dashboards : onEditReviews()  \nDashboards -> Essays : onEditReviews() \nController <- IMenuView : onReviewsClicked()\nController -> IMenuView: onBack()\nIReviewerView -> Dashboards : addReviewsToEssay()\nDashboards -> Essays : addReviewsToEssay()\n\n```\n**Class Diagram:**\n\n```plantuml\n\nclass Essay{\nString title\nString text\nString type\nint date\nreviewList<Review>\n...\n--\n+numOfReviews()\n+addReview()\n}\n\n\nclass Dashboard{\nessayList<Essay>\nallEssaysList<Essay>\n--\n+addToUserEssayList(title,text, type)\n+removeFromEssayList(int position)\n+submitToAllEssays(essay)\n}\n\nclass Controller{\nIMainView mainView\n--\n+onEssaysClicked()\n+onAllEssaysClicked()\n+onSubmitEssayClicked(title,text.type, View)\n+onDeleteEssayClicked(essay, view)\n+onUserEssayClicked(essay)\n+onAddReviewClicked(essay) \n+onSelectedReviewClicked(essay, review)\n+onSubmitReviewClicked(essay, title, text)\n+backToSelectedEssay(essay)\n+onBack()\n\n}\n\nclass Review{\nstring Title\nstring Text\n--\n\n}\n\nInterface IMainView{\n...\n--\n+getRootView()\n+displayFragment(fragment,reversible, name)\n}\n\nClass MainView{\n...\n--\n+getRootView()\n+displayFragment(fragment,reversible, name)\n}\n\n\n\npackage \"view\" as View{\n}\n\n\nController <-- MainView\nView --> MainView\nIMainView <|-- MainView\nController <-- Dashboard\n\nDashboard *- \"(0..*)\\nEssays\" Essay: \\t\\t\nIMainView *- \"mainView(1 - 1)\\nColleges\" Controller : \\t\\t\\t\n\n\n```\n**View diagrams:**\n\n```plantuml\n\ninterface IMenuView{\n...\n+onUserEssaysClicked()\n+onAllEssaysClicked()\n}\n\ninterface ISelectedReviewView{\n...\n--\n+backToSelectedEssay()\n}\ninterface IUserEssaysView{\n...\n--\n+onBack()\n+onSubmitEssayClicked()\n+onDeleteEssayClicked()\n+onEssayClicked()\n+updateEssaysDisplay()\n}\ninterface IEssayView{\n...\n+onBack()\n+onSubmitEssayClicked()\n+onDeleteEssayClicked()\n}\n\ninterface IAllEssaysView{\n...\n--\n+onBack()\n+onEssayClicked()\n}\n\ninterface IAddReviewsView{\n...\n+onSubmitReviewClicked()\n}\n\ninterface ISelectedEssayView{\n...\n--\n+onUserEssaysClicked()\n+onAllEssaysClicked()\n+onAddReviewClicked()\n+onSubmitToAllEssaysClicked()\n+onSelectReviewClicked()\n}\ninterface IEssayView.Listener{\n\n}\ninterface IMenuView.Listener{\n\n}\n\ninterface IAllEssaysView.Listener{\n}\n\ninterface IAddReviewsView.Listener{\n\n}\n\ninterface ISelectedEssayView.Listener{\n\n}\n\ninterface ISelectedReviewView.Listener{\n\n}\n\ninterface IUserEssaysView.Listener{\n\n}\nclass EssayDashboardFragment {}\nclass MenuDashboardFragment {}\nclass SelectedReviewFragment {}\nclass AddReviewsFragment {}\nclass SelectedUserFragment{}\n\nIEssayView <|-- EssayDashboardFragment\nIMenuView <|-- MenuDashboardFragment\nIReviewerView <|-- ReviewerDashboardFragment\nIEssayView.Listener <-- IEssayView\nIMenuView.Listener <-- IMenuView\nIReviewerView.Listener <-- IReviewerView\nISelectedEssayView.Listener <-- ISelectedEssayView\nISelectedEssayView <|-- SelectedUserFragment\nISelectedReviewView.Listener <-- ISelectedReviewView\nISelectedReviewView <|-- SelectedReviewFragment\nIAddReviewsView.Listener <|-- IAddReviewsView\nIAddReviewsView <|-- AddReviewsFragment\nIUserEssaysView.Listener <|-- IUserEssaysView\nIAllEssaysView.Listener <|-- IAllEssaysView\n\n\n\n\n\n\n```\n\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../intellij/doc/design.md b/../intellij/doc/design.md
+--- a/../intellij/doc/design.md	
++++ b/../intellij/doc/design.md	
+@@ -1,5 +1,5 @@
+ 
+-**Editing and Uploading Essays:**
++**Uploading Essays:**
+ 
+ ```plantuml
+ actor Applicant as applicant
+@@ -28,7 +28,7 @@
+ 
+ ```
+ 
+-**Adding and Editing Reviews**
++**Adding Reviews**
+ ```plantuml
+ actor Reviewer as reviewer
+ reviewer-> IMainView : views
+@@ -36,14 +36,28 @@
+ reviewer <- IMainView : displays
+ Controller -> IReviewerView : onReviewsClicked()
+ Controller <- IReviewerView : updateView()
+-IReviewerView -> Dashboards : onEditReviews()  
+-Dashboards -> Essays : onEditReviews() 
+ Controller <- IMenuView : onReviewsClicked()
+ Controller -> IMenuView: onBack()
+-IReviewerView -> Dashboards : addReviewsToEssay()
+-Dashboards -> Essays : addReviewsToEssay()
++IReviewerView -> Dashboards : addReviewsToEssay(reveiw)
++Dashboards -> Essays : addReviewsToEssay(review)
++
++```
++
++**Deleting Reviews:**
++```plantuml
++actor Reviewer as reviewer
++reviewer-> IMainView : views
++IMainView -> IMenuView : displayFragment()
++reviewer <- IMainView : displays
++Controller -> IReviewerView : onReviewsClicked()
++Controller <- IReviewerView : updateView()
++Controller <- IMenuView : onReviewsClicked()
++Controller -> IMenuView: onBack()
++IReviewerView -> Dashboards : deleteReview(Review review)
++Dashboards -> Essays : deleteReview(Review review)
+ 
+ ```
++
+ **Class Diagram:**
+ 
+ ```plantuml
+@@ -96,15 +110,11 @@
+ Interface IMainView{
+ ...
+ --
+-+getRootView()
+-+displayFragment(fragment,reversible, name)
+ }
+ 
+ Class MainView{
+ ...
+ --
+-+getRootView()
+-+displayFragment(fragment,reversible, name)
+ }
+ 
+ 
+@@ -119,6 +129,7 @@
+ Controller <-- Dashboard
+ 
+ Dashboard *- "(0..*)\nEssays" Essay: \t\t
++Essay *- "(0..*)\nReviews" Review: \t\t
+ IMainView *- "mainView(1 - 1)\nColleges" Controller : \t\t\t
+ 
+ 
+@@ -208,10 +219,8 @@
+ 
+ IEssayView <|-- EssayDashboardFragment
+ IMenuView <|-- MenuDashboardFragment
+-IReviewerView <|-- ReviewerDashboardFragment
+ IEssayView.Listener <-- IEssayView
+ IMenuView.Listener <-- IMenuView
+-IReviewerView.Listener <-- IReviewerView
+ ISelectedEssayView.Listener <-- ISelectedEssayView
+ ISelectedEssayView <|-- SelectedUserFragment
+ ISelectedReviewView.Listener <-- ISelectedReviewView
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AndroidLayouts\">\n    <shared>\n      <config />\n    </shared>\n  </component>\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"NONE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"5068c175-38ae-4be0-8b4f-b41d92bd1819\" name=\"Changes\" comment=\"\">\n      <change afterPath=\"$PROJECT_DIR$/app/src/test/java/com/example/EssayReviewApp/EssayTest.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/app/src/test/java/com/example/EssayReviewApp/DashboardsTest.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/app/src/test/java/com/example/EssayReviewApp/DashboardsTest.java\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"ExecutionTargetManager\" SELECTED_TARGET=\"device_and_snapshot_combo_box_target[/home/tfaisal/.android/avd/Pixel_3a_API_34_extension_level_7_x86_64.avd]\" />\n  <component name=\"ExternalProjectsData\">\n    <projectState path=\"$PROJECT_DIR$\">\n      <ProjectState />\n    </projectState>\n  </component>\n  <component name=\"ExternalProjectsManager\">\n    <system id=\"GRADLE\">\n      <state>\n        <task path=\"$PROJECT_DIR$\">\n          <activation />\n        </task>\n        <projects_view />\n      </state>\n    </system>\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Interface\" />\n        <option value=\"layoutResourceFile\" />\n        <option value=\"valueResourceFile\" />\n        <option value=\"Enum\" />\n        <option value=\"Class\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$/..\" />\n    <option name=\"SWAP_SIDES_IN_COMPARE_BRANCHES\" value=\"true\" />\n  </component>\n  <component name=\"MarkdownSettingsMigration\">\n    <option name=\"stateVersion\" value=\"1\" />\n  </component>\n  <component name=\"ProblemsViewState\">\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\n  </component>\n  <component name=\"ProjectId\" id=\"2XdNwh48rSFSXn9sqlq6BwBDxnz\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">{\n  &quot;keyToString&quot;: {\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,\n    &quot;android-custom-view/home/jlederer/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.1.0/f2bdf79e1977939817f54a9d3e2f6bc52b63bdd0/recyclerview-1.1.0-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_SELECTED&quot;: &quot;RecyclerView&quot;,\n    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,\n    &quot;com.google.services.firebase.aqiPopupShown&quot;: &quot;true&quot;,\n    &quot;last_opened_file_path&quot;: &quot;/home/jlederer/Desktop/cmpu-203&quot;,\n    &quot;memory.settings.postsync.last.time.stamp&quot;: &quot;1701894231995&quot;\n  }\n}</component>\n  <component name=\"RunManager\" selected=\"Gradle.EssayTest\">\n    <configuration name=\"app\" type=\"AndroidRunConfigurationType\" factoryName=\"Android App\">\n      <module name=\"astudio.app.main\" />\n      <option name=\"DEPLOY\" value=\"true\" />\n      <option name=\"DEPLOY_APK_FROM_BUNDLE\" value=\"false\" />\n      <option name=\"DEPLOY_AS_INSTANT\" value=\"false\" />\n      <option name=\"ARTIFACT_NAME\" value=\"\" />\n      <option name=\"PM_INSTALL_OPTIONS\" value=\"\" />\n      <option name=\"ALL_USERS\" value=\"false\" />\n      <option name=\"ALWAYS_INSTALL_WITH_PM\" value=\"false\" />\n      <option name=\"CLEAR_APP_STORAGE\" value=\"false\" />\n      <option name=\"ACTIVITY_EXTRA_FLAGS\" value=\"\" />\n      <option name=\"MODE\" value=\"default_activity\" />\n      <option name=\"CLEAR_LOGCAT\" value=\"false\" />\n      <option name=\"SHOW_LOGCAT_AUTOMATICALLY\" value=\"false\" />\n      <option name=\"INSPECTION_WITHOUT_ACTIVITY_RESTART\" value=\"false\" />\n      <option name=\"TARGET_SELECTION_MODE\" value=\"DEVICE_AND_SNAPSHOT_COMBO_BOX\" />\n      <option name=\"SELECTED_CLOUD_MATRIX_CONFIGURATION_ID\" value=\"-1\" />\n      <option name=\"SELECTED_CLOUD_MATRIX_PROJECT_ID\" value=\"\" />\n      <option name=\"DEBUGGER_TYPE\" value=\"Auto\" />\n      <Auto>\n        <option name=\"USE_JAVA_AWARE_DEBUGGER\" value=\"false\" />\n        <option name=\"SHOW_STATIC_VARS\" value=\"true\" />\n        <option name=\"WORKING_DIR\" value=\"\" />\n        <option name=\"TARGET_LOGGING_CHANNELS\" value=\"lldb process:gdb-remote packets\" />\n        <option name=\"SHOW_OPTIMIZED_WARNING\" value=\"true\" />\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\n      </Auto>\n      <Hybrid>\n        <option name=\"USE_JAVA_AWARE_DEBUGGER\" value=\"false\" />\n        <option name=\"SHOW_STATIC_VARS\" value=\"true\" />\n        <option name=\"WORKING_DIR\" value=\"\" />\n        <option name=\"TARGET_LOGGING_CHANNELS\" value=\"lldb process:gdb-remote packets\" />\n        <option name=\"SHOW_OPTIMIZED_WARNING\" value=\"true\" />\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\n      </Hybrid>\n      <Java>\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\n      </Java>\n      <Native>\n        <option name=\"USE_JAVA_AWARE_DEBUGGER\" value=\"false\" />\n        <option name=\"SHOW_STATIC_VARS\" value=\"true\" />\n        <option name=\"WORKING_DIR\" value=\"\" />\n        <option name=\"TARGET_LOGGING_CHANNELS\" value=\"lldb process:gdb-remote packets\" />\n        <option name=\"SHOW_OPTIMIZED_WARNING\" value=\"true\" />\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\n      </Native>\n      <Profilers>\n        <option name=\"ADVANCED_PROFILING_ENABLED\" value=\"false\" />\n        <option name=\"STARTUP_PROFILING_ENABLED\" value=\"false\" />\n        <option name=\"STARTUP_CPU_PROFILING_ENABLED\" value=\"false\" />\n        <option name=\"STARTUP_CPU_PROFILING_CONFIGURATION_NAME\" value=\"Java/Kotlin Method Sample (legacy)\" />\n        <option name=\"STARTUP_NATIVE_MEMORY_PROFILING_ENABLED\" value=\"false\" />\n        <option name=\"NATIVE_MEMORY_SAMPLE_RATE_BYTES\" value=\"2048\" />\n      </Profilers>\n      <option name=\"DEEP_LINK\" value=\"\" />\n      <option name=\"ACTIVITY_CLASS\" value=\"\" />\n      <option name=\"SEARCH_ACTIVITY_IN_GLOBAL_SCOPE\" value=\"false\" />\n      <option name=\"SKIP_ACTIVITY_VALIDATION\" value=\"false\" />\n      <method v=\"2\">\n        <option name=\"Android.Gradle.BeforeRunTask\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"DashboardsTest\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\n      <ExternalSystemSettings>\n        <option name=\"executionName\" />\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\n        <option name=\"scriptParameters\" value=\"\" />\n        <option name=\"taskDescriptions\">\n          <list />\n        </option>\n        <option name=\"taskNames\">\n          <list>\n            <option value=\":app:testDebugUnitTest\" />\n            <option value=\"--tests\" />\n            <option value=\"&quot;com.example.EssayReviewApp.DashboardsTest&quot;\" />\n          </list>\n        </option>\n        <option name=\"vmOptions\" />\n      </ExternalSystemSettings>\n      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>\n      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>\n      <DebugAllEnabled>false</DebugAllEnabled>\n      <method v=\"2\" />\n    </configuration>\n    <configuration name=\"DashboardsTest.testAddToEssayList (1)\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\n      <ExternalSystemSettings>\n        <option name=\"executionName\" />\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\n        <option name=\"scriptParameters\" value=\"\" />\n        <option name=\"taskDescriptions\">\n          <list />\n        </option>\n        <option name=\"taskNames\">\n          <list>\n            <option value=\":app:testDebugUnitTest\" />\n            <option value=\"--tests\" />\n            <option value=\"&quot;com.example.EssayReviewApp.DashboardsTest.testAddToEssayList&quot;\" />\n          </list>\n        </option>\n        <option name=\"vmOptions\" />\n      </ExternalSystemSettings>\n      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>\n      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>\n      <DebugAllEnabled>false</DebugAllEnabled>\n      <method v=\"2\" />\n    </configuration>\n    <configuration name=\"DashboardsTest.testRemoveFromEssayList_NonExistentEssay\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\n      <ExternalSystemSettings>\n        <option name=\"executionName\" />\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\n        <option name=\"scriptParameters\" value=\"\" />\n        <option name=\"taskDescriptions\">\n          <list />\n        </option>\n        <option name=\"taskNames\">\n          <list>\n            <option value=\":app:testDebugUnitTest\" />\n            <option value=\"--tests\" />\n            <option value=\"&quot;com.example.EssayReviewApp.DashboardsTest.testRemoveFromEssayList_NonExistentEssay&quot;\" />\n          </list>\n        </option>\n        <option name=\"vmOptions\" />\n      </ExternalSystemSettings>\n      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>\n      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>\n      <DebugAllEnabled>false</DebugAllEnabled>\n      <method v=\"2\" />\n    </configuration>\n    <configuration name=\"EssayTest\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\n      <ExternalSystemSettings>\n        <option name=\"executionName\" />\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\n        <option name=\"scriptParameters\" value=\"\" />\n        <option name=\"taskDescriptions\">\n          <list />\n        </option>\n        <option name=\"taskNames\">\n          <list>\n            <option value=\":app:testDebugUnitTest\" />\n            <option value=\"--tests\" />\n            <option value=\"&quot;com.example.EssayReviewApp.EssayTest&quot;\" />\n          </list>\n        </option>\n        <option name=\"vmOptions\" />\n      </ExternalSystemSettings>\n      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>\n      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>\n      <DebugAllEnabled>false</DebugAllEnabled>\n      <method v=\"2\" />\n    </configuration>\n    <configuration name=\"EssayTest.testDeleteReview\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\n      <ExternalSystemSettings>\n        <option name=\"executionName\" />\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\n        <option name=\"scriptParameters\" value=\"\" />\n        <option name=\"taskDescriptions\">\n          <list />\n        </option>\n        <option name=\"taskNames\">\n          <list>\n            <option value=\":app:testDebugUnitTest\" />\n            <option value=\"--tests\" />\n            <option value=\"&quot;com.example.EssayReviewApp.EssayTest.testDeleteReview&quot;\" />\n          </list>\n        </option>\n        <option name=\"vmOptions\" />\n      </ExternalSystemSettings>\n      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>\n      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>\n      <DebugAllEnabled>false</DebugAllEnabled>\n      <method v=\"2\" />\n    </configuration>\n    <recent_temporary>\n      <list>\n        <item itemvalue=\"Gradle.EssayTest\" />\n        <item itemvalue=\"Gradle.EssayTest.testDeleteReview\" />\n        <item itemvalue=\"Gradle.DashboardsTest\" />\n        <item itemvalue=\"Gradle.DashboardsTest.testRemoveFromEssayList_NonExistentEssay\" />\n        <item itemvalue=\"Gradle.DashboardsTest.testAddToEssayList (1)\" />\n      </list>\n    </recent_temporary>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"5068c175-38ae-4be0-8b4f-b41d92bd1819\" name=\"Changes\" comment=\"\" />\n      <created>1698955237209</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1698955237209</updated>\n    </task>\n    <servers />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	
++++ b/.idea/workspace.xml	
+@@ -10,16 +10,16 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="5068c175-38ae-4be0-8b4f-b41d92bd1819" name="Changes" comment="">
+-      <change afterPath="$PROJECT_DIR$/app/src/test/java/com/example/EssayReviewApp/EssayTest.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/example/EssayReviewApp/DashboardsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/com/example/EssayReviewApp/DashboardsTest.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/../intellij/doc/design.md" beforeDir="false" afterPath="$PROJECT_DIR$/../intellij/doc/design.md" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/../intellij/doc/use-cases/manageessays.md" beforeDir="false" afterPath="$PROJECT_DIR$/../intellij/doc/use-cases/manageessays.md" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+     <option name="LAST_RESOLUTION" value="IGNORE" />
+   </component>
+-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/home/tfaisal/.android/avd/Pixel_3a_API_34_extension_level_7_x86_64.avd]" />
++  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/home/jlederer/.android/avd/Pixel_5_API_34.avd]" />
+   <component name="ExternalProjectsData">
+     <projectState path="$PROJECT_DIR$">
+       <ProjectState />
+@@ -73,7 +73,7 @@
+     &quot;memory.settings.postsync.last.time.stamp&quot;: &quot;1701894231995&quot;
+   }
+ }</component>
+-  <component name="RunManager" selected="Gradle.EssayTest">
++  <component name="RunManager" selected="Android App.app">
+     <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App">
+       <module name="astudio.app.main" />
+       <option name="DEPLOY" value="true" />
