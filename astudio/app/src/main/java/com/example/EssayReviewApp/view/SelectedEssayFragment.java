@@ -24,7 +24,8 @@ import com.example.EssayReviewApp.model.Review;
  * This class is when a user clicks on an essay in either user essays or all essays. From here, users
  * can view the title and text of the essay. If the essay is in user essays, users will have the option
  * to either submit the essay to all essays, or go back to the user essays fragment. If the essay is in
- * all essays, the user will have the option to add a review, or go back to the all essays fragment.
+ * all essays, the user will have the option to add a review, or go back to the all essays fragment. The
+ * reviews of the app are stored in a recyclerview
  */
 
 public class SelectedEssayFragment extends Fragment implements ISelectedEssayView {

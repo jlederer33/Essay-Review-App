@@ -25,6 +25,9 @@ import com.example.EssayReviewApp.view.IMenuView;
 import com.example.EssayReviewApp.view.MainMenuFragment;
 import com.example.EssayReviewApp.view.MainView;
 
+/**
+ * This class is the controller of the app, and connects the view classes to the models
+ */
 public class Controller extends AppCompatActivity
         implements IMenuView.Listener, IUserEssaysView.Listener, IAllEssaysView.Listener,
         ISelectedEssayView.Listener, IAddReviewsView.Listener, ISelectedReviewView.Listener,
