@@ -61,25 +61,6 @@ public class FirestoreFacade implements IPersistenceFacade {
         dref.delete();
     }
 
-   /** public void removeAllEssay(@NonNull Essay essay){
-            CollectionReference cref = this.db.collection(ALL_ESSAYS_COLLECTION);
-            WriteBatch batch = db.batch();
-
-            cref.get().addOnCompleteListener(task -> {
-                if (task.isSuccessful()) {
-                    for (DocumentSnapshot document : task.getResult()) {
-                        batch.delete(document.getReference());
-                    }
-                    batch.commit().addOnSuccessListener(unused ->
-                                    Log.d("Essay Review App", "All essays deleted successfully"))
-                            .addOnFailureListener(e ->
-                                    Log.d("Essay Review App", "Error deleting essays: " + e.getMessage()));
-                } else {
-                    Log.d("Essay Review App", "Error getting documents: " + task.getException());
-                }
-            });
-        }
-*/
 
     @Override
     public void retrieveEssays(@NonNull Listener listener) {
