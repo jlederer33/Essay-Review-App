@@ -31,7 +31,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * This is the Essay dashboard fragment, which represents the view of the Essay dashboard. The essays
  * are displayed in a recyclerview. The user will have options to add and remove essays from this
- * dashboard.
+ * dashboard. Users can also click on the essay item to view the selected essay.
  */
 
 public class UserEssaysFragment extends Fragment implements IUserEssaysView {
@@ -40,7 +40,7 @@ public class UserEssaysFragment extends Fragment implements IUserEssaysView {
          * The viewholder for the essay_view recyclerview. The items it uses are Essays, and displays the
          * type, title and text
          */
-        TextView titleView, typeView, numOfReviews;
+        TextView titleView, typeView;
         private ImageButton deleteButton;
         public LinearLayout essayItem;
 

@@ -18,9 +18,8 @@ import com.example.EssayReviewApp.model.Review;
 import com.google.android.material.snackbar.Snackbar;
 
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link AddReviewsFragment} factory method to
- * create an instance of this fragment.
+ * Once users click add review, they will be taken to this fragment. This class will allow users to
+ * input title and text, and submit is clicked the review will be added to the respective essay
  */
 public class AddReviewsFragment extends Fragment implements IAddReviewsView {
     private Essay essay;

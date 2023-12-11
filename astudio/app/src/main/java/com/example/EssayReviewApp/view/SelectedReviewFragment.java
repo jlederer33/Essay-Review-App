@@ -16,7 +16,7 @@ import com.example.EssayReviewApp.model.Review;
 import com.google.firebase.firestore.util.Listener;
 
 /**
- * A simple {@link Fragment} subclass.
+ * This class represents when a User wants to see a full review. In this fragment, users are able to view the text and title of the review
  */
 public class SelectedReviewFragment extends Fragment implements ISelectedReviewView {
     private final Listener listener;

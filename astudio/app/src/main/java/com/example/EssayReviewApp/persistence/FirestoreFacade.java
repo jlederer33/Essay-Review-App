@@ -18,6 +18,9 @@ import com.google.firebase.firestore.WriteBatch;
 
 import java.util.Map;
 
+/**
+ * This class handles all of the data persitence in the app
+ */
 public class FirestoreFacade implements IPersistenceFacade {
     private static final String USER_ESSAYS_COLLECTION = "userEssays";
     private static final String ALL_ESSAYS_COLLECTION = "allEssays";
@@ -25,7 +28,7 @@ public class FirestoreFacade implements IPersistenceFacade {
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
-    public void saveUserEssay(@NonNull Essay essay){
+    public void saveUserEssay(@NonNull Essay essay){//Saves the essays in userEssays list
         CollectionReference cref = this.db.collection(USER_ESSAYS_COLLECTION);
 
         DocumentReference dref = cref.document(essay.id.toString());
@@ -33,7 +36,7 @@ public class FirestoreFacade implements IPersistenceFacade {
         dref.set(essay.toMap());
     }
 
-    public void saveAllEssay(@NonNull Essay essay){
+    public void saveAllEssay(@NonNull Essay essay){//Saves the essays in allEssays list
         CollectionReference cref = this.db.collection(ALL_ESSAYS_COLLECTION);
 
         DocumentReference dref = cref.document(essay.id.toString());
@@ -55,7 +58,7 @@ public class FirestoreFacade implements IPersistenceFacade {
         });
     }
 
-    public void removeUserEssay(@NonNull Essay essay) {
+    public void removeUserEssay(@NonNull Essay essay) {//Updates the collection when a user essay has been deleted
         CollectionReference cref = this.db.collection(USER_ESSAYS_COLLECTION);
         DocumentReference dref = cref.document(essay.id.toString());
         dref.delete();
@@ -63,7 +66,7 @@ public class FirestoreFacade implements IPersistenceFacade {
 
 
     @Override
-    public void retrieveEssays(@NonNull Listener listener) {
+    public void retrieveEssays(@NonNull Listener listener) {//Retrieves the essay upon the onCreate()
         Dashboards dashboard = new Dashboards();
 
         Task<QuerySnapshot> usertask = this.db.collection(USER_ESSAYS_COLLECTION).get();

@@ -15,7 +15,7 @@ import com.example.EssayReviewApp.view.SelectedEssayFragment;
 public class Essay implements java.io.Serializable {
     /**
      * This class represents the Essays created by the user. They are composed of String title, string text
-     * and type.
+     * and type. The UUID helps determine essay type
      */
 
     String title;

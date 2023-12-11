@@ -94,7 +94,7 @@ public class Controller extends AppCompatActivity
     }
 
     @Override
-    public void onDeleteEssayClicked(Essay essay, IUserEssaysView view){ //Connects the delete essay button
+    public void onDeleteEssayClicked(Essay essay, IUserEssaysView view){ //Connects the delete essay button to the removeFromEssayList button
         dashboard.removeFromEssayList(essay);
         view.updateEssaysDisplay();
         this.persFacade.removeUserEssay(essay);
@@ -130,7 +130,7 @@ public class Controller extends AppCompatActivity
     }
 
     @Override
-    public void onDeleteReviewClicked(Essay essay, Review review, ISelectedEssayView view) {
+    public void onDeleteReviewClicked(Essay essay, Review review, ISelectedEssayView view) {//Connects the delete review button to the deleteReview method
         essay.deleteReview(review);
         view.updateReviewsDisplay();
         this.persFacade.saveAllEssay(essay);
@@ -153,7 +153,7 @@ public class Controller extends AppCompatActivity
     }
 
     @Override
-    public void onEssaysRecieved(@NonNull Dashboards dashboard) {
+    public void onEssaysRecieved(@NonNull Dashboards dashboard) {//Implementation of the listener
 
     }
 }
