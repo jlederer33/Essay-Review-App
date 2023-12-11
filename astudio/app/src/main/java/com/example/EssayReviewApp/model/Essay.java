@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import com.example.EssayReviewApp.persistence.FirestoreFacade;
+import com.example.EssayReviewApp.view.SelectedEssayFragment;
 
 public class Essay implements java.io.Serializable {
     /**
@@ -124,5 +125,8 @@ public class Essay implements java.io.Serializable {
             essay.reviewList.add(Review.fromMap(reviewMap));
         return essay;
 
+    }
+
+    public void launchInContainer(Class<SelectedEssayFragment> selectedEssayFragmentClass, Object o) {
     }
 }
